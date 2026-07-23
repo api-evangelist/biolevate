@@ -1,0 +1,529 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent Provider Items API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Provider Items
+  description: File and folder operations on storage providers
+paths:
+  /api/core/providers/{providerId}/items:
+    get:
+      tags:
+      - Provider Items
+      summary: List items
+      description: Returns a paginated list of files and folders in the specified directory
+      operationId: listItems
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: Directory key (must end with '/' or be empty for root)
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: q
+        in: query
+        description: Name filter
+        required: false
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Pagination cursor
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Max items to return
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListItemsResponse'
+        '404':
+          description: Provider not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListItemsResponse'
+        '200':
+          description: Successfully retrieved items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListItemsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListItemsResponse'
+    post:
+      tags:
+      - Provider Items
+      summary: Create folder
+      description: Creates a new folder in the provider. Key must end with '/'.
+      operationId: uploadFile
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: Target directory key (must end with '/' or be empty for root)
+        required: false
+        schema:
+          type: string
+          default: ''
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: File to upload
+              required:
+              - file
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateItemRequest'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '201':
+          description: Folder created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+    delete:
+      tags:
+      - Provider Items
+      summary: Delete item
+      description: Deletes a file or folder
+      operationId: deleteItem
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemReference'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+        '404':
+          description: Item not found
+        '204':
+          description: Item deleted
+        '401':
+          description: Unauthorized
+    patch:
+      tags:
+      - Provider Items
+      summary: Rename item
+      description: Renames a file or folder
+      operationId: renameItem
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: newName
+        in: query
+        description: New name for the item
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemReference'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '404':
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '400':
+          description: Invalid request or missing newName
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '200':
+          description: Item renamed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+  /api/core/providers/{providerId}/items/upload-url:
+    post:
+      tags:
+      - Provider Items
+      summary: Get presigned upload URL
+      description: Returns a presigned URL for direct upload to storage (for large files)
+      operationId: getUploadUrl
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadUrlRequest'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadUrlResponse'
+        '200':
+          description: Upload URL generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadUrlResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadUrlResponse'
+  /api/core/providers/{providerId}/items/confirm:
+    post:
+      tags:
+      - Provider Items
+      summary: Confirm presigned upload
+      description: Confirms that a file was uploaded via presigned URL
+      operationId: confirmUpload
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmUploadRequest'
+        required: true
+      responses:
+        '200':
+          description: Upload confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderItem'
+  /api/core/providers/{providerId}/items/download-url:
+    get:
+      tags:
+      - Provider Items
+      summary: Get download URL
+      description: Returns a URL to download the file
+      operationId: getDownloadUrl
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: File key (must not end with '/')
+        required: true
+        schema:
+          type: string
+      - name: expirationMinutes
+        in: query
+        description: URL expiration in minutes
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 15
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadUrlResponse'
+        '200':
+          description: Download URL generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadUrlResponse'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadUrlResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadUrlResponse'
+  /api/core/providers/{providerId}/items/content:
+    get:
+      tags:
+      - Provider Items
+      summary: Get file content
+      description: Returns the raw file content (proxy for providers without presigned URLs)
+      operationId: getFileContent
+      parameters:
+      - name: providerId
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: File key (must not end with '/')
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        '200':
+          description: File content
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        '404':
+          description: File not found
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+components:
+  schemas:
+    ItemReference:
+      type: object
+      description: Reference to an item. Use trailing slash for folders (e.g., 'folder/' or 'path/to/folder/')
+      properties:
+        key:
+          type: string
+          description: 'Full item key. Files: ''path/to/file.pdf'', Folders: ''path/to/folder/'''
+          example: reports/document.pdf
+      required:
+      - key
+    UploadUrlRequest:
+      type: object
+      description: Request for presigned upload URL
+      properties:
+        key:
+          type: string
+          description: Full file key (must not end with '/')
+          example: reports/document.pdf
+        size:
+          type: integer
+          format: int64
+          description: File size in bytes
+          example: 1048576
+        mediaType:
+          type: string
+          description: Media type
+          example: application/pdf
+      required:
+      - key
+    UploadUrlResponse:
+      type: object
+      description: Presigned upload URL response
+      properties:
+        url:
+          type: string
+          description: Presigned URL for direct upload (null if not supported)
+        expiresInSeconds:
+          type: integer
+          format: int32
+          description: Time in seconds until the URL expires
+        supported:
+          type: boolean
+          description: Whether presigned upload is supported by this provider
+    ListItemsResponse:
+      type: object
+      description: Paginated list of provider items
+      properties:
+        items:
+          type: array
+          description: List of items (files and folders)
+          items:
+            $ref: '#/components/schemas/ProviderItem'
+        nextCursor:
+          type: string
+          description: Cursor for next page, null if no more pages
+    ConfirmUploadRequest:
+      type: object
+      description: Confirm presigned upload request
+      properties:
+        key:
+          type: string
+          description: Full file key (must not end with '/')
+          example: reports/document.pdf
+      required:
+      - key
+    CreateItemRequest:
+      type: object
+      description: Create folder request. Key must end with '/' to indicate a folder.
+      properties:
+        key:
+          type: string
+          description: Full folder key ending with '/'
+          example: reports/archive/
+      required:
+      - key
+    ProviderItem:
+      type: object
+      description: Provider item (file or folder)
+      properties:
+        providerId:
+          type: string
+          description: Provider ID
+          example: 550e8400-e29b-41d4-a716-446655440000
+        key:
+          type: string
+          description: 'Full item key. Files: ''path/to/file.pdf'', Folders: ''path/to/folder/'''
+          example: reports/document.pdf
+        type:
+          type: string
+          description: Item type
+          enum:
+          - FILE
+          - FOLDER
+          example: FILE
+        size:
+          type: integer
+          format: int64
+          description: File size in bytes (null for folders)
+          example: 1048576
+        extension:
+          type: string
+          description: File extension (null for folders)
+          example: pdf
+        mediaType:
+          type: string
+          description: Media type (null for folders)
+          example: application/pdf
+        lastModified:
+          type: integer
+          format: int64
+          description: Last modified timestamp in milliseconds
+          example: 1708123456789
+    DownloadUrlResponse:
+      type: object
+      description: Download URL response
+      properties:
+        url:
+          type: string
+          description: URL to download the file
+        expiresInSeconds:
+          type: integer
+          format: int32
+          description: Time in seconds until the URL expires
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

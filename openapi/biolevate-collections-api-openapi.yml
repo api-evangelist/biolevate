@@ -1,0 +1,785 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent Collections API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Collections
+  description: Collection resource management
+paths:
+  /api/core/collections:
+    get:
+      tags:
+      - Collections
+      summary: List collections
+      description: Returns a paginated list of collections the caller has access to
+      operationId: listCollections
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        description: Page size
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: sortBy
+        in: query
+        description: Sort field
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort direction (asc/desc)
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: q
+        in: query
+        description: Text search filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseCollectionInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseCollectionInfo'
+    post:
+      tags:
+      - Collections
+      summary: Create a collection
+      description: Creates a new collection owned by the current user
+      operationId: createCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollectionRequest'
+        required: true
+      responses:
+        '201':
+          description: Collection created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+  /api/core/collections/{id}/files:
+    get:
+      tags:
+      - Collections
+      summary: List files in collection
+      description: Returns a paginated list of files belonging to the collection
+      operationId: listCollectionFiles
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number (0-based)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        description: Page size
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: sortBy
+        in: query
+        description: Sort field
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort direction (asc/desc)
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: q
+        in: query
+        description: Text search filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '200':
+          description: Successfully retrieved files
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '404':
+          description: Collection not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+    post:
+      tags:
+      - Collections
+      summary: Add file to collection
+      description: Associates an existing file with the collection
+      operationId: addFileToCollection
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddFileToCollectionRequest'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '404':
+          description: Collection or file not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '201':
+          description: File added to collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+  /api/core/collections/{id}:
+    get:
+      tags:
+      - Collections
+      summary: Get a collection
+      description: Returns a single collection by its ID
+      operationId: getCollection
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '200':
+          description: Successfully retrieved collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '404':
+          description: Collection not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+    delete:
+      tags:
+      - Collections
+      summary: Delete a collection
+      description: Deletes a collection. Only the owner can delete a collection.
+      operationId: deleteCollection
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Collection deleted successfully
+        '403':
+          description: Access denied - only owner can delete
+        '404':
+          description: Collection not found
+        '401':
+          description: Unauthorized
+    patch:
+      tags:
+      - Collections
+      summary: Update a collection
+      description: Partially updates a collection. Only provided fields will be updated.
+      operationId: updateCollection
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionRequest'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '200':
+          description: Collection updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '404':
+          description: Collection not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseCollectionInfo'
+  /api/core/collections/{id}/files/{fileId}:
+    delete:
+      tags:
+      - Collections
+      summary: Remove file from collection
+      description: Removes the association between a file and the collection
+      operationId: removeFileFromCollection
+      parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+        '204':
+          description: File removed from collection
+        '404':
+          description: Collection or file not found
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    ProviderId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    UpdateCollectionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+    PolicyId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    CollectionId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    JsonNode:
+      type: object
+    LastMergeJobInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+    EliseFileInfo:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/FileId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        policy:
+          $ref: '#/components/schemas/PolicyId'
+        providerId:
+          $ref: '#/components/schemas/ProviderId'
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int64
+        checksum:
+          type: string
+        mediaType:
+          type: string
+        extension:
+          type: string
+        indexed:
+          type: boolean
+        matchComputed:
+          type: boolean
+        displayName:
+          type: string
+        dbName:
+          type: string
+        lastIndexationInfos:
+          $ref: '#/components/schemas/LibItemIndexationInfos'
+        ownerFirstName:
+          type: string
+        ownerLastName:
+          type: string
+        ownerEmail:
+          type: string
+        ownerAvatarUrl:
+          type: string
+        providerName:
+          type: string
+        additionalInfo:
+          $ref: '#/components/schemas/JsonNode'
+        description:
+          type: string
+        authors:
+          type: string
+        title:
+          type: string
+        lastMergeJob:
+          $ref: '#/components/schemas/LastMergeJobInfo'
+        additionalInfos:
+          $ref: '#/components/schemas/JsonNode'
+          writeOnly: true
+        type:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+          - ELISE_FILE
+    FileId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    CollectionViewId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    EliseCollectionInfo:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CollectionId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        policy:
+          $ref: '#/components/schemas/PolicyId'
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        ownerFirstName:
+          type: string
+        ownerLastName:
+          type: string
+        ownerEmail:
+          type: string
+        ownerAvatarUrl:
+          type: string
+        filesCount:
+          type: integer
+          format: int64
+        derivedFromCollectionId:
+          $ref: '#/components/schemas/CollectionId'
+        derivedFromCollectionName:
+          type: string
+        derivedFromViewId:
+          $ref: '#/components/schemas/CollectionViewId'
+        derivedFromViewName:
+          type: string
+        chained:
+          type: boolean
+        derivedToCollectionId:
+          $ref: '#/components/schemas/CollectionId'
+        derivedToCollectionName:
+          type: string
+    PageDataEliseFileInfo:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseFileInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    PageDataEliseCollectionInfo:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseCollectionInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    CreateCollectionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+      required:
+      - name
+    AddFileToCollectionRequest:
+      type: object
+      description: Request to add a file to a collection
+      properties:
+        fileId:
+          type: string
+          description: EliseFile ID to add to the collection
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      required:
+      - fileId
+    LibItemIndexationInfos:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        errorMessage:
+          type: string
+        errorTraceback:
+          type: string
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

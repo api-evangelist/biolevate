@@ -1,0 +1,387 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent Find similar files API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Find similar files
+  description: Find similar files locally and via remote bibliographic search
+paths:
+  /api/core/find-similar/jobs:
+    get:
+      tags:
+      - Find similar files
+      summary: List find-similar jobs
+      description: Returns a paginated list of find-similar jobs owned by the current user.
+      operationId: listJobs
+      parameters:
+      - name: pageSize
+        in: query
+        description: Page size
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sortProperty
+        in: query
+        description: Sort property
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort order
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Jobs retrieved
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageDataFindSimilarApiJobDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageDataFindSimilarApiJobDto'
+    post:
+      tags:
+      - Find similar files
+      summary: Create find-similar job
+      description: Creates a find-similar job for the supplied source identifiers. The endpoint returns immediately with a PENDING/RUNNING job; poll GET /find-similar/jobs/{id} for completion.
+      operationId: createJob
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchSources'
+        required: true
+      responses:
+        '400':
+          description: Invalid SearchSources
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+        '200':
+          description: Job created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+  /api/core/find-similar/jobs/{jobId}:
+    get:
+      tags:
+      - Find similar files
+      summary: Get find-similar job
+      description: Returns a find-similar job by id, including the unified result and statistics when COMPLETED.
+      operationId: getJob
+      parameters:
+      - name: jobId
+        in: path
+        description: The job id
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied - not the job owner
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+        '200':
+          description: Job retrieved
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+        '404':
+          description: Job not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindSimilarApiJobDto'
+components:
+  schemas:
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    PageDataFindSimilarApiJobDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindSimilarApiJobDto'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    SourceMatches:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceIdentifiers'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileMatch'
+        metadataOnly:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetadataOnlyMatch'
+    JobStatistics:
+      type: object
+      properties:
+        sourcesQueried:
+          type: integer
+          format: int32
+        sourcesMatchedLocally:
+          type: integer
+          format: int32
+        sourcesMatchedRemotely:
+          type: integer
+          format: int32
+        sourcesUnmatched:
+          type: integer
+          format: int32
+        remoteSearchStatus:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - PROGRESS
+          - ABORTED
+          - COMPLETED
+          - FAILED
+          - OUTDATED
+        totalFileMatches:
+          type: integer
+          format: int32
+        totalMetadataOnlyMatches:
+          type: integer
+          format: int32
+        errorsBySearchResultId:
+          type: object
+          additionalProperties:
+            type: string
+    FindSimilarApiJobDto:
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - COMPLETED
+          - FAILED
+        createdTime:
+          type: integer
+          format: int64
+        modifiedTime:
+          type: integer
+          format: int64
+        executionTimeMs:
+          type: integer
+          format: int64
+        errorMessage:
+          type: string
+        sources:
+          $ref: '#/components/schemas/SearchSources'
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceMatches'
+        statistics:
+          $ref: '#/components/schemas/JobStatistics'
+    SourceIdentifiers:
+      type: object
+      properties:
+        doi:
+          type: string
+        id:
+          type: string
+        openAccessId:
+          type: string
+    EliseOntologyMeta:
+      type: object
+      properties:
+        explanation:
+          type: string
+        annotationIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        metaName:
+          type: string
+        metaValue:
+          type: object
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    FileMatch:
+      type: object
+      properties:
+        fileId:
+          type: string
+        providerId:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        checksum:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
+    MetadataOnlyMatch:
+      type: object
+      properties:
+        searchResultId:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
+    SearchSources:
+      type: object
+      properties:
+        sourceIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceIdentifiers'
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

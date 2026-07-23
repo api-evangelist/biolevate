@@ -1,0 +1,607 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Agent
+  description: Conversational agent jobs
+paths:
+  /api/core/agent/jobs:
+    get:
+      tags:
+      - Agent
+      summary: List agent jobs
+      description: Returns a paginated list of agent jobs for the current user, ordered by creation time (most recent first). When `conversationId` is provided, the results are restricted to jobs attached to that conversation, which lets a client replay the sequence of questions asked in a single conversation.
+      operationId: listAgentJobs
+      parameters:
+      - name: pageSize
+        in: query
+        description: Page size
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Page number (0-based)
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: conversationId
+        in: query
+        description: Restrict the results to jobs attached to this conversation
+        required: false
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved jobs
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageDataJob'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageDataJob'
+    post:
+      tags:
+      - Agent
+      summary: Create agent job
+      description: Schedules an asynchronous agent run and returns the initial Job (status PENDING).
+      operationId: createAgentJob
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+        required: true
+      responses:
+        '403':
+          description: Access denied
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '200':
+          description: Job created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          description: Invalid request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+  /api/core/agent/jobs/{jobId}:
+    get:
+      tags:
+      - Agent
+      summary: Get agent job
+      description: Returns a single agent job by its ID
+      operationId: getAgentJob
+      parameters:
+      - name: jobId
+        in: path
+        description: The job Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved job
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '403':
+          description: Access denied - not the job owner
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Job not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Job'
+  /api/core/agent/jobs/{jobId}/results:
+    get:
+      tags:
+      - Agent
+      summary: Get agent job outputs
+      description: Returns the agent's answer (text or structured), explanation, and cited annotation ids
+      operationId: getAgentJobOutputs
+      parameters:
+      - name: jobId
+        in: path
+        description: The job Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied - not the job owner
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobOutputs'
+        '200':
+          description: Successfully retrieved outputs
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobOutputs'
+        '404':
+          description: Job not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobOutputs'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobOutputs'
+  /api/core/agent/jobs/{jobId}/inputs:
+    get:
+      tags:
+      - Agent
+      summary: Get agent job inputs
+      description: Returns the messages, files and configuration submitted for the agent job
+      operationId: getAgentJobInputs
+      parameters:
+      - name: jobId
+        in: path
+        description: The job Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied - not the job owner
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobInputs'
+        '200':
+          description: Successfully retrieved inputs
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobInputs'
+        '404':
+          description: Job not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobInputs'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AgentJobInputs'
+  /api/core/agent/jobs/{jobId}/annotations:
+    get:
+      tags:
+      - Agent
+      summary: Get agent job annotations
+      description: Returns the document annotations the agent cited in its answer
+      operationId: getAgentJobAnnotations
+      parameters:
+      - name: jobId
+        in: path
+        description: The job Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied - not the job owner
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseAnnotation'
+        '200':
+          description: Successfully retrieved annotations
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseAnnotation'
+        '404':
+          description: Job not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseAnnotation'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseAnnotation'
+components:
+  schemas:
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    AgentJobOutputs:
+      type: object
+      properties:
+        answer:
+          $ref: '#/components/schemas/JsonNode'
+        explanation:
+          type: string
+        referenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    Job:
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
+          type: boolean
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
+    EliseAnnotation:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/AnnotationId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        space:
+          $ref: '#/components/schemas/EntityId'
+        data:
+          $ref: '#/components/schemas/EliseAnnotationConfig'
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
+        modifiedTime:
+          type: integer
+          format: int64
+        lastModifier:
+          $ref: '#/components/schemas/UserId'
+        status:
+          type: string
+          enum:
+          - VALID
+          - NOTVALID
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
+          type: array
+          items:
+            type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    JsonNode:
+      type: object
+    EliseAnnotationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
+          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
+          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
+          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
+          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
+          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
+      properties:
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
+    AgentInput:
+      type: object
+      description: A single input item submitted to the agent (role + text content)
+      properties:
+        role:
+          type: string
+          description: Author of the item
+          enum:
+          - system
+          - user
+          - assistant
+          - SYSTEM
+          - USER
+          - ASSISTANT
+          example: USER
+        content:
+          type: string
+          description: Plain text content of the item
+          example: Summarize the attached report.
+      required:
+      - content
+      - role
+    AgentJobInputs:
+      type: object
+      properties:
+        message:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        outputModelSchema:
+          $ref: '#/components/schemas/JsonNode'
+        completionConfig:
+          $ref: '#/components/schemas/AgentCompletionConfig'
+        maxIterations:
+          type: integer
+          format: int32
+        conversationId:
+          type: string
+          format: uuid
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    CreateAgentRequest:
+      type: object
+      description: Request to schedule a new agent run
+      properties:
+        message:
+          type: string
+          description: 'Stateful mode: the new user message for this turn. Prior turns are loaded server-side from `conversationId`. Mutually exclusive with `messages`.
+
+            '
+          example: Summarize the attached report and list the main risks.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+        files:
+          $ref: '#/components/schemas/FilesInput'
+          description: Files the agent can read from
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
+          description: Optional job launch behaviour for input files
+        historyInputValid:
+          type: boolean
+        conversationIdValid:
+          type: boolean
+        output_model_schema:
+          $ref: '#/components/schemas/JsonNode'
+          description: 'Optional JSON Schema constraining the agent''s final answer to a structured object. Free-form: any valid JSON Schema is accepted'
+          example:
+            type: object
+            properties:
+              verdict:
+                type: string
+            required:
+            - verdict
+        completion_config:
+          $ref: '#/components/schemas/AgentCompletionConfig'
+          description: Per-completion LLM knobs (model preset, temperature, max tokens)
+        max_iterations:
+          type: integer
+          format: int32
+          description: Hard cap on the number of agent-loop iterations
+          example: 10
+        conversation_id:
+          type: string
+          format: uuid
+          description: 'Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.'
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+    AgentCompletionConfig:
+      type: object
+      description: Per-completion LLM knobs for an agent run
+      properties:
+        model:
+          type: string
+          description: Semantic model preset (defaults to BALANCED when omitted)
+          enum:
+          - FAST
+          - BALANCED
+          example: BALANCED
+        temperature:
+          type: number
+          format: double
+          description: Sampling temperature
+          example: 0.7
+          maximum: 2.0
+          minimum: 0.0
+        max_completion_tokens:
+          type: integer
+          format: int32
+          description: Hard cap on response tokens
+          example: 2048
+          maximum: 32768
+          minimum: 1
+    PageDataJob:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

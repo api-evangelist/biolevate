@@ -1,0 +1,275 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent Providers API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Providers
+  description: Storage provider management (read-only)
+paths:
+  /api/core/providers:
+    get:
+      tags:
+      - Providers
+      summary: List providers
+      description: Returns a paginated list of storage providers the caller has access to. Secret fields are redacted.
+      operationId: listProviders
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        description: Page size
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: sortBy
+        in: query
+        description: Sort field
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort direction (asc/desc)
+        required: false
+        schema:
+          type: string
+          default: asc
+      - name: q
+        in: query
+        description: Text search filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataFSProvider_External'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataFSProvider_External'
+  /api/core/providers/{id}:
+    get:
+      tags:
+      - Providers
+      summary: Get a provider
+      description: Returns a single storage provider by its ID. Secret fields are redacted.
+      operationId: getProvider
+      parameters:
+      - name: id
+        in: path
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FSProvider_External'
+        '200':
+          description: Successfully retrieved provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FSProvider_External'
+        '404':
+          description: Provider not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FSProvider_External'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FSProvider_External'
+components:
+  schemas:
+    PolicyId_External:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    PageDataFSProvider_External:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FSProvider_External'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    UserId_External:
+      type: object
+      properties:
+        id:
+          type: string
+    FSProvider_External:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ProviderId_External'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId_External'
+        policy:
+          $ref: '#/components/schemas/PolicyId_External'
+        name:
+          type: string
+        icon:
+          type: string
+        config:
+          $ref: '#/components/schemas/FSProviderConfiguration_External'
+        type:
+          type: string
+          enum:
+          - LOCAL
+          - SHAREPOINT_ONLINE
+          - S3
+          - LEANEAR
+          - AZURE
+          - GCS
+          - SFTP
+        system:
+          type: boolean
+    FSProviderConfiguration_External:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          LOCAL: '#/components/schemas/FSProviderLocalConfig_External'
+          S3: '#/components/schemas/FSProviderS3Config_External'
+          AZURE: '#/components/schemas/FSProviderAzureConfig_External'
+          GCS: '#/components/schemas/FSProviderGCSConfig_External'
+          SHAREPOINT_ONLINE: '#/components/schemas/FSProviderSharepointOnlineConfig_External'
+          LEANEAR: '#/components/schemas/FSProviderLeanearConfig_External'
+          SFTP: '#/components/schemas/FSProviderSFTPConfig_External'
+      properties:
+        type:
+          type: string
+          enum:
+          - LOCAL
+          - SHAREPOINT_ONLINE
+          - S3
+          - LEANEAR
+          - AZURE
+          - GCS
+          - SFTP
+    ProviderId_External:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,651 @@
+openapi: 3.1.0
+info:
+  title: Biolevate Agent Files API
+  version: 1.0.0
+  description: Conversational agent jobs
+servers:
+- url: /
+  description: Biolevate Server
+security:
+- TOKEN: []
+tags:
+- name: Files
+  description: EliseFile resource management
+paths:
+  /api/core/files:
+    get:
+      tags:
+      - Files
+      summary: List files in a provider
+      description: Returns paginated file infos for a provider
+      operationId: listFiles
+      parameters:
+      - name: providerId
+        in: query
+        description: Provider ID
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: Page size
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sortProperty
+        in: query
+        description: Sort property
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        description: Sort order
+        required: false
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '200':
+          description: Successfully retrieved files
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '404':
+          description: Provider not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDataEliseFileInfo'
+    post:
+      tags:
+      - Files
+      summary: Create a file
+      description: Creates an EliseFile from an existing provider item and triggers indexation
+      operationId: createFile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileRequest'
+        required: true
+      responses:
+        '201':
+          description: File created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '400':
+          description: Invalid request or unsupported file extension
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '404':
+          description: File not found in provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+  /api/core/files/{id}/reindex:
+    post:
+      tags:
+      - Files
+      summary: Reindex a file
+      description: Forces reindexation of a file. Optionally reparses the document.
+      operationId: reindexFile
+      parameters:
+      - name: id
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      - name: reparse
+        in: query
+        description: Reparse document content
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '202':
+          description: Reindexation started
+        '403':
+          description: Access denied
+        '404':
+          description: File not found
+        '401':
+          description: Unauthorized
+  /api/core/files/{id}/recompute-ontologies:
+    post:
+      tags:
+      - Files
+      summary: Recompute file ontologies
+      description: Forces recomputation of ontologies and metadata for a file
+      operationId: recomputeFileOntologies
+      parameters:
+      - name: id
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+        '202':
+          description: Ontology recomputation started
+        '404':
+          description: File not found
+        '401':
+          description: Unauthorized
+  /api/core/files/{id}:
+    get:
+      tags:
+      - Files
+      summary: Get a file
+      description: Returns a file by its ID
+      operationId: getFile
+      parameters:
+      - name: id
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '200':
+          description: Successfully retrieved file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EliseFileInfo'
+    delete:
+      tags:
+      - Files
+      summary: Delete a file
+      description: Deletes a file
+      operationId: deleteFile
+      parameters:
+      - name: id
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+        '204':
+          description: File deleted successfully
+        '404':
+          description: File not found
+        '401':
+          description: Unauthorized
+  /api/core/files/{id}/ontologies:
+    get:
+      tags:
+      - Files
+      summary: Get file ontologies
+      description: Returns computed ontologies for a file
+      operationId: getFileOntologies
+      parameters:
+      - name: id
+        in: path
+        description: File ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseOntology'
+        '200':
+          description: Successfully retrieved ontologies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseOntology'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseOntology'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EliseOntology'
+components:
+  schemas:
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    ProviderId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    PolicyId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    JsonNode:
+      type: object
+    CreateFileRequest:
+      type: object
+      description: Request to create EliseFile from provider item
+      properties:
+        providerId:
+          type: string
+          description: Source provider ID
+          example: 01a91a21-3136-4094-96da-ded4dce3824f
+        key:
+          type: string
+          description: Full file key (must not end with '/')
+          example: documents/report.pdf
+      required:
+      - key
+      - providerId
+    LastMergeJobInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+    EliseFileInfo:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/FileId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        policy:
+          $ref: '#/components/schemas/PolicyId'
+        providerId:
+          $ref: '#/components/schemas/ProviderId'
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int64
+        checksum:
+          type: string
+        mediaType:
+          type: string
+        extension:
+          type: string
+        indexed:
+          type: boolean
+        matchComputed:
+          type: boolean
+        displayName:
+          type: string
+        dbName:
+          type: string
+        lastIndexationInfos:
+          $ref: '#/components/schemas/LibItemIndexationInfos'
+        ownerFirstName:
+          type: string
+        ownerLastName:
+          type: string
+        ownerEmail:
+          type: string
+        ownerAvatarUrl:
+          type: string
+        providerName:
+          type: string
+        additionalInfo:
+          $ref: '#/components/schemas/JsonNode'
+        description:
+          type: string
+        authors:
+          type: string
+        title:
+          type: string
+        lastMergeJob:
+          $ref: '#/components/schemas/LastMergeJobInfo'
+        additionalInfos:
+          $ref: '#/components/schemas/JsonNode'
+          writeOnly: true
+        type:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+          - ELISE_FILE
+    FileId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    EliseOntologyMeta:
+      type: object
+      properties:
+        explanation:
+          type: string
+        annotationIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        metaName:
+          type: string
+        metaValue:
+          type: object
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    PageDataEliseFileInfo:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseFileInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    LibItemIndexationInfos:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        errorMessage:
+          type: string
+        errorTraceback:
+          type: string
+  securitySchemes:
+    TOKEN:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
