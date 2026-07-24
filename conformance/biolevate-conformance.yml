@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/biolevate-api-original.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: 'openapi: 3.1.0 document published in biolevate-api-sdk/openapi'
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; uses HTTP bearer JWT (PAT)
+- id: openid-connect
+  conforms: false
+- id: jwt-bearer
+  conforms: true
+  evidence: 'securityScheme TOKEN: http bearer, bearerFormat JWT'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as application/json, not application/problem+json
+- id: rfc-idempotency-key
+  conforms: true
+  evidence: Idempotency-Key request header defined on mutating operations
+- id: pagination
+  conforms: true
+  evidence: page/pageSize + cursor pagination with hasNext/nextCursor
+- id: fhir
+  conforms: false
+- id: json-api
+  conforms: false

@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/Biolevate/biolevate-api-sdk + https://pypi.org/project/biolevate/
+note: >-
+  First-party client libraries for the Biolevate API (Elise platform), published from the public
+  Biolevate/biolevate-api-sdk repo. The high-level SDK is `biolevate`; the low-level generated client
+  is `biolevate-client`. The CLI binary `ozk` (onizuka-cli) is distributed via the Biolevate Homebrew
+  tap and catalogued in cli/biolevate-cli.yml.
+packages:
+  - language: python
+    registry: pypi
+    name: biolevate
+    url: https://pypi.org/project/biolevate/
+    install: pip install biolevate
+    version: 0.7.1
+    license: Apache-2.0
+    official: true
+    description: High-level Python SDK for the Biolevate API (async client over providers, files, collections, QA/extraction/agent jobs).
+    source: https://github.com/Biolevate/biolevate-api-sdk
+  - language: python
+    registry: pypi
+    name: biolevate-client
+    url: https://pypi.org/project/biolevate-client/
+    install: pip install biolevate-client
+    license: Apache-2.0
+    official: true
+    description: Auto-generated low-level OpenAPI client that the high-level `biolevate` SDK is built on.
+    source: https://github.com/Biolevate/biolevate-api-sdk
+  - language: go
+    registry: homebrew
+    name: onizuka-cli
+    url: https://github.com/Biolevate/homebrew-tap
+    install: brew tap Biolevate/tap && brew install onizuka-cli
+    binary: ozk
+    version: 1.0.61
+    official: true
+    description: Biolevate operations CLI (binary `ozk`), distributed via GitHub Releases through the Biolevate Homebrew tap. See cli/biolevate-cli.yml.

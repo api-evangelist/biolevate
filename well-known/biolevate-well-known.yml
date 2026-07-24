@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+host: https://www.biolevate.com
+note: Marketing site is Framer-hosted; the API docs host api-docs.biolevatecloud.com is a SPA that returns
+  its index (HTTP 200, identical body) for every path, so /.well-known and /llms.txt 200s there are catch-all
+  artifacts, not real documents. No real well-known discovery documents were found.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /llms.txt
+  status: 404

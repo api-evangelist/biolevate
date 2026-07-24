@@ -1,0 +1,4469 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Biolevate API", "version": "1.0.0" },
+  "servers": [{ "url": "/", "description": "Biolevate Server" }],
+  "security": [{ "TOKEN": [] }],
+  "tags": [
+    { "name": "Agent", "description": "Conversational agent jobs" },
+    {
+      "name": "Multi-Dimensional Extraction",
+      "description": "Multi-dimensional (entity / schema-based) extraction resource management"
+    },
+    {
+      "name": "Find similar files",
+      "description": "Find similar files locally and via remote bibliographic search"
+    },
+    {
+      "name": "Providers",
+      "description": "Storage provider management (read-only)"
+    },
+    {
+      "name": "Question Answering",
+      "description": "Question Answering resource management"
+    },
+    { "name": "Extraction", "description": "Extraction resource management" },
+    {
+      "name": "Provider Items",
+      "description": "File and folder operations on storage providers"
+    },
+    { "name": "Files", "description": "EliseFile resource management" },
+    { "name": "Collections", "description": "Collection resource management" }
+  ],
+  "paths": {
+    "/api/core/qa/jobs": {
+      "get": {
+        "tags": ["Question Answering"],
+        "summary": "List QA jobs",
+        "description": "Returns a paginated list of question answering jobs for the current user",
+        "operationId": "listQAJobs",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "sortProperty",
+            "in": "query",
+            "description": "Sort property",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved jobs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Question Answering"],
+        "summary": "Create QA job",
+        "description": "Creates a new question answering job on the specified files",
+        "operationId": "createQAJob",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateQARequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "200": {
+            "description": "Job created successfully",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{providerId}/items": {
+      "get": {
+        "tags": ["Provider Items"],
+        "summary": "List items",
+        "description": "Returns a paginated list of files and folders in the specified directory",
+        "operationId": "listItems",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "Directory key (must end with '/' or be empty for root)",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Name filter",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max items to return",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 50 }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListItemsResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListItemsResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved items",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListItemsResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListItemsResponse" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Provider Items"],
+        "summary": "Create folder",
+        "description": "Creates a new folder in the provider. Key must end with '/'.",
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "Target directory key (must end with '/' or be empty for root)",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File to upload"
+                  }
+                },
+                "required": ["file"]
+              }
+            },
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateItemRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "201": {
+            "description": "Folder created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Provider Items"],
+        "summary": "Delete item",
+        "description": "Deletes a file or folder",
+        "operationId": "deleteItem",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ItemReference" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": { "description": "Access denied" },
+          "404": { "description": "Item not found" },
+          "204": { "description": "Item deleted" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "patch": {
+        "tags": ["Provider Items"],
+        "summary": "Rename item",
+        "description": "Renames a file or folder",
+        "operationId": "renameItem",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "newName",
+            "in": "query",
+            "description": "New name for the item",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ItemReference" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request or missing newName",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "200": {
+            "description": "Item renamed",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{providerId}/items/upload-url": {
+      "post": {
+        "tags": ["Provider Items"],
+        "summary": "Get presigned upload URL",
+        "description": "Returns a presigned URL for direct upload to storage (for large files)",
+        "operationId": "getUploadUrl",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UploadUrlRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UploadUrlResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Upload URL generated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UploadUrlResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UploadUrlResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{providerId}/items/confirm": {
+      "post": {
+        "tags": ["Provider Items"],
+        "summary": "Confirm presigned upload",
+        "description": "Confirms that a file was uploaded via presigned URL",
+        "operationId": "confirmUpload",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ConfirmUploadRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Upload confirmed",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProviderItem" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/multi-dim-extraction/jobs": {
+      "get": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "List multi-dimensional extraction jobs",
+        "description": "Returns a paginated list of multi-dimensional extraction jobs for the current user",
+        "operationId": "listMDEJobs",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "sortProperty",
+            "in": "query",
+            "description": "Sort property",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved jobs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "Create multi-dimensional extraction job",
+        "description": "Creates a new entity extraction job using a structured schema (multi-column) on the specified files",
+        "operationId": "createMDEJob",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateMDERequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "200": {
+            "description": "Job created successfully",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/find-similar/jobs": {
+      "get": {
+        "tags": ["Find similar files"],
+        "summary": "List find-similar jobs",
+        "description": "Returns a paginated list of find-similar jobs owned by the current user.",
+        "operationId": "listJobs",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "sortProperty",
+            "in": "query",
+            "description": "Sort property",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jobs retrieved",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataFindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataFindSimilarApiJobDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Find similar files"],
+        "summary": "Create find-similar job",
+        "description": "Creates a find-similar job for the supplied source identifiers. The endpoint returns immediately with a PENDING/RUNNING job; poll GET /find-similar/jobs/{id} for completion.",
+        "operationId": "createJob",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SearchSources" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid SearchSources",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Job created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/files": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "List files in a provider",
+        "description": "Returns paginated file infos for a provider",
+        "operationId": "listFiles",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "query",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "sortProperty",
+            "in": "query",
+            "description": "Sort property",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved files",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Files"],
+        "summary": "Create a file",
+        "description": "Creates an EliseFile from an existing provider item and triggers indexation",
+        "operationId": "createFile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateFileRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "File created successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request or unsupported file extension",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found in provider",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/files/{id}/reindex": {
+      "post": {
+        "tags": ["Files"],
+        "summary": "Reindex a file",
+        "description": "Forces reindexation of a file. Optionally reparses the document.",
+        "operationId": "reindexFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "reparse",
+            "in": "query",
+            "description": "Reparse document content",
+            "required": false,
+            "schema": { "type": "boolean", "default": false }
+          }
+        ],
+        "responses": {
+          "202": { "description": "Reindexation started" },
+          "403": { "description": "Access denied" },
+          "404": { "description": "File not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/core/files/{id}/recompute-ontologies": {
+      "post": {
+        "tags": ["Files"],
+        "summary": "Recompute file ontologies",
+        "description": "Forces recomputation of ontologies and metadata for a file",
+        "operationId": "recomputeFileOntologies",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": { "description": "Access denied" },
+          "202": { "description": "Ontology recomputation started" },
+          "404": { "description": "File not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/core/extraction/jobs": {
+      "get": {
+        "tags": ["Extraction"],
+        "summary": "List extraction jobs",
+        "description": "Returns a paginated list of extraction jobs for the current user",
+        "operationId": "listExtractionJobs",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "sortProperty",
+            "in": "query",
+            "description": "Sort property",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved jobs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Extraction"],
+        "summary": "Create extraction job",
+        "description": "Creates a new metadata extraction job on the specified files",
+        "operationId": "createExtractionJob",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateExtractRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "200": {
+            "description": "Job created successfully",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/collections": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "List collections",
+        "description": "Returns a paginated list of collections the caller has access to",
+        "operationId": "listCollections",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (0-based)",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort field",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort direction (asc/desc)",
+            "required": false,
+            "schema": { "type": "string", "default": "asc" }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Text search filter",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved collections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseCollectionInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseCollectionInfo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Collections"],
+        "summary": "Create a collection",
+        "description": "Creates a new collection owned by the current user",
+        "operationId": "createCollection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCollectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Collection created successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/collections/{id}/files": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "List files in collection",
+        "description": "Returns a paginated list of files belonging to the collection",
+        "operationId": "listCollectionFiles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (0-based)",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort field",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort direction (asc/desc)",
+            "required": false,
+            "schema": { "type": "string", "default": "asc" }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Text search filter",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved files",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataEliseFileInfo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Collections"],
+        "summary": "Add file to collection",
+        "description": "Associates an existing file with the collection",
+        "operationId": "addFileToCollection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddFileToCollectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection or file not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "201": {
+            "description": "File added to collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/agent/jobs": {
+      "get": {
+        "tags": ["Agent"],
+        "summary": "List agent jobs",
+        "description": "Returns a paginated list of agent jobs for the current user, ordered by creation time (most recent first). When `conversationId` is provided, the results are restricted to jobs attached to that conversation, which lets a client replay the sequence of questions asked in a single conversation.",
+        "operationId": "listAgentJobs",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (0-based)",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "Restrict the results to jobs attached to this conversation",
+            "required": false,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved jobs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PageDataJob" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Agent"],
+        "summary": "Create agent job",
+        "description": "Schedules an asynchronous agent run and returns the initial Job (status PENDING).",
+        "operationId": "createAgentJob",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateAgentRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "200": {
+            "description": "Job created successfully",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/collections/{id}": {
+      "get": {
+        "tags": ["Collections"],
+        "summary": "Get a collection",
+        "description": "Returns a single collection by its ID",
+        "operationId": "getCollection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved collection",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Collections"],
+        "summary": "Delete a collection",
+        "description": "Deletes a collection. Only the owner can delete a collection.",
+        "operationId": "deleteCollection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Collection deleted successfully" },
+          "403": { "description": "Access denied - only owner can delete" },
+          "404": { "description": "Collection not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "patch": {
+        "tags": ["Collections"],
+        "summary": "Update a collection",
+        "description": "Partially updates a collection. Only provided fields will be updated.",
+        "operationId": "updateCollection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCollectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "200": {
+            "description": "Collection updated successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/qa/jobs/{jobId}": {
+      "get": {
+        "tags": ["Question Answering"],
+        "summary": "Get QA job",
+        "description": "Returns a single question answering job by its ID",
+        "operationId": "getQAJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved job",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/qa/jobs/{jobId}/results": {
+      "get": {
+        "tags": ["Question Answering"],
+        "summary": "Get QA job outputs",
+        "description": "Returns the answers and results from the QA job",
+        "operationId": "getQAJobOutputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobOutputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved outputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobOutputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobOutputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobOutputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/qa/jobs/{jobId}/inputs": {
+      "get": {
+        "tags": ["Question Answering"],
+        "summary": "Get QA job inputs",
+        "description": "Returns the input files and questions used for the QA job",
+        "operationId": "getQAJobInputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobInputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved inputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobInputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobInputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/QAJobInputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/qa/jobs/{jobId}/annotations": {
+      "get": {
+        "tags": ["Question Answering"],
+        "summary": "Get QA job annotations",
+        "description": "Returns the document annotations generated by the QA job",
+        "operationId": "getQAJobAnnotations",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved annotations",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers": {
+      "get": {
+        "tags": ["Providers"],
+        "summary": "List providers",
+        "description": "Returns a paginated list of storage providers the caller has access to. Secret fields are redacted.",
+        "operationId": "listProviders",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (0-based)",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort field",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort direction (asc/desc)",
+            "required": false,
+            "schema": { "type": "string", "default": "asc" }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Text search filter",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved providers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataFSProvider_External"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageDataFSProvider_External"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{providerId}/items/download-url": {
+      "get": {
+        "tags": ["Provider Items"],
+        "summary": "Get download URL",
+        "description": "Returns a URL to download the file",
+        "operationId": "getDownloadUrl",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "File key (must not end with '/')",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "expirationMinutes",
+            "in": "query",
+            "description": "URL expiration in minutes",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 15 }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DownloadUrlResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Download URL generated",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DownloadUrlResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DownloadUrlResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DownloadUrlResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{providerId}/items/content": {
+      "get": {
+        "tags": ["Provider Items"],
+        "summary": "Get file content",
+        "description": "Returns the raw file content (proxy for providers without presigned URLs)",
+        "operationId": "getFileContent",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "File key (must not end with '/')",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "200": {
+            "description": "File content",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "byte" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/providers/{id}": {
+      "get": {
+        "tags": ["Providers"],
+        "summary": "Get a provider",
+        "description": "Returns a single storage provider by its ID. Secret fields are redacted.",
+        "operationId": "getProvider",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Provider ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FSProvider_External" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved provider",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FSProvider_External" }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FSProvider_External" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FSProvider_External" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/multi-dim-extraction/jobs/{jobId}": {
+      "get": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "Get multi-dimensional extraction job",
+        "description": "Returns a single multi-dimensional extraction job by its ID",
+        "operationId": "getMDEJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved job",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/multi-dim-extraction/jobs/{jobId}/results": {
+      "get": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "Get multi-dimensional extraction job outputs",
+        "description": "Returns the entity extraction results from the multi-dimensional extraction job",
+        "operationId": "getMDEJobOutputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobOutputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved outputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobOutputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobOutputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobOutputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/multi-dim-extraction/jobs/{jobId}/inputs": {
+      "get": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "Get multi-dimensional extraction job inputs",
+        "description": "Returns the input files and entity schema used for the multi-dimensional extraction job",
+        "operationId": "getMDEJobInputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobInputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved inputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobInputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobInputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/MDEJobInputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/multi-dim-extraction/jobs/{jobId}/annotations": {
+      "get": {
+        "tags": ["Multi-Dimensional Extraction"],
+        "summary": "Get multi-dimensional extraction job annotations",
+        "description": "Returns the document annotations generated by the multi-dimensional extraction job",
+        "operationId": "getMDEJobAnnotations",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved annotations",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/find-similar/jobs/{jobId}": {
+      "get": {
+        "tags": ["Find similar files"],
+        "summary": "Get find-similar job",
+        "description": "Returns a find-similar job by id, including the unified result and statistics when COMPLETED.",
+        "operationId": "getJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Job retrieved",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindSimilarApiJobDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/files/{id}": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "Get a file",
+        "description": "Returns a file by its ID",
+        "operationId": "getFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved file",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EliseFileInfo" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Files"],
+        "summary": "Delete a file",
+        "description": "Deletes a file",
+        "operationId": "deleteFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": { "description": "Access denied" },
+          "204": { "description": "File deleted successfully" },
+          "404": { "description": "File not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/core/files/{id}/ontologies": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "Get file ontologies",
+        "description": "Returns computed ontologies for a file",
+        "operationId": "getFileOntologies",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseOntology" }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved ontologies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseOntology" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "File not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseOntology" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseOntology" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/extraction/jobs/{jobId}": {
+      "get": {
+        "tags": ["Extraction"],
+        "summary": "Get extraction job",
+        "description": "Returns a single extraction job by its ID",
+        "operationId": "getExtractionJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved job",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/extraction/jobs/{jobId}/results": {
+      "get": {
+        "tags": ["Extraction"],
+        "summary": "Get extraction job outputs",
+        "description": "Returns the extracted metadata results from the job",
+        "operationId": "getExtractionJobOutputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobOutputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved outputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobOutputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobOutputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobOutputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/extraction/jobs/{jobId}/inputs": {
+      "get": {
+        "tags": ["Extraction"],
+        "summary": "Get extraction job inputs",
+        "description": "Returns the input files and meta configurations used for the extraction job",
+        "operationId": "getExtractionJobInputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobInputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved inputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobInputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobInputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ExtractJobInputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/extraction/jobs/{jobId}/annotations": {
+      "get": {
+        "tags": ["Extraction"],
+        "summary": "Get extraction job annotations",
+        "description": "Returns the document annotations generated by the extraction job",
+        "operationId": "getExtractionJobAnnotations",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved annotations",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/agent/jobs/{jobId}": {
+      "get": {
+        "tags": ["Agent"],
+        "summary": "Get agent job",
+        "description": "Returns a single agent job by its ID",
+        "operationId": "getAgentJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved job",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/Job" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/agent/jobs/{jobId}/results": {
+      "get": {
+        "tags": ["Agent"],
+        "summary": "Get agent job outputs",
+        "description": "Returns the agent's answer (text or structured), explanation, and cited annotation ids",
+        "operationId": "getAgentJobOutputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobOutputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved outputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobOutputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobOutputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobOutputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/agent/jobs/{jobId}/inputs": {
+      "get": {
+        "tags": ["Agent"],
+        "summary": "Get agent job inputs",
+        "description": "Returns the messages, files and configuration submitted for the agent job",
+        "operationId": "getAgentJobInputs",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobInputs" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved inputs",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobInputs" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobInputs" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AgentJobInputs" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/agent/jobs/{jobId}/annotations": {
+      "get": {
+        "tags": ["Agent"],
+        "summary": "Get agent job annotations",
+        "description": "Returns the document annotations the agent cited in its answer",
+        "operationId": "getAgentJobAnnotations",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "description": "The job Id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Access denied - not the job owner",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Successfully retrieved annotations",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EliseAnnotation" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/core/collections/{id}/files/{fileId}": {
+      "delete": {
+        "tags": ["Collections"],
+        "summary": "Remove file from collection",
+        "description": "Removes the association between a file and the collection",
+        "operationId": "removeFileFromCollection",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Collection ID",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "fileId",
+            "in": "path",
+            "description": "File ID",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "403": { "description": "Access denied" },
+          "204": { "description": "File removed from collection" },
+          "404": { "description": "Collection or file not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateQARequest": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "questions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseQuestionInput" }
+          },
+          "config": { "$ref": "#/components/schemas/JobLaunchConfig" }
+        }
+      },
+      "EliseQuestionInput": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "question": { "type": "string" },
+          "answerType": {
+            "$ref": "#/components/schemas/ExpectedAnswerTypeDto"
+          },
+          "guidelines": { "type": "string" },
+          "expectedAnswer": { "type": "string" },
+          "inputQuestionIds": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "ExpectedAnswerTypeDto": {
+        "type": "object",
+        "properties": {
+          "dataType": {
+            "type": "string",
+            "enum": ["STRING", "INT", "FLOAT", "BOOL", "DATE", "ENUM"]
+          },
+          "multiValued": { "type": "boolean" },
+          "enumValues": {
+            "type": "array",
+            "description": "List of possible values for enum types",
+            "items": { "type": "string" }
+          },
+          "enumColors": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "Map of enum values to their associated colors"
+          },
+          "enumSuggestionsEnabled": { "type": "boolean" },
+          "rejectedEnumValues": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "dateFormat": { "type": "string", "enum": ["ISO", "EUR", "US"] },
+          "decimalPrecision": {
+            "type": "string",
+            "enum": [
+              "ZERO_DECIMALS",
+              "ONE_DECIMAL",
+              "TWO_DECIMALS",
+              "THREE_DECIMALS",
+              "FOUR_DECIMALS",
+              "FIVE_DECIMALS"
+            ]
+          }
+        }
+      },
+      "FilesInput": {
+        "type": "object",
+        "properties": {
+          "fileIds": { "type": "array", "items": { "type": "string" } },
+          "collectionIds": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "JobLaunchConfig": {
+        "type": "object",
+        "description": "Optional job launch behaviour for input files",
+        "properties": {
+          "skip_unindexed_files": {
+            "type": "boolean",
+            "description": "When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.\n",
+            "example": false
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "jobId": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["SUCCESS", "FAILED", "ABORTED", "RUNNING", "PENDING"]
+          },
+          "taskType": { "type": "string" },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "executionTime": { "type": "number", "format": "double" },
+          "errorMessage": { "type": "string" },
+          "name": { "type": "string" },
+          "archived": { "type": "boolean" }
+        }
+      },
+      "ProviderItem": {
+        "type": "object",
+        "description": "Provider item (file or folder)",
+        "properties": {
+          "providerId": {
+            "type": "string",
+            "description": "Provider ID",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+          },
+          "key": {
+            "type": "string",
+            "description": "Full item key. Files: 'path/to/file.pdf', Folders: 'path/to/folder/'",
+            "example": "reports/document.pdf"
+          },
+          "type": {
+            "type": "string",
+            "description": "Item type",
+            "enum": ["FILE", "FOLDER"],
+            "example": "FILE"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "File size in bytes (null for folders)",
+            "example": 1048576
+          },
+          "extension": {
+            "type": "string",
+            "description": "File extension (null for folders)",
+            "example": "pdf"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type (null for folders)",
+            "example": "application/pdf"
+          },
+          "lastModified": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last modified timestamp in milliseconds",
+            "example": 1708123456789
+          }
+        }
+      },
+      "CreateItemRequest": {
+        "type": "object",
+        "description": "Create folder request. Key must end with '/' to indicate a folder.",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Full folder key ending with '/'",
+            "example": "reports/archive/"
+          }
+        },
+        "required": ["key"]
+      },
+      "UploadUrlRequest": {
+        "type": "object",
+        "description": "Request for presigned upload URL",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Full file key (must not end with '/')",
+            "example": "reports/document.pdf"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "File size in bytes",
+            "example": 1048576
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type",
+            "example": "application/pdf"
+          }
+        },
+        "required": ["key"]
+      },
+      "UploadUrlResponse": {
+        "type": "object",
+        "description": "Presigned upload URL response",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Presigned URL for direct upload (null if not supported)"
+          },
+          "expiresInSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Time in seconds until the URL expires"
+          },
+          "supported": {
+            "type": "boolean",
+            "description": "Whether presigned upload is supported by this provider"
+          }
+        }
+      },
+      "ConfirmUploadRequest": {
+        "type": "object",
+        "description": "Confirm presigned upload request",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Full file key (must not end with '/')",
+            "example": "reports/document.pdf"
+          }
+        },
+        "required": ["key"]
+      },
+      "CreateMDERequest": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "schema": { "$ref": "#/components/schemas/EliseEntitySchemaInput" },
+          "config": { "$ref": "#/components/schemas/JobLaunchConfig" }
+        }
+      },
+      "EliseEntityColumnInput": {
+        "type": "object",
+        "properties": {
+          "key": { "type": "string" },
+          "label": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ENTITY_COLUMN_TYPE_UNSPECIFIED",
+              "ENTITY_COLUMN_TYPE_STRING",
+              "ENTITY_COLUMN_TYPE_INT",
+              "ENTITY_COLUMN_TYPE_FLOAT",
+              "ENTITY_COLUMN_TYPE_BOOL"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ENTITY_COLUMN_ROLE_UNSPECIFIED",
+              "ENTITY_COLUMN_ROLE_IDENTIFIER",
+              "ENTITY_COLUMN_ROLE_LABEL",
+              "ENTITY_COLUMN_ROLE_GROUP",
+              "ENTITY_COLUMN_ROLE_TIMEPOINT",
+              "ENTITY_COLUMN_ROLE_VALUE",
+              "ENTITY_COLUMN_ROLE_UNIT",
+              "ENTITY_COLUMN_ROLE_DEFINITION",
+              "ENTITY_COLUMN_ROLE_COMMENT"
+            ]
+          },
+          "description": { "type": "string" },
+          "allowedValues": { "type": "array", "items": { "type": "string" } },
+          "isRowKey": { "type": "boolean" }
+        }
+      },
+      "EliseEntitySchemaInput": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "columns": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseEntityColumnInput" }
+          }
+        }
+      },
+      "SearchSources": {
+        "type": "object",
+        "properties": {
+          "sourceIdentifiers": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SourceIdentifiers" }
+          }
+        }
+      },
+      "SourceIdentifiers": {
+        "type": "object",
+        "properties": {
+          "doi": { "type": "string" },
+          "id": { "type": "string" },
+          "openAccessId": { "type": "string" }
+        }
+      },
+      "AnnotationId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "EliseOntology": {
+        "type": "object",
+        "properties": {
+          "conceptId": { "$ref": "#/components/schemas/EntityId" },
+          "name": { "type": "string" },
+          "metas": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/EliseOntologyMeta"
+            }
+          }
+        },
+        "required": ["conceptId", "name"]
+      },
+      "EliseOntologyMeta": {
+        "type": "object",
+        "properties": {
+          "explanation": { "type": "string" },
+          "annotationIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          },
+          "metaName": { "type": "string" },
+          "metaValue": { "type": "object" }
+        }
+      },
+      "EntityId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "FileMatch": {
+        "type": "object",
+        "properties": {
+          "fileId": { "type": "string" },
+          "providerId": { "type": "string" },
+          "path": { "type": "string" },
+          "name": { "type": "string" },
+          "checksum": { "type": "string" },
+          "ontologies": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseOntology" }
+          }
+        }
+      },
+      "FindSimilarApiJobDto": {
+        "type": "object",
+        "properties": {
+          "jobId": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "RUNNING", "COMPLETED", "FAILED"]
+          },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "modifiedTime": { "type": "integer", "format": "int64" },
+          "executionTimeMs": { "type": "integer", "format": "int64" },
+          "errorMessage": { "type": "string" },
+          "sources": { "$ref": "#/components/schemas/SearchSources" },
+          "result": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SourceMatches" }
+          },
+          "statistics": { "$ref": "#/components/schemas/JobStatistics" }
+        }
+      },
+      "JobStatistics": {
+        "type": "object",
+        "properties": {
+          "sourcesQueried": { "type": "integer", "format": "int32" },
+          "sourcesMatchedLocally": { "type": "integer", "format": "int32" },
+          "sourcesMatchedRemotely": { "type": "integer", "format": "int32" },
+          "sourcesUnmatched": { "type": "integer", "format": "int32" },
+          "remoteSearchStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "RUNNING",
+              "PROGRESS",
+              "ABORTED",
+              "COMPLETED",
+              "FAILED",
+              "OUTDATED"
+            ]
+          },
+          "totalFileMatches": { "type": "integer", "format": "int32" },
+          "totalMetadataOnlyMatches": { "type": "integer", "format": "int32" },
+          "errorsBySearchResultId": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      },
+      "MetadataOnlyMatch": {
+        "type": "object",
+        "properties": {
+          "searchResultId": { "type": "string" },
+          "ontologies": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseOntology" }
+          }
+        }
+      },
+      "SourceMatches": {
+        "type": "object",
+        "properties": {
+          "source": { "$ref": "#/components/schemas/SourceIdentifiers" },
+          "files": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FileMatch" }
+          },
+          "metadataOnly": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MetadataOnlyMatch" }
+          }
+        }
+      },
+      "CreateFileRequest": {
+        "type": "object",
+        "description": "Request to create EliseFile from provider item",
+        "properties": {
+          "providerId": {
+            "type": "string",
+            "description": "Source provider ID",
+            "example": "01a91a21-3136-4094-96da-ded4dce3824f"
+          },
+          "key": {
+            "type": "string",
+            "description": "Full file key (must not end with '/')",
+            "example": "documents/report.pdf"
+          }
+        },
+        "required": ["key", "providerId"]
+      },
+      "EliseFileInfo": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/FileId" },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "owner": { "$ref": "#/components/schemas/UserId" },
+          "policy": { "$ref": "#/components/schemas/PolicyId" },
+          "providerId": { "$ref": "#/components/schemas/ProviderId" },
+          "name": { "type": "string" },
+          "path": { "type": "string" },
+          "size": { "type": "integer", "format": "int64" },
+          "checksum": { "type": "string" },
+          "mediaType": { "type": "string" },
+          "extension": { "type": "string" },
+          "indexed": { "type": "boolean" },
+          "matchComputed": { "type": "boolean" },
+          "displayName": { "type": "string" },
+          "dbName": { "type": "string" },
+          "lastIndexationInfos": {
+            "$ref": "#/components/schemas/LibItemIndexationInfos"
+          },
+          "ownerFirstName": { "type": "string" },
+          "ownerLastName": { "type": "string" },
+          "ownerEmail": { "type": "string" },
+          "ownerAvatarUrl": { "type": "string" },
+          "providerName": { "type": "string" },
+          "additionalInfo": { "$ref": "#/components/schemas/JsonNode" },
+          "description": { "type": "string" },
+          "authors": { "type": "string" },
+          "title": { "type": "string" },
+          "lastMergeJob": { "$ref": "#/components/schemas/LastMergeJobInfo" },
+          "additionalInfos": {
+            "$ref": "#/components/schemas/JsonNode",
+            "writeOnly": true
+          },
+          "type": { "type": "string", "enum": ["FILE", "FOLDER", "ELISE_FILE"] }
+        }
+      },
+      "FileId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "JsonNode": { "type": "object" },
+      "LastMergeJobInfo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      },
+      "LibItemIndexationInfos": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["SUCCESS", "FAILED", "ABORTED", "RUNNING", "PENDING"]
+          },
+          "errorMessage": { "type": "string" },
+          "errorTraceback": { "type": "string" }
+        }
+      },
+      "PolicyId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "ProviderId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "UserId": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } }
+      },
+      "CreateExtractRequest": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "metas": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseMetaInput" }
+          },
+          "config": { "$ref": "#/components/schemas/JobLaunchConfig" }
+        }
+      },
+      "EliseMetaInput": {
+        "type": "object",
+        "properties": {
+          "meta": { "type": "string" },
+          "answerType": {
+            "$ref": "#/components/schemas/ExpectedAnswerTypeDto"
+          },
+          "description": { "type": "string" }
+        }
+      },
+      "CreateCollectionRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "icon": { "type": "string" }
+        },
+        "required": ["name"]
+      },
+      "CollectionId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "CollectionViewId": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "EliseCollectionInfo": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/CollectionId" },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "owner": { "$ref": "#/components/schemas/UserId" },
+          "policy": { "$ref": "#/components/schemas/PolicyId" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "icon": { "type": "string" },
+          "ownerFirstName": { "type": "string" },
+          "ownerLastName": { "type": "string" },
+          "ownerEmail": { "type": "string" },
+          "ownerAvatarUrl": { "type": "string" },
+          "filesCount": { "type": "integer", "format": "int64" },
+          "derivedFromCollectionId": {
+            "$ref": "#/components/schemas/CollectionId"
+          },
+          "derivedFromCollectionName": { "type": "string" },
+          "derivedFromViewId": {
+            "$ref": "#/components/schemas/CollectionViewId"
+          },
+          "derivedFromViewName": { "type": "string" },
+          "chained": { "type": "boolean" },
+          "derivedToCollectionId": {
+            "$ref": "#/components/schemas/CollectionId"
+          },
+          "derivedToCollectionName": { "type": "string" }
+        }
+      },
+      "AddFileToCollectionRequest": {
+        "type": "object",
+        "description": "Request to add a file to a collection",
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "description": "EliseFile ID to add to the collection",
+            "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          }
+        },
+        "required": ["fileId"]
+      },
+      "AgentCompletionConfig": {
+        "type": "object",
+        "description": "Per-completion LLM knobs for an agent run",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Semantic model preset (defaults to BALANCED when omitted)",
+            "enum": ["FAST", "BALANCED"],
+            "example": "BALANCED"
+          },
+          "temperature": {
+            "type": "number",
+            "format": "double",
+            "description": "Sampling temperature",
+            "example": 0.7,
+            "maximum": 2.0,
+            "minimum": 0.0
+          },
+          "max_completion_tokens": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Hard cap on response tokens",
+            "example": 2048,
+            "maximum": 32768,
+            "minimum": 1
+          }
+        }
+      },
+      "AgentInput": {
+        "type": "object",
+        "description": "A single input item submitted to the agent (role + text content)",
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "Author of the item",
+            "enum": [
+              "system",
+              "user",
+              "assistant",
+              "SYSTEM",
+              "USER",
+              "ASSISTANT"
+            ],
+            "example": "USER"
+          },
+          "content": {
+            "type": "string",
+            "description": "Plain text content of the item",
+            "example": "Summarize the attached report."
+          }
+        },
+        "required": ["content", "role"]
+      },
+      "CreateAgentRequest": {
+        "type": "object",
+        "description": "Request to schedule a new agent run",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Stateful mode: the new user message for this turn. Prior turns are loaded server-side from `conversationId`. Mutually exclusive with `messages`.\n",
+            "example": "Summarize the attached report and list the main risks."
+          },
+          "messages": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgentInput" }
+          },
+          "files": {
+            "$ref": "#/components/schemas/FilesInput",
+            "description": "Files the agent can read from"
+          },
+          "config": {
+            "$ref": "#/components/schemas/JobLaunchConfig",
+            "description": "Optional job launch behaviour for input files"
+          },
+          "historyInputValid": { "type": "boolean" },
+          "conversationIdValid": { "type": "boolean" },
+          "output_model_schema": {
+            "$ref": "#/components/schemas/JsonNode",
+            "description": "Optional JSON Schema constraining the agent's final answer to a structured object. Free-form: any valid JSON Schema is accepted",
+            "example": {
+              "type": "object",
+              "properties": { "verdict": { "type": "string" } },
+              "required": ["verdict"]
+            }
+          },
+          "completion_config": {
+            "$ref": "#/components/schemas/AgentCompletionConfig",
+            "description": "Per-completion LLM knobs (model preset, temperature, max tokens)"
+          },
+          "max_iterations": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Hard cap on the number of agent-loop iterations",
+            "example": 10
+          },
+          "conversation_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.",
+            "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          }
+        }
+      },
+      "ItemReference": {
+        "type": "object",
+        "description": "Reference to an item. Use trailing slash for folders (e.g., 'folder/' or 'path/to/folder/')",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Full item key. Files: 'path/to/file.pdf', Folders: 'path/to/folder/'",
+            "example": "reports/document.pdf"
+          }
+        },
+        "required": ["key"]
+      },
+      "UpdateCollectionRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "icon": { "type": "string" }
+        }
+      },
+      "PageDataJob": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Job" }
+          },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "hasNext": { "type": "boolean" }
+        }
+      },
+      "EliseQAResult": {
+        "type": "object",
+        "properties": {
+          "explanation": { "type": "string" },
+          "sourcedContent": { "type": "string" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          },
+          "question": { "type": "string" },
+          "expectedAnswer": { "type": "string" },
+          "validityExplaination": { "type": "string" },
+          "inputQuestionIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "answerValidity": { "type": "number", "format": "float" },
+          "rawValue": { "type": "string" }
+        }
+      },
+      "QAJobOutputs": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseQAResult" }
+          }
+        }
+      },
+      "QAJobInputs": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "questions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseQuestionInput" }
+          }
+        }
+      },
+      "BboxDto": {
+        "type": "object",
+        "properties": {
+          "x0": { "type": "number", "format": "float" },
+          "y0": { "type": "number", "format": "float" },
+          "x1": { "type": "number", "format": "float" },
+          "y1": { "type": "number", "format": "float" }
+        }
+      },
+      "EliseAnnotation": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/AnnotationId" },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "owner": { "$ref": "#/components/schemas/UserId" },
+          "space": { "$ref": "#/components/schemas/EntityId" },
+          "data": { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DOCUMENT_STATEMENT",
+              "WEB_STATEMENT",
+              "ENTIRE_DOCUMENT_STATEMENT",
+              "EXTERNAL_DOCUMENT_STATEMENT",
+              "KNOWLEDGE_STATEMENT",
+              "REVIEW_STATEMENT"
+            ]
+          },
+          "modifiedTime": { "type": "integer", "format": "int64" },
+          "lastModifier": { "$ref": "#/components/schemas/UserId" },
+          "status": { "type": "string", "enum": ["VALID", "NOTVALID"] }
+        }
+      },
+      "EliseAnnotationConfig": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "DOCUMENT_STATEMENT": "#/components/schemas/EliseDocumentStatement",
+            "EXTERNAL_DOCUMENT_STATEMENT": "#/components/schemas/EliseExternalDocumentStatement",
+            "WEB_STATEMENT": "#/components/schemas/EliseWebStatement",
+            "KNOWLEDGE_STATEMENT": "#/components/schemas/EliseKnowledgeStatement",
+            "ENTIRE_DOCUMENT_STATEMENT": "#/components/schemas/EliseFullDocumentStatement",
+            "REVIEW_STATEMENT": "#/components/schemas/EliseReviewComment"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "DOCUMENT_STATEMENT",
+              "WEB_STATEMENT",
+              "ENTIRE_DOCUMENT_STATEMENT",
+              "EXTERNAL_DOCUMENT_STATEMENT",
+              "KNOWLEDGE_STATEMENT",
+              "REVIEW_STATEMENT"
+            ]
+          }
+        }
+      },
+      "EliseDocumentStatement": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "content": { "type": "string" },
+              "documentName": { "type": "string" },
+              "documentId": { "type": "string" },
+              "positions": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/PositionDto" }
+              }
+            }
+          }
+        ]
+      },
+      "EliseExternalDocumentStatement": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "metaData": { "$ref": "#/components/schemas/JsonNode" }
+            }
+          }
+        ]
+      },
+      "EliseFullDocumentStatement": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "documentName": { "type": "string" },
+              "documentId": { "type": "string" }
+            }
+          }
+        ]
+      },
+      "EliseKnowledgeStatement": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "string" },
+              "source": { "$ref": "#/components/schemas/KnowledgeSource" }
+            }
+          }
+        ]
+      },
+      "EliseReviewComment": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "content": { "type": "string" },
+              "documentName": { "type": "string" },
+              "documentId": { "type": "string" },
+              "positions": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/PositionDto" }
+              }
+            }
+          }
+        ]
+      },
+      "EliseWebStatement": {
+        "allOf": [
+          { "$ref": "#/components/schemas/EliseAnnotationConfig" },
+          {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "source": {
+                "type": "string",
+                "enum": ["WIKIPEDIA", "BRAVE", "WEB"]
+              }
+            }
+          }
+        ]
+      },
+      "KnowledgeSource": {
+        "type": "object",
+        "properties": {
+          "sourceId": { "type": "string" },
+          "sourceType": { "type": "string" }
+        }
+      },
+      "PositionBboxDto": {
+        "allOf": [
+          { "$ref": "#/components/schemas/PositionDto" },
+          {
+            "type": "object",
+            "properties": {
+              "bbox": { "$ref": "#/components/schemas/BboxDto" },
+              "page_number": { "type": "integer", "format": "int32" }
+            }
+          }
+        ]
+      },
+      "PositionCellDto": {
+        "allOf": [
+          { "$ref": "#/components/schemas/PositionDto" },
+          {
+            "type": "object",
+            "properties": {
+              "sheet_name": { "type": "string" },
+              "row": { "type": "integer", "format": "int32" },
+              "col": { "type": "integer", "format": "int32" }
+            }
+          }
+        ]
+      },
+      "PositionDto": {
+        "type": "object",
+        "description": "position",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "BBOX": "#/components/schemas/PositionBboxDto",
+            "CELL": "#/components/schemas/PositionCellDto",
+            "LINE": "#/components/schemas/PositionLineDto"
+          }
+        },
+        "properties": {
+          "type": { "type": "string", "enum": ["BBOX", "CELL", "LINE"] }
+        }
+      },
+      "PositionLineDto": {
+        "allOf": [
+          { "$ref": "#/components/schemas/PositionDto" },
+          {
+            "type": "object",
+            "properties": {
+              "line_number": { "type": "integer", "format": "int32" },
+              "column_index_start": { "type": "integer", "format": "int32" },
+              "column_index_stop": { "type": "integer", "format": "int32" }
+            }
+          }
+        ]
+      },
+      "FSProviderAzureConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "containerName": { "type": "string" },
+              "accountName": { "type": "string" },
+              "useWorkloadIdentity": { "type": "boolean" },
+              "workloadIdentityEnabled": { "type": "boolean" },
+              "connectionStringEnabled": { "type": "boolean" },
+              "endpointUrl": { "type": "string" }
+            }
+          }
+        ],
+        "required": ["containerName"]
+      },
+      "FSProviderConfiguration_External": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "LOCAL": "#/components/schemas/FSProviderLocalConfig_External",
+            "S3": "#/components/schemas/FSProviderS3Config_External",
+            "AZURE": "#/components/schemas/FSProviderAzureConfig_External",
+            "GCS": "#/components/schemas/FSProviderGCSConfig_External",
+            "SHAREPOINT_ONLINE": "#/components/schemas/FSProviderSharepointOnlineConfig_External",
+            "LEANEAR": "#/components/schemas/FSProviderLeanearConfig_External",
+            "SFTP": "#/components/schemas/FSProviderSFTPConfig_External"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "LOCAL",
+              "SHAREPOINT_ONLINE",
+              "S3",
+              "LEANEAR",
+              "AZURE",
+              "GCS",
+              "SFTP"
+            ]
+          }
+        }
+      },
+      "FSProviderGCSConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "bucketName": { "type": "string" },
+              "region": { "type": "string" },
+              "projectId": { "type": "string" }
+            }
+          }
+        ],
+        "required": ["bucketName", "projectId", "region"]
+      },
+      "FSProviderLeanearConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "projectId": { "type": "string" },
+              "bucketName": { "type": "string" },
+              "defaultPolicy": { "type": "string" }
+            }
+          }
+        ],
+        "required": ["bucketName", "defaultPolicy", "projectId"]
+      },
+      "FSProviderLocalConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          { "type": "object", "properties": { "name": { "type": "string" } } }
+        ],
+        "required": ["name"]
+      },
+      "FSProviderS3Config_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "bucketName": { "type": "string" },
+              "region": { "type": "string" }
+            }
+          }
+        ],
+        "required": ["bucketName", "region"]
+      },
+      "FSProviderSFTPConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "host": { "type": "string" },
+              "port": { "type": "integer", "format": "int32" },
+              "username": { "type": "string" },
+              "rootPath": { "type": "string" },
+              "allowUnknownHosts": { "type": "boolean" },
+              "timeoutMs": { "type": "integer", "format": "int32" }
+            }
+          }
+        ],
+        "required": ["host", "port", "username"]
+      },
+      "FSProviderSharepointOnlineConfig_External": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FSProviderConfiguration_External" },
+          {
+            "type": "object",
+            "properties": {
+              "siteUrl": { "type": "string" },
+              "documentLibrary": { "type": "string" },
+              "tenantId": { "type": "string" }
+            }
+          }
+        ],
+        "required": ["documentLibrary", "siteUrl", "tenantId"]
+      },
+      "FSProvider_External": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/components/schemas/ProviderId_External" },
+          "createdTime": { "type": "integer", "format": "int64" },
+          "owner": { "$ref": "#/components/schemas/UserId_External" },
+          "policy": { "$ref": "#/components/schemas/PolicyId_External" },
+          "name": { "type": "string" },
+          "icon": { "type": "string" },
+          "config": {
+            "$ref": "#/components/schemas/FSProviderConfiguration_External"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "LOCAL",
+              "SHAREPOINT_ONLINE",
+              "S3",
+              "LEANEAR",
+              "AZURE",
+              "GCS",
+              "SFTP"
+            ]
+          },
+          "system": { "type": "boolean" }
+        }
+      },
+      "PageDataFSProvider_External": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FSProvider_External" }
+          },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "hasNext": { "type": "boolean" }
+        }
+      },
+      "PolicyId_External": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "ProviderId_External": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "POLICY",
+              "PROJECT",
+              "COLLECTION",
+              "PROVIDER",
+              "FILE",
+              "PROCESSOR",
+              "JOB",
+              "PRESET",
+              "EDITABLE_DOCUMENT",
+              "REVIEW",
+              "COLLECTION_DERIVATION",
+              "REVIEW_REQUEST",
+              "MILESTONE",
+              "INSIGHT",
+              "CONCEPT_NOTE",
+              "ANNOTATION",
+              "BIBLIO_SEARCH",
+              "SEARCH_DOWNLOAD",
+              "INSIGHT_CELL_FILTER",
+              "INSIGHT_CELL_SORTING",
+              "INSIGHT_CELL_FORMAT",
+              "INSIGHT_GROUP",
+              "INSIGHTS_TABLE_CONFIG",
+              "INSIGHTS_TABLE_TEMPLATE",
+              "SEARCH_REMOVAL",
+              "COMMENT_THREAD",
+              "COMMENT",
+              "SMART_REVIEW",
+              "RIS_IMPORT_JOB",
+              "FORGE_WORKFLOW",
+              "COLLECTION_VIEW",
+              "SUB_COLLECTION_JOB",
+              "PROJECT_LABEL",
+              "PROJECT_GROUP"
+            ]
+          }
+        }
+      },
+      "UserId_External": {
+        "type": "object",
+        "properties": { "id": { "type": "string" } }
+      },
+      "ListItemsResponse": {
+        "type": "object",
+        "description": "Paginated list of provider items",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "List of items (files and folders)",
+            "items": { "$ref": "#/components/schemas/ProviderItem" }
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Cursor for next page, null if no more pages"
+          }
+        }
+      },
+      "DownloadUrlResponse": {
+        "type": "object",
+        "description": "Download URL response",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL to download the file"
+          },
+          "expiresInSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Time in seconds until the URL expires"
+          }
+        }
+      },
+      "EliseEntityCellResult": {
+        "type": "object",
+        "properties": {
+          "columnKey": { "type": "string" },
+          "value": { "type": "object" },
+          "explanation": { "type": "string" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          }
+        }
+      },
+      "EliseEntityExtractionResult": {
+        "type": "object",
+        "properties": {
+          "metaId": { "type": "string", "format": "uuid" },
+          "meta": { "type": "string" },
+          "schema": { "$ref": "#/components/schemas/EliseEntitySchemaInput" },
+          "rows": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseEntityRowResult" }
+          },
+          "explanation": { "type": "string" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          }
+        }
+      },
+      "EliseEntityRowResult": {
+        "type": "object",
+        "properties": {
+          "cells": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseEntityCellResult" }
+          },
+          "explanation": { "type": "string" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          }
+        }
+      },
+      "MDEJobOutputs": {
+        "type": "object",
+        "properties": {
+          "entityExtraction": {
+            "$ref": "#/components/schemas/EliseEntityExtractionResult"
+          }
+        }
+      },
+      "MDEJobInputs": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "schema": { "$ref": "#/components/schemas/EliseEntitySchemaInput" }
+        }
+      },
+      "PageDataFindSimilarApiJobDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FindSimilarApiJobDto" }
+          },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "hasNext": { "type": "boolean" }
+        }
+      },
+      "PageDataEliseFileInfo": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseFileInfo" }
+          },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "hasNext": { "type": "boolean" }
+        }
+      },
+      "DataValue": {
+        "type": "object",
+        "properties": {
+          "strValue": { "type": "string" },
+          "boolValue": { "type": "boolean" },
+          "longValue": { "type": "integer", "format": "int64" },
+          "doubleValue": { "type": "number", "format": "double" },
+          "dateValue": { "type": "string", "format": "date-time" },
+          "strListValue": { "type": "array", "items": { "type": "string" } },
+          "boolListValue": { "type": "array", "items": { "type": "boolean" } },
+          "longListValue": {
+            "type": "array",
+            "items": { "type": "integer", "format": "int64" }
+          },
+          "doubleListValue": {
+            "type": "array",
+            "items": { "type": "number", "format": "double" }
+          },
+          "dateListValue": {
+            "type": "array",
+            "items": { "type": "string", "format": "date-time" }
+          }
+        }
+      },
+      "EliseMetaResult": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "explanation": { "type": "string" },
+          "answerType": {
+            "$ref": "#/components/schemas/ExpectedAnswerTypeDto"
+          },
+          "answer": { "$ref": "#/components/schemas/DataValue" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AnnotationId" }
+          },
+          "meta": { "type": "string" },
+          "rawValue": { "type": "object" }
+        }
+      },
+      "ExtractJobOutputs": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseMetaResult" }
+          }
+        }
+      },
+      "ExtractJobInputs": {
+        "type": "object",
+        "properties": {
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "metas": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseMetaInput" }
+          }
+        }
+      },
+      "PageDataEliseCollectionInfo": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EliseCollectionInfo" }
+          },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "hasNext": { "type": "boolean" }
+        }
+      },
+      "AgentJobOutputs": {
+        "type": "object",
+        "properties": {
+          "answer": { "$ref": "#/components/schemas/JsonNode" },
+          "explanation": { "type": "string" },
+          "referenceIds": {
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" }
+          }
+        }
+      },
+      "AgentJobInputs": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "messages": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgentInput" }
+          },
+          "files": { "$ref": "#/components/schemas/FilesInput" },
+          "outputModelSchema": { "$ref": "#/components/schemas/JsonNode" },
+          "completionConfig": {
+            "$ref": "#/components/schemas/AgentCompletionConfig"
+          },
+          "maxIterations": { "type": "integer", "format": "int32" },
+          "conversationId": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "TOKEN": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
+    }
+  }
+}

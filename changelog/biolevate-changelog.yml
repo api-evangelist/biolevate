@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/Biolevate/biolevate-api-sdk/blob/main/python/sdk/CHANGELOG.md
+scheme: SemVer (release-please)
+applies_to: biolevate Python SDK (packages/biolevate-packages.yml)
+current_version: 0.7.1
+note: The Biolevate API itself is versioned 1.0.0 in the OpenAPI; the dated changelog tracks the client
+  SDK. Recent window captured from the release-please CHANGELOG and GitHub releases.
+entries:
+- version: 0.7.1
+  date: '2026-06-26'
+  type: fix
+  highlights:
+  - Add OpenAPI discriminators so annotation.data deserializes correctly in the Python SDK
+- version: 0.7.0
+  date: '2026-06-04'
+  type: feature
+  highlights:
+  - Add agent (agentic jobs) documentation
+- version: 0.6.1
+  date: '2026-05-21'
+  type: fix
+  highlights:
+  - Bump biolevate-client to 1.1.0 and harden PyPI publish workflow
+- version: 0.6.0
+  date: '2026-05-04'
+  type: feature
+  highlights:
+  - Add Multi-Dimensional Extraction (MDE) and find-similar jobs documentation and tests
+- version: 0.5.1
+  date: '2026-02-24'
+  type: fix
+  highlights:
+  - Inline documentation fixes
+- version: 0.5.0
+  date: '2026-02-24'
+  type: feature
+  highlights:
+  - Update PyPI badge links and improve documentation clarity
+- version: 0.4.0
+  date: '2026-02-24'
+  type: feature
+  highlights:
+  - Add license

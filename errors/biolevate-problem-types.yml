@@ -1,0 +1,87 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/biolevate-api-original.json
+format: application/json
+note: The Biolevate API returns errors as application/json (not RFC 9457 problem+json). The Python SDK
+  maps 401/403 to AuthenticationError, 404 to NotFoundError, and any other 4xx/5xx to APIError(status_code,
+  message). Status meanings derived from OpenAPI 4xx responses and the SDK error-handling reference.
+sdk_exception_map:
+- exception: AuthenticationError
+  http_status:
+  - 401
+  - 403
+  when: Invalid token or insufficient permissions
+- exception: NotFoundError
+  http_status:
+  - 404
+  when: Resource does not exist
+- exception: APIError
+  http_status: other 4xx/5xx
+  when: Unexpected API error (exposes status_code + message)
+- exception: BiolevateError
+  http_status: null
+  when: Base class for all SDK exceptions
+problems:
+- status: 400
+  title: Bad Request
+  remediation: The request was malformed or failed validation. Check request body and query parameters.
+  seen_on_operations:
+  - addFileToCollection
+  - createAgentJob
+  - createCollection
+  - createExtractionJob
+  - createFile
+  - createJob
+  - createMDEJob
+  - createQAJob
+  - renameItem
+  - updateCollection
+- status: 401
+  title: Unauthorized
+  remediation: 'The Bearer token (PAT) is missing, expired, or invalid. Provide a valid Authorization:
+    Bearer <pat> header.'
+  seen_on_operations:
+  - addFileToCollection
+  - confirmUpload
+  - createAgentJob
+  - createCollection
+  - createExtractionJob
+  - createFile
+  - createJob
+  - createMDEJob
+  - createQAJob
+  - deleteCollection
+  - deleteFile
+  - deleteItem
+- status: 403
+  title: Forbidden
+  remediation: The authenticated principal lacks permission for this resource (policy/collection ownership).
+  seen_on_operations:
+  - addFileToCollection
+  - createAgentJob
+  - createExtractionJob
+  - createMDEJob
+  - createQAJob
+  - deleteCollection
+  - deleteFile
+  - deleteItem
+  - getAgentJob
+  - getAgentJobAnnotations
+  - getAgentJobInputs
+  - getAgentJobOutputs
+- status: 404
+  title: Not Found
+  remediation: The referenced resource (job, file, provider, collection, item) does not exist.
+  seen_on_operations:
+  - addFileToCollection
+  - confirmUpload
+  - createFile
+  - deleteCollection
+  - deleteFile
+  - deleteItem
+  - getAgentJob
+  - getAgentJobAnnotations
+  - getAgentJobInputs
+  - getAgentJobOutputs
+  - getCollection
+  - getDownloadUrl

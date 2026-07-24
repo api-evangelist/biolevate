@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/Biolevate/biolevate-api-sdk + openapi/biolevate-api-original.json
+versioning:
+  api_version: '1.0.0'
+  api_scheme: single-version (OpenAPI info.version)
+  sdk_scheme: SemVer via release-please (independent of API version)
+  sdk_current: 0.7.1
+  docs: https://api-docs.biolevatecloud.com/biolevateapi/intro
+release_automation:
+  tool: release-please
+  evidence: release-please-config.json + .release-please-manifest.json in biolevate-api-sdk
+changelog:
+  present: true
+  url: https://github.com/Biolevate/biolevate-api-sdk/blob/main/python/sdk/CHANGELOG.md
+  artifact: changelog/biolevate-changelog.yml
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation/sunset policy or Deprecation/Sunset (RFC 8594) header support was found.
+status_page: null
+sla:
+  url: null
+deprecated_operations: []
+notes: >-
+  No status page, SLA, or deprecation policy is published for the Biolevate API. No operations are
+  marked deprecated in the OpenAPI. Lifecycle signal is limited to API version (1.0.0), the
+  release-please-driven SDK versioning, and the dated SDK changelog.

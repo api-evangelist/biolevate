@@ -1,0 +1,30 @@
+{
+  "provider": "biolevate",
+  "sources": [
+    "biolevate-agent-api-openapi.yml",
+    "biolevate-collections-api-openapi.yml",
+    "biolevate-extraction-api-openapi.yml",
+    "biolevate-files-api-openapi.yml",
+    "biolevate-find-similar-files-api-openapi.yml",
+    "biolevate-multi-dimensional-extraction-api-openapi.yml",
+    "biolevate-provider-items-api-openapi.yml",
+    "biolevate-providers-api-openapi.yml",
+    "biolevate-question-answering-api-openapi.yml"
+  ],
+  "outputs": [
+    "biolevate-agent-api-openapi.yml",
+    "biolevate-collections-api-openapi.yml",
+    "biolevate-extraction-api-openapi.yml",
+    "biolevate-files-api-openapi.yml",
+    "biolevate-find-similar-files-api-openapi.yml",
+    "biolevate-multi-dimensional-extraction-api-openapi.yml",
+    "biolevate-provider-items-api-openapi.yml",
+    "biolevate-providers-api-openapi.yml",
+    "biolevate-question-answering-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

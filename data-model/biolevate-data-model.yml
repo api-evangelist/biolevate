@@ -1,0 +1,85 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/biolevate-api-original.json
+note: Entity-relationship graph derived from OpenAPI schemas ($ref links + id-reference fields). Ids are
+  UUIDs (see ProviderId/FileId/CollectionId/UserId/PolicyId schemas). Timestamps are epoch-millis integers.
+  Jobs share a common shape (jobId, status enum PENDING/RUNNING/SUCCESS|COMPLETED/FAILED, inputs, outputs,
+  annotations).
+entities:
+- name: Provider
+  description: A connected storage backend (S3, AZURE, GCS, LOCAL, SHAREPOINT_ONLINE, SFTP, LEANEAR).
+    Read-only from the API; configured in the admin UI.
+  id: ProviderId (uuid)
+- name: ProviderItem
+  description: A file or folder inside a provider backend, addressed by key.
+  id: providerId + key
+- name: EliseFile
+  description: A provider item indexed for AI analysis (Question Answering, Extraction, etc.).
+  id: FileId (uuid)
+- name: Collection
+  description: A named grouping of indexed files for structured workflows.
+  id: CollectionId (uuid)
+- name: QAJob
+  description: Asynchronous Question Answering job over files/collections.
+  id: jobId
+- name: ExtractionJob
+  description: Typed metadata extraction job.
+  id: jobId
+- name: MDEJob
+  description: Multi-Dimensional (tabular/entity) Extraction job.
+  id: jobId
+- name: FindSimilarJob
+  description: Matches source identifiers (e.g. DOI) against local files and bibliographic results.
+  id: jobId
+- name: AgentJob
+  description: Agentic completion job over documents with tool iterations.
+  id: jobId
+relationships:
+- from: EliseFile
+  type: belongs_to
+  to: Provider
+  via: providerId
+- from: ProviderItem
+  type: belongs_to
+  to: Provider
+  via: providerId
+- from: EliseFile
+  type: derived_from
+  to: ProviderItem
+  via: provider item key (indexed)
+- from: Collection
+  type: has_many
+  to: EliseFile
+  via: collection files
+- from: Collection
+  type: belongs_to
+  to: User
+  via: owner
+- from: Collection
+  type: references
+  to: Policy
+  via: policy
+- from: EliseFile
+  type: references
+  to: Policy
+  via: policy
+- from: QAJob
+  type: operates_on
+  to: EliseFile
+  via: inputs.files / collection ids
+- from: ExtractionJob
+  type: operates_on
+  to: EliseFile
+  via: inputs.files
+- from: MDEJob
+  type: operates_on
+  to: EliseFile
+  via: inputs.files
+- from: AgentJob
+  type: operates_on
+  to: EliseFile
+  via: inputs.files
+- from: FindSimilarJob
+  type: matches_against
+  to: EliseFile
+  via: source identifiers

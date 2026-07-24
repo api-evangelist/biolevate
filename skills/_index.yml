@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/biolevate-api-original.json
+note: Agent Skills generated from the Biolevate OpenAPI marquee flows. Every operationId is verified against
+  the spec. No provider-published skills/AGENTS.md were found.
+skills:
+- file: biolevate-index-and-ask.md
+  name: Index a document and ask questions
+  api: openapi/biolevate-api-original.json
+  operations:
+  - listProviders
+  - uploadFile
+  - createFile
+  - createQAJob
+  - getQAJob
+  - getQAJobOutputs
+  - getQAJobAnnotations
+- file: biolevate-extract-metadata.md
+  name: Extract typed metadata from documents
+  api: openapi/biolevate-api-original.json
+  operations:
+  - createFile
+  - createExtractionJob
+  - getExtractionJob
+  - getExtractionJobOutputs
+- file: biolevate-organize-collection.md
+  name: Organize indexed files into a collection
+  api: openapi/biolevate-api-original.json
+  operations:
+  - createCollection
+  - addFileToCollection
+  - listCollectionFiles
+  - updateCollection
+  - deleteCollection

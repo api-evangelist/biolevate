@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Biolevate API
+  version: 1.0.0
+extends: openapi/biolevate-api-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-platform: Elise
+    x-apievangelist-product: AI Knowledge Platform for life sciences
+    x-apievangelist-docs: https://api-docs.biolevatecloud.com/biolevateapi/intro
+    x-apievangelist-sdk-python: https://pypi.org/project/biolevate/
+    x-apievangelist-cli: onizuka-cli (ozk) — brew tap Biolevate/tap
+    x-apievangelist-auth: HTTP Bearer JWT (Personal Access Token)
+- target: $.servers
+  update:
+  - url: https://{eliseDomain}
+    description: Per-tenant Elise domain (base_url in the SDK)
+    variables:
+      eliseDomain:
+        default: your-elise-domain

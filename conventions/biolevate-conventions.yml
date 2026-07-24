@@ -1,0 +1,62 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/biolevate-api-original.json + https://api-docs.biolevatecloud.com/biolevateapi/intro +
+  python/sdk/README.md
+authentication:
+  style: HTTP Bearer token (JWT) — Personal Access Token (PAT)
+  header: 'Authorization: Bearer <pat>'
+  notes: Tokens issued by Biolevate on request; self-service token management in the Elise admin portal
+    is announced as coming soon. See authentication/biolevate-authentication.yml.
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  required: false
+  scope: write operations (POST create-job / upload)
+  notes: Optional Idempotency-Key request header defined across mutating operations in the OpenAPI, allowing
+    safe retries of job creation and uploads.
+pagination:
+  styles:
+  - style: page-number
+    params:
+    - page
+    - pageSize
+    response_fields:
+    - data
+    - totalPages
+    - totalElements
+    - hasNext
+    used_by: list endpoints returning PageData* (providers, files, collections, jobs)
+  - style: cursor
+    params:
+    - cursor
+    response_fields:
+    - items
+    - nextCursor
+    used_by: provider item listing (ListItemsResponse)
+async_jobs:
+  pattern: submit-poll-retrieve
+  notes: 'QA/Extraction/MDE/FindSimilar/Agent jobs run asynchronously: create a job, poll GET .../jobs/{jobId}
+    until status is SUCCESS/COMPLETED or FAILED, then GET .../results (outputs), .../inputs, and .../annotations.'
+  status_enum:
+  - PENDING
+  - RUNNING
+  - SUCCESS
+  - COMPLETED
+  - FAILED
+  - ABORTED
+error_envelope:
+  content_type: application/json
+  rfc9457: false
+  notes: See errors/biolevate-problem-types.yml and the SDK exception map.
+versioning:
+  api_version: 1.0.0
+  scheme: single version in OpenAPI info; SDK versioned independently via release-please (SemVer). See
+    lifecycle/ and changelog/.
+ids:
+  format: UUID
+  timestamps: epoch milliseconds (int64)
+cross_links:
+  errors: errors/biolevate-problem-types.yml
+  authentication: authentication/biolevate-authentication.yml
+  lifecycle: lifecycle/biolevate-lifecycle.yml
+  data_model: data-model/biolevate-data-model.yml

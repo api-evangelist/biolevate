@@ -1,0 +1,168 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/biolevate-api-original.json
+note: 'No official hosted MCP server was found for Biolevate (searched GitHub org Biolevate, npm @modelcontextprotocol,
+  docs). This is a candidate tool list derived one-per-operation from the OpenAPI so an MCP server could
+  be generated. Auth: Bearer PAT; base_url is the per-tenant Elise domain.'
+server:
+  name: biolevate
+  transport: http
+  auth: bearer-pat
+tools:
+- name: listQAJobs
+  description: List QA jobs
+  source_operation: openapi/biolevate-api-original.json#listQAJobs
+- name: createQAJob
+  description: Create QA job
+  source_operation: openapi/biolevate-api-original.json#createQAJob
+- name: listItems
+  description: List items
+  source_operation: openapi/biolevate-api-original.json#listItems
+- name: uploadFile
+  description: Create folder
+  source_operation: openapi/biolevate-api-original.json#uploadFile
+- name: deleteItem
+  description: Delete item
+  source_operation: openapi/biolevate-api-original.json#deleteItem
+- name: renameItem
+  description: Rename item
+  source_operation: openapi/biolevate-api-original.json#renameItem
+- name: getUploadUrl
+  description: Get presigned upload URL
+  source_operation: openapi/biolevate-api-original.json#getUploadUrl
+- name: confirmUpload
+  description: Confirm presigned upload
+  source_operation: openapi/biolevate-api-original.json#confirmUpload
+- name: listMDEJobs
+  description: List multi-dimensional extraction jobs
+  source_operation: openapi/biolevate-api-original.json#listMDEJobs
+- name: createMDEJob
+  description: Create multi-dimensional extraction job
+  source_operation: openapi/biolevate-api-original.json#createMDEJob
+- name: listJobs
+  description: List find-similar jobs
+  source_operation: openapi/biolevate-api-original.json#listJobs
+- name: createJob
+  description: Create find-similar job
+  source_operation: openapi/biolevate-api-original.json#createJob
+- name: listFiles
+  description: List files in a provider
+  source_operation: openapi/biolevate-api-original.json#listFiles
+- name: createFile
+  description: Create a file
+  source_operation: openapi/biolevate-api-original.json#createFile
+- name: reindexFile
+  description: Reindex a file
+  source_operation: openapi/biolevate-api-original.json#reindexFile
+- name: recomputeFileOntologies
+  description: Recompute file ontologies
+  source_operation: openapi/biolevate-api-original.json#recomputeFileOntologies
+- name: listExtractionJobs
+  description: List extraction jobs
+  source_operation: openapi/biolevate-api-original.json#listExtractionJobs
+- name: createExtractionJob
+  description: Create extraction job
+  source_operation: openapi/biolevate-api-original.json#createExtractionJob
+- name: listCollections
+  description: List collections
+  source_operation: openapi/biolevate-api-original.json#listCollections
+- name: createCollection
+  description: Create a collection
+  source_operation: openapi/biolevate-api-original.json#createCollection
+- name: listCollectionFiles
+  description: List files in collection
+  source_operation: openapi/biolevate-api-original.json#listCollectionFiles
+- name: addFileToCollection
+  description: Add file to collection
+  source_operation: openapi/biolevate-api-original.json#addFileToCollection
+- name: listAgentJobs
+  description: List agent jobs
+  source_operation: openapi/biolevate-api-original.json#listAgentJobs
+- name: createAgentJob
+  description: Create agent job
+  source_operation: openapi/biolevate-api-original.json#createAgentJob
+- name: getCollection
+  description: Get a collection
+  source_operation: openapi/biolevate-api-original.json#getCollection
+- name: deleteCollection
+  description: Delete a collection
+  source_operation: openapi/biolevate-api-original.json#deleteCollection
+- name: updateCollection
+  description: Update a collection
+  source_operation: openapi/biolevate-api-original.json#updateCollection
+- name: getQAJob
+  description: Get QA job
+  source_operation: openapi/biolevate-api-original.json#getQAJob
+- name: getQAJobOutputs
+  description: Get QA job outputs
+  source_operation: openapi/biolevate-api-original.json#getQAJobOutputs
+- name: getQAJobInputs
+  description: Get QA job inputs
+  source_operation: openapi/biolevate-api-original.json#getQAJobInputs
+- name: getQAJobAnnotations
+  description: Get QA job annotations
+  source_operation: openapi/biolevate-api-original.json#getQAJobAnnotations
+- name: listProviders
+  description: List providers
+  source_operation: openapi/biolevate-api-original.json#listProviders
+- name: getDownloadUrl
+  description: Get download URL
+  source_operation: openapi/biolevate-api-original.json#getDownloadUrl
+- name: getFileContent
+  description: Get file content
+  source_operation: openapi/biolevate-api-original.json#getFileContent
+- name: getProvider
+  description: Get a provider
+  source_operation: openapi/biolevate-api-original.json#getProvider
+- name: getMDEJob
+  description: Get multi-dimensional extraction job
+  source_operation: openapi/biolevate-api-original.json#getMDEJob
+- name: getMDEJobOutputs
+  description: Get multi-dimensional extraction job outputs
+  source_operation: openapi/biolevate-api-original.json#getMDEJobOutputs
+- name: getMDEJobInputs
+  description: Get multi-dimensional extraction job inputs
+  source_operation: openapi/biolevate-api-original.json#getMDEJobInputs
+- name: getMDEJobAnnotations
+  description: Get multi-dimensional extraction job annotations
+  source_operation: openapi/biolevate-api-original.json#getMDEJobAnnotations
+- name: getJob
+  description: Get find-similar job
+  source_operation: openapi/biolevate-api-original.json#getJob
+- name: getFile
+  description: Get a file
+  source_operation: openapi/biolevate-api-original.json#getFile
+- name: deleteFile
+  description: Delete a file
+  source_operation: openapi/biolevate-api-original.json#deleteFile
+- name: getFileOntologies
+  description: Get file ontologies
+  source_operation: openapi/biolevate-api-original.json#getFileOntologies
+- name: getExtractionJob
+  description: Get extraction job
+  source_operation: openapi/biolevate-api-original.json#getExtractionJob
+- name: getExtractionJobOutputs
+  description: Get extraction job outputs
+  source_operation: openapi/biolevate-api-original.json#getExtractionJobOutputs
+- name: getExtractionJobInputs
+  description: Get extraction job inputs
+  source_operation: openapi/biolevate-api-original.json#getExtractionJobInputs
+- name: getExtractionJobAnnotations
+  description: Get extraction job annotations
+  source_operation: openapi/biolevate-api-original.json#getExtractionJobAnnotations
+- name: getAgentJob
+  description: Get agent job
+  source_operation: openapi/biolevate-api-original.json#getAgentJob
+- name: getAgentJobOutputs
+  description: Get agent job outputs
+  source_operation: openapi/biolevate-api-original.json#getAgentJobOutputs
+- name: getAgentJobInputs
+  description: Get agent job inputs
+  source_operation: openapi/biolevate-api-original.json#getAgentJobInputs
+- name: getAgentJobAnnotations
+  description: Get agent job annotations
+  source_operation: openapi/biolevate-api-original.json#getAgentJobAnnotations
+- name: removeFileFromCollection
+  description: Remove file from collection
+  source_operation: openapi/biolevate-api-original.json#removeFileFromCollection

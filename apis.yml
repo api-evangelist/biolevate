@@ -1,27 +1,203 @@
 aid: biolevate
 name: Biolevate
-description: 'Biolevate is a company surfaced as a portfolio company of eqt-ventures and added to the
-  API Evangelist network as a stub for enrichment. Sector: artificial-intelligence. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Biolevate is an AI Knowledge Platform accelerating life sciences. Its Elise platform connects to an
+  organization's document storage backends (S3, Azure, GCS, SharePoint, SFTP, local), indexes documents
+  with AI, and runs asynchronous Question Answering, Extraction, Multi-Dimensional (entity/tabular)
+  Extraction, Find-Similar and Agent jobs over them. Target workflows span regulatory affairs, R&D,
+  industry and post-market: systematic literature review, Clinical Study Report (CSR) and CTD assisted
+  generation, batch-record quality control, results extraction, HTA support, pharmacovigilance PSUR
+  updates and regulatory intelligence. Biolevate ships a public REST API (OpenAPI 3.1), a Python SDK
+  (`biolevate`) and a CLI (`ozk`). Backed by EQT Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/biolevate/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://framerusercontent.com/assets/GUqkPx2LWkYnIeiiO2bjRIzJfo.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - eqt-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: enriched-has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Artificial Intelligence
-apis: []
+- Life Sciences
+- Regulatory Affairs
+- Document Intelligence
+- Knowledge Management
+- Pharmaceuticals
+- Machine Learning
+apis:
+- aid: biolevate:biolevate-agent-api
+  name: Biolevate Agent API
+  description: Conversational agent jobs
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Agent
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-agent-api-openapi.yml
+- aid: biolevate:biolevate-collections-api
+  name: Biolevate Collections API
+  description: Collection resource management
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-collections-api-openapi.yml
+- aid: biolevate:biolevate-extraction-api
+  name: Biolevate Extraction API
+  description: Extraction resource management
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Extraction
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-extraction-api-openapi.yml
+- aid: biolevate:biolevate-files-api
+  name: Biolevate Files API
+  description: EliseFile resource management
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-files-api-openapi.yml
+- aid: biolevate:biolevate-find-similar-files-api
+  name: Biolevate Find similar files API
+  description: Find similar files locally and via remote bibliographic search
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Find similar files
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-find-similar-files-api-openapi.yml
+- aid: biolevate:biolevate-multi-dimensional-extraction-api
+  name: Biolevate Multi-Dimensional Extraction API
+  description: Multi-dimensional (entity / schema-based) extraction resource management
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Multi-Dimensional Extraction
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-multi-dimensional-extraction-api-openapi.yml
+- aid: biolevate:biolevate-provider-items-api
+  name: Biolevate Provider Items API
+  description: File and folder operations on storage providers
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Provider Items
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-provider-items-api-openapi.yml
+- aid: biolevate:biolevate-providers-api
+  name: Biolevate Providers API
+  description: Storage provider management (read-only)
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-providers-api-openapi.yml
+- aid: biolevate:biolevate-question-answering-api
+  name: Biolevate Question Answering API
+  description: Question Answering resource management
+  humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
+  baseURL: https://api-docs.biolevatecloud.com
+  tags:
+  - Question Answering
+  properties:
+  - type: OpenAPI
+    url: openapi/biolevate-question-answering-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: OpenAPI
+  url: openapi/biolevate-api-original.json
+- type: Documentation
+  url: https://api-docs.biolevatecloud.com/biolevateapi/intro
+- type: APIReference
+  url: https://api-docs.biolevatecloud.com/biolevateapi/intro
+- type: GettingStarted
+  url: https://api-docs.biolevatecloud.com/biolevateapi/intro
+- type: Authentication
+  url: authentication/biolevate-authentication.yml
+- type: Packages
+  url: packages/biolevate-packages.yml
+- type: SDKs
+  url: packages/biolevate-packages.yml
+- type: CLI
+  url: cli/biolevate-cli.yml
+- type: MCPServer
+  url: mcp/biolevate-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/biolevate-agentic-access.yml
+- type: LLMsTxt
+  url: llms/biolevate-llms.txt
+- type: Overlay
+  url: overlays/biolevate-api-overlay.yaml
+- type: Conventions
+  url: conventions/biolevate-conventions.yml
+- type: Idempotency
+  url: conventions/biolevate-conventions.yml
+- type: ErrorCatalog
+  url: errors/biolevate-problem-types.yml
+- type: DataModel
+  url: data-model/biolevate-data-model.yml
+- type: Conformance
+  url: conformance/biolevate-conformance.yml
+- type: Lifecycle
+  url: lifecycle/biolevate-lifecycle.yml
+- type: ChangeLog
+  url: changelog/biolevate-changelog.yml
+- type: WellKnown
+  url: well-known/biolevate-well-known.yml
+- type: DomainSecurity
+  url: security/biolevate-domain-security.yml
+- type: GitHubOrganization
+  url: https://github.com/Biolevate
+- type: Blog
+  url: https://medium.com/@biolevate
+- type: Support
+  url: https://www.biolevate.com/pages/contactus
+- type: TermsOfService
+  url: https://www.biolevate.com/pages/legal
+- type: PrivacyPolicy
+  url: https://biolevate.notion.site/Website-Privacy-Policy-2c535244d8944dc99267cfd23a3d452d
+- type: LinkedIn
+  url: https://www.linkedin.com/company/biolevate
 - type: Website
   url: https://www.biolevate.com/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

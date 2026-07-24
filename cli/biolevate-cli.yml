@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/Biolevate/homebrew-tap
+name: onizuka-cli
+binary: ozk
+description: >-
+  First-party command-line tool for Biolevate operations. Binaries are published to GitHub Releases
+  (darwin/linux, arm64/amd64) and installed through the public Biolevate Homebrew tap. The primary
+  source repo (biolevops-onizuka) is private; the tap and release binaries are public.
+homepage: https://github.com/Biolevate/biolevops-onizuka
+version: 1.0.61
+install:
+  - method: homebrew
+    commands:
+      - brew tap Biolevate/tap
+      - brew install onizuka-cli
+platforms:
+  - darwin-arm64
+  - darwin-amd64
+  - linux-arm64
+  - linux-amd64
+commands:
+  - name: --version
+    description: Print the installed ozk CLI version (the documented smoke-test command in the Homebrew formula).
+notes: >-
+  Only the `--version` command surface is verifiable from public sources (the Homebrew formula test
+  block). The full subcommand tree lives in the private biolevops-onizuka repo and is not published,
+  so it is intentionally not enumerated here rather than fabricated.
