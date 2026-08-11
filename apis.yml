@@ -139,7 +139,7 @@ maintainers:
   email: info@apis.io
 common:
 - type: OpenAPI
-  url: openapi/biolevate-api-original.json
+  url: openapi/_original/biolevate-api-original.json
 - type: Documentation
   url: https://api-docs.biolevatecloud.com/biolevateapi/intro
 - type: APIReference
