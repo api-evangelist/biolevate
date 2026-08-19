@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent Find similar files API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Find similar files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List find-similar jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/find-similar/jobs",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "sortProperty",
+                "value": "",
+                "type": "query",
+                "description": "Sort property"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of find-similar jobs owned by the current user."
+        },
+        {
+          "info": {
+            "name": "Create find-similar job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/find-similar/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a find-similar job for the supplied source identifiers. The endpoint returns immediately with a PENDING/RUNNING job; poll GET /find-similar/jobs/{id} for completion."
+        },
+        {
+          "info": {
+            "name": "Get find-similar job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/find-similar/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job id"
+              }
+            ]
+          },
+          "docs": "Returns a find-similar job by id, including the unified result and statistics when COMPLETED."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

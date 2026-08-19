@@ -166,3 +166,9 @@ tools:
 - name: removeFileFromCollection
   description: Remove file from collection
   source_operation: openapi/biolevate-api-original.json#removeFileFromCollection
+deployment:
+  mode: none
+  verified: derived
+  tools: 52
+  checked: '2026-08-12'
+  source: catalog MCP census

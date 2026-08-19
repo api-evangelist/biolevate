@@ -1,0 +1,1580 @@
+{
+  "item": [
+    {
+      "id": "cdd9c6e2-71fd-4b38-bb78-1d976897890c",
+      "name": "Question Answering",
+      "description": {
+        "content": "Question Answering resource management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f662a48-aec8-4edf-b11c-e56f8758accf",
+          "name": "List QA jobs",
+          "request": {
+            "name": "List QA jobs",
+            "description": {
+              "content": "Returns a paginated list of question answering jobs for the current user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Sort property"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac6e8f94-0423-41a1-9d1d-8d555e3d6789",
+              "name": "Successfully retrieved jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 7240,\n      \"executionTime\": 9818.065259764218,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 9094,\n      \"executionTime\": 2383.2584411574862,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": false\n    }\n  ],\n  \"totalPages\": 2118,\n  \"totalElements\": 6068,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "052232f0-fdeb-4c31-b279-3d4bb776301c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 7240,\n      \"executionTime\": 9818.065259764218,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 9094,\n      \"executionTime\": 2383.2584411574862,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": false\n    }\n  ],\n  \"totalPages\": 2118,\n  \"totalElements\": 6068,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39e3ef90-038e-4624-bc08-9f76eadf9ace",
+          "name": "Create QA job",
+          "request": {
+            "name": "Create QA job",
+            "description": {
+              "content": "Creates a new question answering job on the specified files",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"collectionIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"<string>\",\n      \"question\": \"<string>\",\n      \"answerType\": {\n        \"dataType\": \"<string>\",\n        \"multiValued\": \"<boolean>\",\n        \"enumValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"<string>\"\n        },\n        \"enumSuggestionsEnabled\": \"<boolean>\",\n        \"rejectedEnumValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"dateFormat\": \"<string>\",\n        \"decimalPrecision\": \"<string>\"\n      },\n      \"guidelines\": \"<string>\",\n      \"expectedAnswer\": \"<string>\",\n      \"inputQuestionIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"question\": \"<string>\",\n      \"answerType\": {\n        \"dataType\": \"<string>\",\n        \"multiValued\": \"<boolean>\",\n        \"enumValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"<string>\"\n        },\n        \"enumSuggestionsEnabled\": \"<boolean>\",\n        \"rejectedEnumValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"dateFormat\": \"<string>\",\n        \"decimalPrecision\": \"<string>\"\n      },\n      \"guidelines\": \"<string>\",\n      \"expectedAnswer\": \"<string>\",\n      \"inputQuestionIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"config\": {\n    \"skip_unindexed_files\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b583928-21d9-469e-b9ec-e4cf1a263510",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"FLOAT\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"US\",\n        \"decimalPrecision\": \"TWO_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec078a01-aa45-49dc-a75a-6759ae994e3e",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"FLOAT\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"US\",\n        \"decimalPrecision\": \"TWO_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40d59097-0e69-4986-9fcc-13e514de51d6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"FLOAT\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"US\",\n        \"decimalPrecision\": \"TWO_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1ebb741-0a49-4430-ae8f-6ecd8d7d59d5",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"FLOAT\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"US\",\n        \"decimalPrecision\": \"TWO_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70b22c80-a417-4fbe-84ec-be09827190b5",
+          "name": "Get QA job",
+          "request": {
+            "name": "Get QA job",
+            "description": {
+              "content": "Returns a single question answering job by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2d074a9-1eef-439c-a2e0-b07d2d7c7dd1",
+              "name": "Successfully retrieved job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fd62c91-9d01-4b8b-8ad7-400e97aed30e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b6ae910-c2d1-4160-8bcb-927fae8d9614",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2ca9ad9-3946-43f9-a72c-4fbceb193b44",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"FAILED\",\n  \"taskType\": \"string\",\n  \"createdTime\": 764,\n  \"executionTime\": 1304.6141776789511,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17352ceb-8296-48e6-9618-fcfa3d2e486e",
+          "name": "Get QA job outputs",
+          "request": {
+            "name": "Get QA job outputs",
+            "description": {
+              "content": "Returns the answers and results from the QA job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs",
+                ":jobId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f6e937d-7473-4138-9817-67baa4ef7e99",
+              "name": "Successfully retrieved outputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"306a9704-7036-a621-77e7-14beae53907c\",\n          \"entityType\": \"INSIGHTS_TABLE_CONFIG\"\n        },\n        {\n          \"id\": \"5133df2e-5a3f-e8ee-c6fa-565226334f9c\",\n          \"entityType\": \"FILE\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 6386.614095430438,\n      \"rawValue\": \"string\"\n    },\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"1d256d18-4dcd-5ac1-f55c-035f6f7e75ed\",\n          \"entityType\": \"COLLECTION_VIEW\"\n        },\n        {\n          \"id\": \"ed18913c-153a-8f10-5d19-3ffa8197acaa\",\n          \"entityType\": \"COLLECTION\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 1943.0062636609402,\n      \"rawValue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a42784c-a306-43c3-a455-135961eb4611",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"306a9704-7036-a621-77e7-14beae53907c\",\n          \"entityType\": \"INSIGHTS_TABLE_CONFIG\"\n        },\n        {\n          \"id\": \"5133df2e-5a3f-e8ee-c6fa-565226334f9c\",\n          \"entityType\": \"FILE\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 6386.614095430438,\n      \"rawValue\": \"string\"\n    },\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"1d256d18-4dcd-5ac1-f55c-035f6f7e75ed\",\n          \"entityType\": \"COLLECTION_VIEW\"\n        },\n        {\n          \"id\": \"ed18913c-153a-8f10-5d19-3ffa8197acaa\",\n          \"entityType\": \"COLLECTION\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 1943.0062636609402,\n      \"rawValue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c13117-b6b4-4bc6-970f-2d0d26712fc2",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"306a9704-7036-a621-77e7-14beae53907c\",\n          \"entityType\": \"INSIGHTS_TABLE_CONFIG\"\n        },\n        {\n          \"id\": \"5133df2e-5a3f-e8ee-c6fa-565226334f9c\",\n          \"entityType\": \"FILE\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 6386.614095430438,\n      \"rawValue\": \"string\"\n    },\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"1d256d18-4dcd-5ac1-f55c-035f6f7e75ed\",\n          \"entityType\": \"COLLECTION_VIEW\"\n        },\n        {\n          \"id\": \"ed18913c-153a-8f10-5d19-3ffa8197acaa\",\n          \"entityType\": \"COLLECTION\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 1943.0062636609402,\n      \"rawValue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a3acb40-9f1a-45d0-9749-7f38d7e7c92a",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"306a9704-7036-a621-77e7-14beae53907c\",\n          \"entityType\": \"INSIGHTS_TABLE_CONFIG\"\n        },\n        {\n          \"id\": \"5133df2e-5a3f-e8ee-c6fa-565226334f9c\",\n          \"entityType\": \"FILE\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 6386.614095430438,\n      \"rawValue\": \"string\"\n    },\n    {\n      \"explanation\": \"string\",\n      \"sourcedContent\": \"string\",\n      \"referenceIds\": [\n        {\n          \"id\": \"1d256d18-4dcd-5ac1-f55c-035f6f7e75ed\",\n          \"entityType\": \"COLLECTION_VIEW\"\n        },\n        {\n          \"id\": \"ed18913c-153a-8f10-5d19-3ffa8197acaa\",\n          \"entityType\": \"COLLECTION\"\n        }\n      ],\n      \"question\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"validityExplaination\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"answerValidity\": 1943.0062636609402,\n      \"rawValue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "015f189a-19f1-4820-8bd2-17e53c711a10",
+          "name": "Get QA job inputs",
+          "request": {
+            "name": "Get QA job inputs",
+            "description": {
+              "content": "Returns the input files and questions used for the QA job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs",
+                ":jobId",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "731b241a-079c-48a0-b715-fecadbdb36d1",
+              "name": "Successfully retrieved inputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": true,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"THREE_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"DATE\",\n        \"multiValued\": true,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"EUR\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21aec669-f994-4aa9-ac0f-358b7412dc2e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": true,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"THREE_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"DATE\",\n        \"multiValued\": true,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"EUR\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d47dcd8d-37b6-455c-82c9-67b9a0d1d32c",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": true,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"THREE_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"DATE\",\n        \"multiValued\": true,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"EUR\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc837925-7704-450f-b912-88bcde8dd267",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"STRING\",\n        \"multiValued\": false,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": true,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"ISO\",\n        \"decimalPrecision\": \"THREE_DECIMALS\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"question\": \"string\",\n      \"answerType\": {\n        \"dataType\": \"DATE\",\n        \"multiValued\": true,\n        \"enumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enumColors\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"enumSuggestionsEnabled\": false,\n        \"rejectedEnumValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"dateFormat\": \"EUR\",\n        \"decimalPrecision\": \"ONE_DECIMAL\"\n      },\n      \"guidelines\": \"string\",\n      \"expectedAnswer\": \"string\",\n      \"inputQuestionIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14f70cb1-2cc7-415d-bd6f-65f56b52dea2",
+          "name": "Get QA job annotations",
+          "request": {
+            "name": "Get QA job annotations",
+            "description": {
+              "content": "Returns the document annotations generated by the QA job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "qa",
+                "jobs",
+                ":jobId",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f268f314-fa92-4e33-870a-c6797523f993",
+              "name": "Successfully retrieved annotations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"b161e942-3cc4-1636-5c85-24d9ad1f0841\",\n      \"entityType\": \"COMMENT_THREAD\"\n    },\n    \"createdTime\": 9389,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"9f099050-46fe-9997-4a0a-7282679ba202\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"REVIEW_STATEMENT\",\n    \"modifiedTime\": 8976,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"2919f6e2-370e-1412-dbcb-c8662eedf5be\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"createdTime\": 8205,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"18e430bb-e683-3ffc-cc1c-dda6b0abf7f8\",\n      \"entityType\": \"PROVIDER\"\n    },\n    \"data\": {\n      \"type\": \"DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"EXTERNAL_DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 7551,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd13fb81-fc3c-4752-abd8-2e890d755538",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"b161e942-3cc4-1636-5c85-24d9ad1f0841\",\n      \"entityType\": \"COMMENT_THREAD\"\n    },\n    \"createdTime\": 9389,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"9f099050-46fe-9997-4a0a-7282679ba202\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"REVIEW_STATEMENT\",\n    \"modifiedTime\": 8976,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"2919f6e2-370e-1412-dbcb-c8662eedf5be\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"createdTime\": 8205,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"18e430bb-e683-3ffc-cc1c-dda6b0abf7f8\",\n      \"entityType\": \"PROVIDER\"\n    },\n    \"data\": {\n      \"type\": \"DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"EXTERNAL_DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 7551,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a9eb7fe-881e-449a-a45f-44bd5c966231",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"b161e942-3cc4-1636-5c85-24d9ad1f0841\",\n      \"entityType\": \"COMMENT_THREAD\"\n    },\n    \"createdTime\": 9389,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"9f099050-46fe-9997-4a0a-7282679ba202\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"REVIEW_STATEMENT\",\n    \"modifiedTime\": 8976,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"2919f6e2-370e-1412-dbcb-c8662eedf5be\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"createdTime\": 8205,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"18e430bb-e683-3ffc-cc1c-dda6b0abf7f8\",\n      \"entityType\": \"PROVIDER\"\n    },\n    \"data\": {\n      \"type\": \"DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"EXTERNAL_DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 7551,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17597239-3cd3-44ef-b198-5593624e5d36",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "qa",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"b161e942-3cc4-1636-5c85-24d9ad1f0841\",\n      \"entityType\": \"COMMENT_THREAD\"\n    },\n    \"createdTime\": 9389,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"9f099050-46fe-9997-4a0a-7282679ba202\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"REVIEW_STATEMENT\",\n    \"modifiedTime\": 8976,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"2919f6e2-370e-1412-dbcb-c8662eedf5be\",\n      \"entityType\": \"SMART_REVIEW\"\n    },\n    \"createdTime\": 8205,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"18e430bb-e683-3ffc-cc1c-dda6b0abf7f8\",\n      \"entityType\": \"PROVIDER\"\n    },\n    \"data\": {\n      \"type\": \"DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"EXTERNAL_DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 7551,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6f960a3-a0fe-4146-a00d-9c4108d66a28",
+    "name": "Biolevate Agent Question Answering API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

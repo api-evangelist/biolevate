@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent Collections API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/collections",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (0-based)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (asc/desc)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text search filter"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of collections the caller has access to"
+        },
+        {
+          "info": {
+            "name": "Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/collections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new collection owned by the current user"
+        },
+        {
+          "info": {
+            "name": "List files in collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/collections/:id/files",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (0-based)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (asc/desc)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text search filter"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of files belonging to the collection"
+        },
+        {
+          "info": {
+            "name": "Add file to collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/collections/:id/files",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associates an existing file with the collection"
+        },
+        {
+          "info": {
+            "name": "Get a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/collections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ]
+          },
+          "docs": "Returns a single collection by its ID"
+        },
+        {
+          "info": {
+            "name": "Update a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/core/collections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially updates a collection. Only provided fields will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/core/collections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ]
+          },
+          "docs": "Deletes a collection. Only the owner can delete a collection."
+        },
+        {
+          "info": {
+            "name": "Remove file from collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/core/collections/:id/files/:fileId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ]
+          },
+          "docs": "Removes the association between a file and the collection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

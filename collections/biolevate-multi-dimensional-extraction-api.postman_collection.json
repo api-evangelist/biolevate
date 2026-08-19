@@ -1,0 +1,1580 @@
+{
+  "item": [
+    {
+      "id": "209cf634-7935-4851-b82a-d73a0f920478",
+      "name": "Multi-Dimensional Extraction",
+      "description": {
+        "content": "Multi-dimensional (entity / schema-based) extraction resource management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "659cd749-9a48-4c73-83a2-0a883e3264da",
+          "name": "List multi-dimensional extraction jobs",
+          "request": {
+            "name": "List multi-dimensional extraction jobs",
+            "description": {
+              "content": "Returns a paginated list of multi-dimensional extraction jobs for the current user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Sort property"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48ad0d77-1ece-4938-85a8-cf468d484eb5",
+              "name": "Successfully retrieved jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 6278,\n      \"executionTime\": 6463.301845879962,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 9075,\n      \"executionTime\": 2985.6040920357386,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": false\n    }\n  ],\n  \"totalPages\": 5756,\n  \"totalElements\": 3921,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e83e3d44-7de0-455f-ae5a-690c88e36ef9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 6278,\n      \"executionTime\": 6463.301845879962,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"SUCCESS\",\n      \"taskType\": \"string\",\n      \"createdTime\": 9075,\n      \"executionTime\": 2985.6040920357386,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": false\n    }\n  ],\n  \"totalPages\": 5756,\n  \"totalElements\": 3921,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f73082e-5ed2-4ec9-a2fc-a83492b3fd4b",
+          "name": "Create multi-dimensional extraction job",
+          "request": {
+            "name": "Create multi-dimensional extraction job",
+            "description": {
+              "content": "Creates a new entity extraction job using a structured schema (multi-column) on the specified files",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"collectionIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"columns\": [\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\",\n        \"role\": \"<string>\",\n        \"description\": \"<string>\",\n        \"allowedValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"isRowKey\": \"<boolean>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\",\n        \"role\": \"<string>\",\n        \"description\": \"<string>\",\n        \"allowedValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"isRowKey\": \"<boolean>\"\n      }\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07480b15-451e-48b9-9d28-7b3a6367e9b2",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": false\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_LABEL\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c459c8a8-5f0e-44e2-9d1e-2976cc1ac53c",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": false\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_LABEL\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dce5cb2-9a37-43f9-81d9-cf2490d054b1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": false\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_LABEL\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb4e212d-0373-4b72-a9df-65aebc50a400",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": false\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n        \"role\": \"ENTITY_COLUMN_ROLE_LABEL\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd0ec3d8-c501-44ea-8d81-ff3c88798763",
+          "name": "Get multi-dimensional extraction job",
+          "request": {
+            "name": "Get multi-dimensional extraction job",
+            "description": {
+              "content": "Returns a single multi-dimensional extraction job by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47753e0a-85eb-48dc-82ce-4a12fcba2aa9",
+              "name": "Successfully retrieved job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f312821d-d917-4b76-b8f1-e00ba5a88a51",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f4cee15-4b1a-41d5-b059-a7a8c8ce7af3",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f783f07a-1ddf-4e47-8610-c25ff24867d2",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 1613,\n  \"executionTime\": 5450.108880791013,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aac2f88-be44-40fd-8edf-746aabb2daf1",
+          "name": "Get multi-dimensional extraction job outputs",
+          "request": {
+            "name": "Get multi-dimensional extraction job outputs",
+            "description": {
+              "content": "Returns the entity extraction results from the multi-dimensional extraction job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs",
+                ":jobId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5418807f-f315-4207-a4dd-a097f59a44e3",
+              "name": "Successfully retrieved outputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"entityExtraction\": {\n    \"metaId\": \"718fae8e-463f-341d-c387-f1da1160831f\",\n    \"meta\": \"string\",\n    \"schema\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_UNSPECIFIED\",\n          \"role\": \"ENTITY_COLUMN_ROLE_IDENTIFIER\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        },\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n          \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        }\n      ]\n    },\n    \"rows\": [\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"3d1f9c1b-4fa0-9087-bdb4-aaef7f5904b5\",\n            \"entityType\": \"PROJECT_LABEL\"\n          },\n          {\n            \"id\": \"cdfdf762-3bb5-73b9-e505-77f40e3766d2\",\n            \"entityType\": \"COLLECTION_VIEW\"\n          }\n        ]\n      },\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"b66304af-a9e4-ad3d-e76b-70c028f85449\",\n            \"entityType\": \"INSIGHT_CELL_FORMAT\"\n          },\n          {\n            \"id\": \"81f44944-9934-98f6-67f1-9f33af42ea21\",\n            \"entityType\": \"SEARCH_REMOVAL\"\n          }\n        ]\n      }\n    ],\n    \"explanation\": \"string\",\n    \"referenceIds\": [\n      {\n        \"id\": \"3c171fb9-8896-9f06-8ae1-b05dc3c15df0\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      {\n        \"id\": \"10ad7a4a-3cf2-c93a-f2ab-cc6ac744d539\",\n        \"entityType\": \"COMMENT\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3a9c3c4-eca9-41a6-8404-52a79ea66759",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"entityExtraction\": {\n    \"metaId\": \"718fae8e-463f-341d-c387-f1da1160831f\",\n    \"meta\": \"string\",\n    \"schema\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_UNSPECIFIED\",\n          \"role\": \"ENTITY_COLUMN_ROLE_IDENTIFIER\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        },\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n          \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        }\n      ]\n    },\n    \"rows\": [\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"3d1f9c1b-4fa0-9087-bdb4-aaef7f5904b5\",\n            \"entityType\": \"PROJECT_LABEL\"\n          },\n          {\n            \"id\": \"cdfdf762-3bb5-73b9-e505-77f40e3766d2\",\n            \"entityType\": \"COLLECTION_VIEW\"\n          }\n        ]\n      },\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"b66304af-a9e4-ad3d-e76b-70c028f85449\",\n            \"entityType\": \"INSIGHT_CELL_FORMAT\"\n          },\n          {\n            \"id\": \"81f44944-9934-98f6-67f1-9f33af42ea21\",\n            \"entityType\": \"SEARCH_REMOVAL\"\n          }\n        ]\n      }\n    ],\n    \"explanation\": \"string\",\n    \"referenceIds\": [\n      {\n        \"id\": \"3c171fb9-8896-9f06-8ae1-b05dc3c15df0\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      {\n        \"id\": \"10ad7a4a-3cf2-c93a-f2ab-cc6ac744d539\",\n        \"entityType\": \"COMMENT\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c62a918a-b737-4fcd-a974-53fbfd2d7aa5",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"entityExtraction\": {\n    \"metaId\": \"718fae8e-463f-341d-c387-f1da1160831f\",\n    \"meta\": \"string\",\n    \"schema\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_UNSPECIFIED\",\n          \"role\": \"ENTITY_COLUMN_ROLE_IDENTIFIER\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        },\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n          \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        }\n      ]\n    },\n    \"rows\": [\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"3d1f9c1b-4fa0-9087-bdb4-aaef7f5904b5\",\n            \"entityType\": \"PROJECT_LABEL\"\n          },\n          {\n            \"id\": \"cdfdf762-3bb5-73b9-e505-77f40e3766d2\",\n            \"entityType\": \"COLLECTION_VIEW\"\n          }\n        ]\n      },\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"b66304af-a9e4-ad3d-e76b-70c028f85449\",\n            \"entityType\": \"INSIGHT_CELL_FORMAT\"\n          },\n          {\n            \"id\": \"81f44944-9934-98f6-67f1-9f33af42ea21\",\n            \"entityType\": \"SEARCH_REMOVAL\"\n          }\n        ]\n      }\n    ],\n    \"explanation\": \"string\",\n    \"referenceIds\": [\n      {\n        \"id\": \"3c171fb9-8896-9f06-8ae1-b05dc3c15df0\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      {\n        \"id\": \"10ad7a4a-3cf2-c93a-f2ab-cc6ac744d539\",\n        \"entityType\": \"COMMENT\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e7f04f2-7654-456a-aad3-fc3105529266",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"entityExtraction\": {\n    \"metaId\": \"718fae8e-463f-341d-c387-f1da1160831f\",\n    \"meta\": \"string\",\n    \"schema\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_UNSPECIFIED\",\n          \"role\": \"ENTITY_COLUMN_ROLE_IDENTIFIER\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        },\n        {\n          \"key\": \"string\",\n          \"label\": \"string\",\n          \"type\": \"ENTITY_COLUMN_TYPE_BOOL\",\n          \"role\": \"ENTITY_COLUMN_ROLE_DEFINITION\",\n          \"description\": \"string\",\n          \"allowedValues\": [\n            \"string\",\n            \"string\"\n          ],\n          \"isRowKey\": true\n        }\n      ]\n    },\n    \"rows\": [\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"3d1f9c1b-4fa0-9087-bdb4-aaef7f5904b5\",\n            \"entityType\": \"PROJECT_LABEL\"\n          },\n          {\n            \"id\": \"cdfdf762-3bb5-73b9-e505-77f40e3766d2\",\n            \"entityType\": \"COLLECTION_VIEW\"\n          }\n        ]\n      },\n      {\n        \"cells\": [\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"columnKey\": \"string\",\n            \"value\": {},\n            \"explanation\": \"string\",\n            \"referenceIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"explanation\": \"string\",\n        \"referenceIds\": [\n          {\n            \"id\": \"b66304af-a9e4-ad3d-e76b-70c028f85449\",\n            \"entityType\": \"INSIGHT_CELL_FORMAT\"\n          },\n          {\n            \"id\": \"81f44944-9934-98f6-67f1-9f33af42ea21\",\n            \"entityType\": \"SEARCH_REMOVAL\"\n          }\n        ]\n      }\n    ],\n    \"explanation\": \"string\",\n    \"referenceIds\": [\n      {\n        \"id\": \"3c171fb9-8896-9f06-8ae1-b05dc3c15df0\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      {\n        \"id\": \"10ad7a4a-3cf2-c93a-f2ab-cc6ac744d539\",\n        \"entityType\": \"COMMENT\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ded24d6-8b5c-407d-af98-a5c587d99ffa",
+          "name": "Get multi-dimensional extraction job inputs",
+          "request": {
+            "name": "Get multi-dimensional extraction job inputs",
+            "description": {
+              "content": "Returns the input files and entity schema used for the multi-dimensional extraction job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs",
+                ":jobId",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d17b0a5-dd3c-46bc-a0e6-c2926795a64a",
+              "name": "Successfully retrieved inputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de9bfee3-588d-4e54-80fa-6628042eaed3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07c7638e-83f5-486c-8bc2-20c50d5501b3",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e9e5ddd-1bf5-47b1-81c7-609ee9f0b78c",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"schema\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"columns\": [\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      },\n      {\n        \"key\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"ENTITY_COLUMN_TYPE_STRING\",\n        \"role\": \"ENTITY_COLUMN_ROLE_TIMEPOINT\",\n        \"description\": \"string\",\n        \"allowedValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"isRowKey\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7894f7d9-881e-41bf-a792-6bf0691a5592",
+          "name": "Get multi-dimensional extraction job annotations",
+          "request": {
+            "name": "Get multi-dimensional extraction job annotations",
+            "description": {
+              "content": "Returns the document annotations generated by the multi-dimensional extraction job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "multi-dim-extraction",
+                "jobs",
+                ":jobId",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb9ecb00-3d94-4bbf-adf3-61b20f8f89ab",
+              "name": "Successfully retrieved annotations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"3d892322-2608-991e-6d1c-2d079ee3a67c\",\n      \"entityType\": \"INSIGHT_GROUP\"\n    },\n    \"createdTime\": 7558,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3b0af1e1-e8b9-110d-4852-4e460867e568\",\n      \"entityType\": \"FILE\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 1314,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"f42f9df7-e452-8a96-ef72-e6e38d1404d8\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"createdTime\": 930,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"8ddabae6-e08c-1ec7-d58b-b09184459a09\",\n      \"entityType\": \"CONCEPT_NOTE\"\n    },\n    \"data\": {\n      \"type\": \"ENTIRE_DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 9519,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21db70a0-f497-4d21-a249-59e10601e83a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"3d892322-2608-991e-6d1c-2d079ee3a67c\",\n      \"entityType\": \"INSIGHT_GROUP\"\n    },\n    \"createdTime\": 7558,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3b0af1e1-e8b9-110d-4852-4e460867e568\",\n      \"entityType\": \"FILE\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 1314,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"f42f9df7-e452-8a96-ef72-e6e38d1404d8\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"createdTime\": 930,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"8ddabae6-e08c-1ec7-d58b-b09184459a09\",\n      \"entityType\": \"CONCEPT_NOTE\"\n    },\n    \"data\": {\n      \"type\": \"ENTIRE_DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 9519,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5cb24de-130b-4275-abeb-abc1cb5c7fa7",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"3d892322-2608-991e-6d1c-2d079ee3a67c\",\n      \"entityType\": \"INSIGHT_GROUP\"\n    },\n    \"createdTime\": 7558,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3b0af1e1-e8b9-110d-4852-4e460867e568\",\n      \"entityType\": \"FILE\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 1314,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"f42f9df7-e452-8a96-ef72-e6e38d1404d8\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"createdTime\": 930,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"8ddabae6-e08c-1ec7-d58b-b09184459a09\",\n      \"entityType\": \"CONCEPT_NOTE\"\n    },\n    \"data\": {\n      \"type\": \"ENTIRE_DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 9519,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eae7425d-7c49-4383-9ce4-45be6d2593a4",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "multi-dim-extraction",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"3d892322-2608-991e-6d1c-2d079ee3a67c\",\n      \"entityType\": \"INSIGHT_GROUP\"\n    },\n    \"createdTime\": 7558,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3b0af1e1-e8b9-110d-4852-4e460867e568\",\n      \"entityType\": \"FILE\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 1314,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"f42f9df7-e452-8a96-ef72-e6e38d1404d8\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"createdTime\": 930,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"8ddabae6-e08c-1ec7-d58b-b09184459a09\",\n      \"entityType\": \"CONCEPT_NOTE\"\n    },\n    \"data\": {\n      \"type\": \"ENTIRE_DOCUMENT_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 9519,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e438824b-e4ca-493a-a18a-355f7b16d5e0",
+    "name": "Biolevate Agent Multi-Dimensional Extraction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,710 @@
+{
+  "item": [
+    {
+      "id": "3d61c511-5ca0-4c4b-b48c-d09445b1cf2e",
+      "name": "Find similar files",
+      "description": {
+        "content": "Find similar files locally and via remote bibliographic search",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "065b895f-97e6-4e30-92b8-1b521f546938",
+          "name": "List find-similar jobs",
+          "request": {
+            "name": "List find-similar jobs",
+            "description": {
+              "content": "Returns a paginated list of find-similar jobs owned by the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "find-similar",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Sort property"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c68edd8f-fb20-4773-a0e7-6e9f08ad0365",
+              "name": "Jobs retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"createdTime\": 3010,\n      \"modifiedTime\": 9401,\n      \"executionTimeMs\": 9512,\n      \"errorMessage\": \"string\",\n      \"sources\": {\n        \"sourceIdentifiers\": [\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          }\n        ]\n      },\n      \"result\": [\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"statistics\": {\n        \"sourcesQueried\": 194,\n        \"sourcesMatchedLocally\": 1434,\n        \"sourcesMatchedRemotely\": 1955,\n        \"sourcesUnmatched\": 8822,\n        \"remoteSearchStatus\": \"PENDING\",\n        \"totalFileMatches\": 8780,\n        \"totalMetadataOnlyMatches\": 2595,\n        \"errorsBySearchResultId\": {\n          \"key_0\": \"string\"\n        }\n      }\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"RUNNING\",\n      \"createdTime\": 7337,\n      \"modifiedTime\": 5639,\n      \"executionTimeMs\": 5334,\n      \"errorMessage\": \"string\",\n      \"sources\": {\n        \"sourceIdentifiers\": [\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          }\n        ]\n      },\n      \"result\": [\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"statistics\": {\n        \"sourcesQueried\": 3969,\n        \"sourcesMatchedLocally\": 3680,\n        \"sourcesMatchedRemotely\": 2802,\n        \"sourcesUnmatched\": 1819,\n        \"remoteSearchStatus\": \"ABORTED\",\n        \"totalFileMatches\": 342,\n        \"totalMetadataOnlyMatches\": 5070,\n        \"errorsBySearchResultId\": {\n          \"key_0\": \"string\"\n        }\n      }\n    }\n  ],\n  \"totalPages\": 1775,\n  \"totalElements\": 2027,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c93dc8c-1c01-4b45-8ac1-135450314c1e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"COMPLETED\",\n      \"createdTime\": 3010,\n      \"modifiedTime\": 9401,\n      \"executionTimeMs\": 9512,\n      \"errorMessage\": \"string\",\n      \"sources\": {\n        \"sourceIdentifiers\": [\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          }\n        ]\n      },\n      \"result\": [\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"statistics\": {\n        \"sourcesQueried\": 194,\n        \"sourcesMatchedLocally\": 1434,\n        \"sourcesMatchedRemotely\": 1955,\n        \"sourcesUnmatched\": 8822,\n        \"remoteSearchStatus\": \"PENDING\",\n        \"totalFileMatches\": 8780,\n        \"totalMetadataOnlyMatches\": 2595,\n        \"errorsBySearchResultId\": {\n          \"key_0\": \"string\"\n        }\n      }\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"RUNNING\",\n      \"createdTime\": 7337,\n      \"modifiedTime\": 5639,\n      \"executionTimeMs\": 5334,\n      \"errorMessage\": \"string\",\n      \"sources\": {\n        \"sourceIdentifiers\": [\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          }\n        ]\n      },\n      \"result\": [\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"source\": {\n            \"doi\": \"string\",\n            \"id\": \"string\",\n            \"openAccessId\": \"string\"\n          },\n          \"files\": [\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"fileId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"providerId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"checksum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"metadataOnly\": [\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"searchResultId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ontologies\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"statistics\": {\n        \"sourcesQueried\": 3969,\n        \"sourcesMatchedLocally\": 3680,\n        \"sourcesMatchedRemotely\": 2802,\n        \"sourcesUnmatched\": 1819,\n        \"remoteSearchStatus\": \"ABORTED\",\n        \"totalFileMatches\": 342,\n        \"totalMetadataOnlyMatches\": 5070,\n        \"errorsBySearchResultId\": {\n          \"key_0\": \"string\"\n        }\n      }\n    }\n  ],\n  \"totalPages\": 1775,\n  \"totalElements\": 2027,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7fdc651-c329-437a-baad-c5c68556d2c0",
+          "name": "Create find-similar job",
+          "request": {
+            "name": "Create find-similar job",
+            "description": {
+              "content": "Creates a find-similar job for the supplied source identifiers. The endpoint returns immediately with a PENDING/RUNNING job; poll GET /find-similar/jobs/{id} for completion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "find-similar",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceIdentifiers\": [\n    {\n      \"doi\": \"<string>\",\n      \"id\": \"<string>\",\n      \"openAccessId\": \"<string>\"\n    },\n    {\n      \"doi\": \"<string>\",\n      \"id\": \"<string>\",\n      \"openAccessId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11970945-8ce9-4a23-b495-80f2384d2b47",
+              "name": "Job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceIdentifiers\": [\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    },\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "784f4e21-dce3-4db6-84d6-3e1d4242ebf6",
+              "name": "Invalid SearchSources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceIdentifiers\": [\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    },\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e493be6e-9508-44aa-a966-9144dcc7ca06",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceIdentifiers\": [\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    },\n    {\n      \"doi\": \"string\",\n      \"id\": \"string\",\n      \"openAccessId\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4286d39-eb0a-4ad4-8e70-2dee8529ad18",
+          "name": "Get find-similar job",
+          "request": {
+            "name": "Get find-similar job",
+            "description": {
+              "content": "Returns a find-similar job by id, including the unified result and statistics when COMPLETED.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "find-similar",
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "365b2c9a-eda7-44e3-92e0-461e95010bd8",
+              "name": "Job retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "657f81aa-0389-4226-a2fd-a0cb0286d2c2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87be9571-3ac8-4df1-962f-0d32153a18cf",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81e10442-17f5-431f-b688-0a8a72a7734e",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "find-similar",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"createdTime\": 4130,\n  \"modifiedTime\": 4274,\n  \"executionTimeMs\": 5525,\n  \"errorMessage\": \"string\",\n  \"sources\": {\n    \"sourceIdentifiers\": [\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      }\n    ]\n  },\n  \"result\": [\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"source\": {\n        \"doi\": \"string\",\n        \"id\": \"string\",\n        \"openAccessId\": \"string\"\n      },\n      \"files\": [\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"fileId\": \"string\",\n          \"providerId\": \"string\",\n          \"path\": \"string\",\n          \"name\": \"string\",\n          \"checksum\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"metadataOnly\": [\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"searchResultId\": \"string\",\n          \"ontologies\": [\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"conceptId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metas\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"statistics\": {\n    \"sourcesQueried\": 1818,\n    \"sourcesMatchedLocally\": 7055,\n    \"sourcesMatchedRemotely\": 1038,\n    \"sourcesUnmatched\": 8390,\n    \"remoteSearchStatus\": \"ABORTED\",\n    \"totalFileMatches\": 2436,\n    \"totalMetadataOnlyMatches\": 371,\n    \"errorsBySearchResultId\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ce39bd5-2dbb-488f-90b3-9aeca0b75685",
+    "name": "Biolevate Agent Find similar files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

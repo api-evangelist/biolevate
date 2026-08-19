@@ -1,0 +1,503 @@
+{
+  "item": [
+    {
+      "id": "e501b96a-3533-4784-b801-1b691dd9bdab",
+      "name": "Providers",
+      "description": {
+        "content": "Storage provider management (read-only)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99e5d7b9-b89c-4bae-8b79-4d01a9245d91",
+          "name": "List providers",
+          "request": {
+            "name": "List providers",
+            "description": {
+              "content": "Returns a paginated list of storage providers the caller has access to. Secret fields are redacted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "asc",
+                  "description": "Sort direction (asc/desc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text search filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dd743e3-7dbb-4247-b29d-cc6e65ee5ee5",
+              "name": "Successfully retrieved providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"94655d19-ba78-f137-2084-3a6ea9c3edd0\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"createdTime\": 1569,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"1879c4ef-f14e-26fb-5774-4ed3ab6f021c\",\n        \"entityType\": \"POLICY\"\n      },\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"config\": {\n        \"type\": \"SHAREPOINT_ONLINE\"\n      },\n      \"type\": \"SHAREPOINT_ONLINE\",\n      \"system\": true\n    },\n    {\n      \"id\": {\n        \"id\": \"dba0349d-bb13-479c-8903-d38ebed5338f\",\n        \"entityType\": \"SUB_COLLECTION_JOB\"\n      },\n      \"createdTime\": 8570,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"53842132-7db5-fbf6-e11e-1d56d2576d97\",\n        \"entityType\": \"FILE\"\n      },\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"config\": {\n        \"type\": \"GCS\"\n      },\n      \"type\": \"SFTP\",\n      \"system\": false\n    }\n  ],\n  \"totalPages\": 8549,\n  \"totalElements\": 9196,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63c9fb74-31f2-4179-a7b7-5c10c39bcf7e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"94655d19-ba78-f137-2084-3a6ea9c3edd0\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"createdTime\": 1569,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"1879c4ef-f14e-26fb-5774-4ed3ab6f021c\",\n        \"entityType\": \"POLICY\"\n      },\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"config\": {\n        \"type\": \"SHAREPOINT_ONLINE\"\n      },\n      \"type\": \"SHAREPOINT_ONLINE\",\n      \"system\": true\n    },\n    {\n      \"id\": {\n        \"id\": \"dba0349d-bb13-479c-8903-d38ebed5338f\",\n        \"entityType\": \"SUB_COLLECTION_JOB\"\n      },\n      \"createdTime\": 8570,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"53842132-7db5-fbf6-e11e-1d56d2576d97\",\n        \"entityType\": \"FILE\"\n      },\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"config\": {\n        \"type\": \"GCS\"\n      },\n      \"type\": \"SFTP\",\n      \"system\": false\n    }\n  ],\n  \"totalPages\": 8549,\n  \"totalElements\": 9196,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93009c05-af87-4a1a-92a5-8e46e8e5618b",
+          "name": "Get a provider",
+          "request": {
+            "name": "Get a provider",
+            "description": {
+              "content": "Returns a single storage provider by its ID. Secret fields are redacted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "providers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Provider ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b966a347-34f5-4bb0-8254-2706e0813c83",
+              "name": "Successfully retrieved provider",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"8a69f3f3-7935-db96-b2a4-d9975ac29156\",\n    \"entityType\": \"RIS_IMPORT_JOB\"\n  },\n  \"createdTime\": 6613,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"9395223d-05f0-8c05-ecfa-22ede839362e\",\n    \"entityType\": \"CONCEPT_NOTE\"\n  },\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"config\": {\n    \"type\": \"SFTP\"\n  },\n  \"type\": \"LOCAL\",\n  \"system\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dfe680b-925d-4f71-a450-2be304b7b4d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"8a69f3f3-7935-db96-b2a4-d9975ac29156\",\n    \"entityType\": \"RIS_IMPORT_JOB\"\n  },\n  \"createdTime\": 6613,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"9395223d-05f0-8c05-ecfa-22ede839362e\",\n    \"entityType\": \"CONCEPT_NOTE\"\n  },\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"config\": {\n    \"type\": \"SFTP\"\n  },\n  \"type\": \"LOCAL\",\n  \"system\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d56492e8-0942-42e3-8d29-38217992a6f1",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"8a69f3f3-7935-db96-b2a4-d9975ac29156\",\n    \"entityType\": \"RIS_IMPORT_JOB\"\n  },\n  \"createdTime\": 6613,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"9395223d-05f0-8c05-ecfa-22ede839362e\",\n    \"entityType\": \"CONCEPT_NOTE\"\n  },\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"config\": {\n    \"type\": \"SFTP\"\n  },\n  \"type\": \"LOCAL\",\n  \"system\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41e78322-3cc2-4f8c-868b-a7f4abc76f51",
+              "name": "Provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "providers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Provider ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"8a69f3f3-7935-db96-b2a4-d9975ac29156\",\n    \"entityType\": \"RIS_IMPORT_JOB\"\n  },\n  \"createdTime\": 6613,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"9395223d-05f0-8c05-ecfa-22ede839362e\",\n    \"entityType\": \"CONCEPT_NOTE\"\n  },\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"config\": {\n    \"type\": \"SFTP\"\n  },\n  \"type\": \"LOCAL\",\n  \"system\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf67d0c6-3514-42a6-ae3d-978949b5ada9",
+    "name": "Biolevate Agent Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

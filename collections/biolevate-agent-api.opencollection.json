@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/agent/jobs",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (0-based)"
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the results to jobs attached to this conversation"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of agent jobs for the current user, ordered by creation time (most recent first). When `conversationId` is provided, the results are restricted to jobs attached to that conversation, which lets a client replay the sequence of questions asked in a single conversation."
+        },
+        {
+          "info": {
+            "name": "Create agent job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/agent/jobs",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedules an asynchronous agent run and returns the initial Job (status PENDING)."
+        },
+        {
+          "info": {
+            "name": "Get agent job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/agent/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job Id"
+              }
+            ]
+          },
+          "docs": "Returns a single agent job by its ID"
+        },
+        {
+          "info": {
+            "name": "Get agent job outputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/agent/jobs/:jobId/results",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job Id"
+              }
+            ]
+          },
+          "docs": "Returns the agent's answer (text or structured), explanation, and cited annotation ids"
+        },
+        {
+          "info": {
+            "name": "Get agent job inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/agent/jobs/:jobId/inputs",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job Id"
+              }
+            ]
+          },
+          "docs": "Returns the messages, files and configuration submitted for the agent job"
+        },
+        {
+          "info": {
+            "name": "Get agent job annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/agent/jobs/:jobId/annotations",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job Id"
+              }
+            ]
+          },
+          "docs": "Returns the document annotations the agent cited in its answer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1596 @@
+{
+  "item": [
+    {
+      "id": "e51e753e-1555-49ae-bfd7-d01e0a97e373",
+      "name": "Agent",
+      "description": {
+        "content": "Conversational agent jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8fd897e-74de-4da7-99cd-b429c511dd70",
+          "name": "List agent jobs",
+          "request": {
+            "name": "List agent jobs",
+            "description": {
+              "content": "Returns a paginated list of agent jobs for the current user, ordered by creation time (most recent first). When `conversationId` is provided, the results are restricted to jobs attached to that conversation, which lets a client replay the sequence of questions asked in a single conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number (0-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "conversationId",
+                  "value": "<uuid>",
+                  "description": "Restrict the results to jobs attached to this conversation"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d80900e4-0d78-432f-86ff-6d6146b6dc43",
+              "name": "Successfully retrieved jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "conversationId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"PENDING\",\n      \"taskType\": \"string\",\n      \"createdTime\": 56,\n      \"executionTime\": 1384.4082799752255,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"FAILED\",\n      \"taskType\": \"string\",\n      \"createdTime\": 6452,\n      \"executionTime\": 4527.992609033172,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    }\n  ],\n  \"totalPages\": 562,\n  \"totalElements\": 8882,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20670a97-44ee-4c09-8600-182b3322c386",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "conversationId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"status\": \"PENDING\",\n      \"taskType\": \"string\",\n      \"createdTime\": 56,\n      \"executionTime\": 1384.4082799752255,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    },\n    {\n      \"jobId\": \"string\",\n      \"status\": \"FAILED\",\n      \"taskType\": \"string\",\n      \"createdTime\": 6452,\n      \"executionTime\": 4527.992609033172,\n      \"errorMessage\": \"string\",\n      \"name\": \"string\",\n      \"archived\": true\n    }\n  ],\n  \"totalPages\": 562,\n  \"totalElements\": 8882,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fde90214-6081-4ad5-a939-4448c5ff6c07",
+          "name": "Create agent job",
+          "request": {
+            "name": "Create agent job",
+            "description": {
+              "content": "Schedules an asynchronous agent run and returns the initial Job (status PENDING).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"<string>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"role\": \"<string>\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"collectionIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": \"<boolean>\"\n  },\n  \"historyInputValid\": \"<boolean>\",\n  \"conversationIdValid\": \"<boolean>\",\n  \"output_model_schema\": \"<object>\",\n  \"completion_config\": {\n    \"model\": \"<string>\",\n    \"temperature\": \"<double>\",\n    \"max_completion_tokens\": \"<integer>\"\n  },\n  \"max_iterations\": \"<integer>\",\n  \"conversation_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b6ac4b74-f414-464a-a7c0-21cb40740a23",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Summarize the attached report and list the main risks.\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  },\n  \"historyInputValid\": \"<boolean>\",\n  \"conversationIdValid\": \"<boolean>\",\n  \"output_model_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"verdict\": {\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"verdict\"\n    ]\n  },\n  \"completion_config\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"max_iterations\": 10,\n  \"conversation_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad2a38e1-419d-4f9a-8501-813b679a300e",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Summarize the attached report and list the main risks.\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  },\n  \"historyInputValid\": \"<boolean>\",\n  \"conversationIdValid\": \"<boolean>\",\n  \"output_model_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"verdict\": {\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"verdict\"\n    ]\n  },\n  \"completion_config\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"max_iterations\": 10,\n  \"conversation_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b3403e2-52d8-4266-ade2-dee9ef832d61",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Summarize the attached report and list the main risks.\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  },\n  \"historyInputValid\": \"<boolean>\",\n  \"conversationIdValid\": \"<boolean>\",\n  \"output_model_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"verdict\": {\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"verdict\"\n    ]\n  },\n  \"completion_config\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"max_iterations\": 10,\n  \"conversation_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c635524f-b426-43b2-90a5-7e0b9ef5cd8a",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Summarize the attached report and list the main risks.\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"config\": {\n    \"skip_unindexed_files\": false\n  },\n  \"historyInputValid\": \"<boolean>\",\n  \"conversationIdValid\": \"<boolean>\",\n  \"output_model_schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"verdict\": {\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"verdict\"\n    ]\n  },\n  \"completion_config\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"max_iterations\": 10,\n  \"conversation_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2e70e3a-323a-45bd-9464-f5a339daa55d",
+          "name": "Get agent job",
+          "request": {
+            "name": "Get agent job",
+            "description": {
+              "content": "Returns a single agent job by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bcde88d-6e87-4016-85d8-a1cdf786f09a",
+              "name": "Successfully retrieved job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e92fac2-28e5-429e-b602-d57f10924f62",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea4d6c85-bc53-469b-aa8e-245bdcd80ef2",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a122f86-3a48-4609-8e1a-f4b361959426",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"status\": \"PENDING\",\n  \"taskType\": \"string\",\n  \"createdTime\": 2791,\n  \"executionTime\": 5352.142938123864,\n  \"errorMessage\": \"string\",\n  \"name\": \"string\",\n  \"archived\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9f32f96-b3d0-42a5-9733-b75b84150c0b",
+          "name": "Get agent job outputs",
+          "request": {
+            "name": "Get agent job outputs",
+            "description": {
+              "content": "Returns the agent's answer (text or structured), explanation, and cited annotation ids",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs",
+                ":jobId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f54b4110-0197-49de-94f3-95eac325ef6e",
+              "name": "Successfully retrieved outputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"answer\": {},\n  \"explanation\": \"string\",\n  \"referenceIds\": [\n    \"257beab5-b00a-daf3-fce7-aac2d1b54294\",\n    \"02d6fbf3-a73c-d0d1-2b13-225543e8d7cc\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3b45e20-f4e3-49f5-9eb9-6b84f0386904",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"answer\": {},\n  \"explanation\": \"string\",\n  \"referenceIds\": [\n    \"257beab5-b00a-daf3-fce7-aac2d1b54294\",\n    \"02d6fbf3-a73c-d0d1-2b13-225543e8d7cc\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3421839-6ff5-41ca-901e-4d91b80fc5fd",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"answer\": {},\n  \"explanation\": \"string\",\n  \"referenceIds\": [\n    \"257beab5-b00a-daf3-fce7-aac2d1b54294\",\n    \"02d6fbf3-a73c-d0d1-2b13-225543e8d7cc\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfc17c81-cbd8-442f-b298-818b432d929c",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"answer\": {},\n  \"explanation\": \"string\",\n  \"referenceIds\": [\n    \"257beab5-b00a-daf3-fce7-aac2d1b54294\",\n    \"02d6fbf3-a73c-d0d1-2b13-225543e8d7cc\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22081fb7-4480-4935-8088-2fc788b4d2f5",
+          "name": "Get agent job inputs",
+          "request": {
+            "name": "Get agent job inputs",
+            "description": {
+              "content": "Returns the messages, files and configuration submitted for the agent job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs",
+                ":jobId",
+                "inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "498c99ef-de77-4027-92ee-78797335d6cd",
+              "name": "Successfully retrieved inputs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"outputModelSchema\": {},\n  \"completionConfig\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"maxIterations\": 2572,\n  \"conversationId\": \"f666751f-8c09-dd6a-4617-d12e78164e9e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a51c43fa-b9ef-4c7d-8951-6fc74d39bed9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"outputModelSchema\": {},\n  \"completionConfig\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"maxIterations\": 2572,\n  \"conversationId\": \"f666751f-8c09-dd6a-4617-d12e78164e9e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7611d7c6-d023-4fc5-949f-0c3eefacb341",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"outputModelSchema\": {},\n  \"completionConfig\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"maxIterations\": 2572,\n  \"conversationId\": \"f666751f-8c09-dd6a-4617-d12e78164e9e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ceb1eb3-7b08-4fd0-bb40-da5d0541df2a",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"messages\": [\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    },\n    {\n      \"content\": \"Summarize the attached report.\",\n      \"role\": \"USER\"\n    }\n  ],\n  \"files\": {\n    \"fileIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collectionIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"outputModelSchema\": {},\n  \"completionConfig\": {\n    \"model\": \"BALANCED\",\n    \"temperature\": 0.7,\n    \"max_completion_tokens\": 2048\n  },\n  \"maxIterations\": 2572,\n  \"conversationId\": \"f666751f-8c09-dd6a-4617-d12e78164e9e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "093fd409-9f60-4501-bc75-b4be950b9f5a",
+          "name": "Get agent job annotations",
+          "request": {
+            "name": "Get agent job annotations",
+            "description": {
+              "content": "Returns the document annotations the agent cited in its answer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "agent",
+                "jobs",
+                ":jobId",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35ff809e-6d13-4840-9213-96219e01cd24",
+              "name": "Successfully retrieved annotations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"a524c7c1-011d-2bc8-60fa-7385a0f9e929\",\n      \"entityType\": \"PROJECT_LABEL\"\n    },\n    \"createdTime\": 4900,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"76a3684c-6d6b-3a74-c802-1eeb66debf82\",\n      \"entityType\": \"ANNOTATION\"\n    },\n    \"data\": {\n      \"type\": \"REVIEW_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 5306,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"7b82beb7-7e71-a4d4-5529-780238cbeb26\",\n      \"entityType\": \"PRESET\"\n    },\n    \"createdTime\": 8309,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3f000af6-069f-ccad-5eac-8656ecdd284a\",\n      \"entityType\": \"COLLECTION_VIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 3851,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "425a1370-9a71-47a1-9ef2-b04ba49626a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"a524c7c1-011d-2bc8-60fa-7385a0f9e929\",\n      \"entityType\": \"PROJECT_LABEL\"\n    },\n    \"createdTime\": 4900,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"76a3684c-6d6b-3a74-c802-1eeb66debf82\",\n      \"entityType\": \"ANNOTATION\"\n    },\n    \"data\": {\n      \"type\": \"REVIEW_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 5306,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"7b82beb7-7e71-a4d4-5529-780238cbeb26\",\n      \"entityType\": \"PRESET\"\n    },\n    \"createdTime\": 8309,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3f000af6-069f-ccad-5eac-8656ecdd284a\",\n      \"entityType\": \"COLLECTION_VIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 3851,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1653995-a4be-45cc-acf9-c672d67400eb",
+              "name": "Access denied - not the job owner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"a524c7c1-011d-2bc8-60fa-7385a0f9e929\",\n      \"entityType\": \"PROJECT_LABEL\"\n    },\n    \"createdTime\": 4900,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"76a3684c-6d6b-3a74-c802-1eeb66debf82\",\n      \"entityType\": \"ANNOTATION\"\n    },\n    \"data\": {\n      \"type\": \"REVIEW_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 5306,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"7b82beb7-7e71-a4d4-5529-780238cbeb26\",\n      \"entityType\": \"PRESET\"\n    },\n    \"createdTime\": 8309,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3f000af6-069f-ccad-5eac-8656ecdd284a\",\n      \"entityType\": \"COLLECTION_VIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 3851,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a4248c2-d680-4b52-bef5-02009c2c0aef",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "agent",
+                    "jobs",
+                    ":jobId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": {\n      \"id\": \"a524c7c1-011d-2bc8-60fa-7385a0f9e929\",\n      \"entityType\": \"PROJECT_LABEL\"\n    },\n    \"createdTime\": 4900,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"76a3684c-6d6b-3a74-c802-1eeb66debf82\",\n      \"entityType\": \"ANNOTATION\"\n    },\n    \"data\": {\n      \"type\": \"REVIEW_STATEMENT\"\n    },\n    \"type\": \"DOCUMENT_STATEMENT\",\n    \"modifiedTime\": 5306,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"VALID\"\n  },\n  {\n    \"id\": {\n      \"id\": \"7b82beb7-7e71-a4d4-5529-780238cbeb26\",\n      \"entityType\": \"PRESET\"\n    },\n    \"createdTime\": 8309,\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"space\": {\n      \"id\": \"3f000af6-069f-ccad-5eac-8656ecdd284a\",\n      \"entityType\": \"COLLECTION_VIEW\"\n    },\n    \"data\": {\n      \"type\": \"WEB_STATEMENT\"\n    },\n    \"type\": \"KNOWLEDGE_STATEMENT\",\n    \"modifiedTime\": 3851,\n    \"lastModifier\": {\n      \"id\": \"string\"\n    },\n    \"status\": \"NOTVALID\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4832887a-43cd-4a52-93f7-065cd00d7a12",
+    "name": "Biolevate Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1921 @@
+{
+  "item": [
+    {
+      "id": "98d137bf-452e-41ac-b74c-d937204ba7ca",
+      "name": "Files",
+      "description": {
+        "content": "EliseFile resource management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31deaaee-4de1-4f82-9185-ff1b711c6f73",
+          "name": "List files in a provider",
+          "request": {
+            "name": "List files in a provider",
+            "description": {
+              "content": "Returns paginated file infos for a provider",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "providerId",
+                  "value": "<string>",
+                  "description": "(Required) Provider ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "(Required) Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Sort property"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22e6e143-d456-4f59-aece-20287991dae6",
+              "name": "Successfully retrieved files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"c5e25382-2169-1f6d-8760-9685891ff364\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 5809,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5b80a6c5-2563-c494-6f56-0d0374a92b10\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"providerId\": {\n        \"id\": \"8dd21c1e-ef8e-6ef6-5364-e2ac60c379bb\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 8900,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"RUNNING\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FOLDER\"\n    },\n    {\n      \"id\": {\n        \"id\": \"737feedf-6f92-9578-2cbf-e83f58da61dc\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"createdTime\": 9563,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"236a29b1-582e-078a-f684-2df9c443d8d9\",\n        \"entityType\": \"INSIGHT_CELL_SORTING\"\n      },\n      \"providerId\": {\n        \"id\": \"c15d3ae7-3f4f-05d2-83cd-02d5f32212f6\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 1824,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": false,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FILE\"\n    }\n  ],\n  \"totalPages\": 697,\n  \"totalElements\": 7032,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f74413de-2959-43a5-a6cc-a1dfbe7cb610",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"c5e25382-2169-1f6d-8760-9685891ff364\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 5809,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5b80a6c5-2563-c494-6f56-0d0374a92b10\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"providerId\": {\n        \"id\": \"8dd21c1e-ef8e-6ef6-5364-e2ac60c379bb\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 8900,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"RUNNING\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FOLDER\"\n    },\n    {\n      \"id\": {\n        \"id\": \"737feedf-6f92-9578-2cbf-e83f58da61dc\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"createdTime\": 9563,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"236a29b1-582e-078a-f684-2df9c443d8d9\",\n        \"entityType\": \"INSIGHT_CELL_SORTING\"\n      },\n      \"providerId\": {\n        \"id\": \"c15d3ae7-3f4f-05d2-83cd-02d5f32212f6\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 1824,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": false,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FILE\"\n    }\n  ],\n  \"totalPages\": 697,\n  \"totalElements\": 7032,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "820519eb-8fa1-4e4b-a9f0-44d3c0e934c5",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"c5e25382-2169-1f6d-8760-9685891ff364\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 5809,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5b80a6c5-2563-c494-6f56-0d0374a92b10\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"providerId\": {\n        \"id\": \"8dd21c1e-ef8e-6ef6-5364-e2ac60c379bb\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 8900,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"RUNNING\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FOLDER\"\n    },\n    {\n      \"id\": {\n        \"id\": \"737feedf-6f92-9578-2cbf-e83f58da61dc\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"createdTime\": 9563,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"236a29b1-582e-078a-f684-2df9c443d8d9\",\n        \"entityType\": \"INSIGHT_CELL_SORTING\"\n      },\n      \"providerId\": {\n        \"id\": \"c15d3ae7-3f4f-05d2-83cd-02d5f32212f6\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 1824,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": false,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FILE\"\n    }\n  ],\n  \"totalPages\": 697,\n  \"totalElements\": 7032,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a10f0e4c-6884-4103-8904-5a21b81635f9",
+              "name": "Provider not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"c5e25382-2169-1f6d-8760-9685891ff364\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 5809,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5b80a6c5-2563-c494-6f56-0d0374a92b10\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"providerId\": {\n        \"id\": \"8dd21c1e-ef8e-6ef6-5364-e2ac60c379bb\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 8900,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"RUNNING\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FOLDER\"\n    },\n    {\n      \"id\": {\n        \"id\": \"737feedf-6f92-9578-2cbf-e83f58da61dc\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"createdTime\": 9563,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"236a29b1-582e-078a-f684-2df9c443d8d9\",\n        \"entityType\": \"INSIGHT_CELL_SORTING\"\n      },\n      \"providerId\": {\n        \"id\": \"c15d3ae7-3f4f-05d2-83cd-02d5f32212f6\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 1824,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": false,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"FILE\"\n    }\n  ],\n  \"totalPages\": 697,\n  \"totalElements\": 7032,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2782411c-74c4-4476-900b-c804b3a81f6a",
+          "name": "Create a file",
+          "request": {
+            "name": "Create a file",
+            "description": {
+              "content": "Creates an EliseFile from an existing provider item and triggers indexation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"providerId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8a7186b-7df7-44f0-ad53-169afa5da0f1",
+              "name": "File created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"documents/report.pdf\",\n  \"providerId\": \"01a91a21-3136-4094-96da-ded4dce3824f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73c479be-7775-4482-b225-b7e526b7139a",
+              "name": "Invalid request or unsupported file extension",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"documents/report.pdf\",\n  \"providerId\": \"01a91a21-3136-4094-96da-ded4dce3824f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83589570-01f4-41a0-926d-b11a6fcc5e1f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"documents/report.pdf\",\n  \"providerId\": \"01a91a21-3136-4094-96da-ded4dce3824f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0acd0514-5c81-48fa-acf0-a5706887b581",
+              "name": "File not found in provider",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"documents/report.pdf\",\n  \"providerId\": \"01a91a21-3136-4094-96da-ded4dce3824f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "043d7e4c-85a1-4426-a282-9c79cd37cfe3",
+          "name": "Reindex a file",
+          "request": {
+            "name": "Reindex a file",
+            "description": {
+              "content": "Forces reindexation of a file. Optionally reparses the document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files",
+                ":id",
+                "reindex"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reparse",
+                  "value": "false",
+                  "description": "Reparse document content"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73895d90-00dd-4852-8703-e9a811197758",
+              "name": "Reindexation started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "reindex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reparse",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4bd79744-c2e4-4673-a2de-895e9a76ea13",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "reindex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reparse",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0af21824-2456-4bbc-91ee-768dd68a8c4c",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "reindex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reparse",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55a693d2-5d8d-4c48-96a7-b692fd4b1ada",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "reindex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reparse",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "630310d8-7a64-402f-a9ce-786cf2adddae",
+          "name": "Recompute file ontologies",
+          "request": {
+            "name": "Recompute file ontologies",
+            "description": {
+              "content": "Forces recomputation of ontologies and metadata for a file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files",
+                ":id",
+                "recompute-ontologies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10765339-a6ac-4d6f-bfb1-dbda3eb32019",
+              "name": "Ontology recomputation started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "recompute-ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "141e5360-b6b6-4a61-b88e-6c08bf781441",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "recompute-ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5be53da4-bd0d-4443-9e0f-865ed0bd34ab",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "recompute-ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19cb4d4d-4d52-4e99-a005-11aab0956150",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "recompute-ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52702fb1-b72e-4acf-8256-eb7d6014e7a7",
+          "name": "Get a file",
+          "request": {
+            "name": "Get a file",
+            "description": {
+              "content": "Returns a file by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8103095b-c519-45cf-9898-ce8c97aadf08",
+              "name": "Successfully retrieved file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0beff58d-e05a-46a6-ac27-3c43bd6bcd00",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2217a2e5-517e-452c-9017-276dcc3bbafe",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae518e75-76d5-4aa0-9073-5fe342fd689e",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"6a7b136c-263a-be13-4004-60746ec78e2f\",\n    \"entityType\": \"INSIGHT_CELL_FILTER\"\n  },\n  \"createdTime\": 2123,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"84c80c45-73ab-0fe3-c0d2-438f681ba7eb\",\n    \"entityType\": \"JOB\"\n  },\n  \"providerId\": {\n    \"id\": \"f4d7634a-0807-fa17-9d39-e65d10606368\",\n    \"entityType\": \"REVIEW_REQUEST\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 5161,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": true,\n  \"matchComputed\": true,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"RUNNING\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75a1be87-3f4b-4932-9ab6-11a9ab59db7b",
+          "name": "Delete a file",
+          "request": {
+            "name": "Delete a file",
+            "description": {
+              "content": "Deletes a file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1011cc34-3b11-48e0-816a-586219043c4b",
+              "name": "File deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c25d50ef-233a-481a-af09-112c359ece76",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0d2278e-373b-4059-a02d-f8a15fca1b42",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83f4bf46-c4e6-4809-bb16-63175521b83f",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b18d9e11-a11a-4e77-9dd1-eb2c19b63957",
+          "name": "Get file ontologies",
+          "request": {
+            "name": "Get file ontologies",
+            "description": {
+              "content": "Returns computed ontologies for a file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "files",
+                ":id",
+                "ontologies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bca4bc9-5b22-4da2-8850-7d81470b20ef",
+              "name": "Successfully retrieved ontologies",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"conceptId\": {\n      \"id\": \"ae12b38c-9a15-050a-3ef2-6c5f6aa715a9\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"1c7eda57-fc33-80e2-e478-ddfea351ebd5\",\n            \"entityType\": \"INSIGHT_CELL_FILTER\"\n          },\n          {\n            \"id\": \"b7749c13-f55b-403d-f031-c496ac72064f\",\n            \"entityType\": \"COMMENT\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  },\n  {\n    \"conceptId\": {\n      \"id\": \"f6ff1fea-00e4-344e-5f43-24289459e4df\",\n      \"entityType\": \"INSIGHT_CELL_FILTER\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"cfa6e094-8111-9d9a-8f24-99a141575c7f\",\n            \"entityType\": \"PROCESSOR\"\n          },\n          {\n            \"id\": \"c2bbfdbd-b2fb-9ec7-91ab-b8d4edaafa46\",\n            \"entityType\": \"MILESTONE\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_1\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"75a9ecef-87b6-d9ba-4e37-e58ec4d8a59c\",\n            \"entityType\": \"PROJECT_GROUP\"\n          },\n          {\n            \"id\": \"6b56cd9d-fb7a-7301-c377-db55916c5440\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_2\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"0484408d-b071-8254-0818-9b0300ae9f23\",\n            \"entityType\": \"FILE\"\n          },\n          {\n            \"id\": \"7330b59e-5526-4ba5-fd51-310c6ba44555\",\n            \"entityType\": \"SUB_COLLECTION_JOB\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_3\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"d1362f55-c9cd-eff6-e65d-cb69fef5386c\",\n            \"entityType\": \"RIS_IMPORT_JOB\"\n          },\n          {\n            \"id\": \"69913397-5164-16c4-d3f9-912057b8a534\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ab20e4-f4f4-431a-bb27-6822b1b430d7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"conceptId\": {\n      \"id\": \"ae12b38c-9a15-050a-3ef2-6c5f6aa715a9\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"1c7eda57-fc33-80e2-e478-ddfea351ebd5\",\n            \"entityType\": \"INSIGHT_CELL_FILTER\"\n          },\n          {\n            \"id\": \"b7749c13-f55b-403d-f031-c496ac72064f\",\n            \"entityType\": \"COMMENT\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  },\n  {\n    \"conceptId\": {\n      \"id\": \"f6ff1fea-00e4-344e-5f43-24289459e4df\",\n      \"entityType\": \"INSIGHT_CELL_FILTER\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"cfa6e094-8111-9d9a-8f24-99a141575c7f\",\n            \"entityType\": \"PROCESSOR\"\n          },\n          {\n            \"id\": \"c2bbfdbd-b2fb-9ec7-91ab-b8d4edaafa46\",\n            \"entityType\": \"MILESTONE\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_1\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"75a9ecef-87b6-d9ba-4e37-e58ec4d8a59c\",\n            \"entityType\": \"PROJECT_GROUP\"\n          },\n          {\n            \"id\": \"6b56cd9d-fb7a-7301-c377-db55916c5440\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_2\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"0484408d-b071-8254-0818-9b0300ae9f23\",\n            \"entityType\": \"FILE\"\n          },\n          {\n            \"id\": \"7330b59e-5526-4ba5-fd51-310c6ba44555\",\n            \"entityType\": \"SUB_COLLECTION_JOB\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_3\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"d1362f55-c9cd-eff6-e65d-cb69fef5386c\",\n            \"entityType\": \"RIS_IMPORT_JOB\"\n          },\n          {\n            \"id\": \"69913397-5164-16c4-d3f9-912057b8a534\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4889bbd7-412a-40c9-976a-bd2173fab031",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"conceptId\": {\n      \"id\": \"ae12b38c-9a15-050a-3ef2-6c5f6aa715a9\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"1c7eda57-fc33-80e2-e478-ddfea351ebd5\",\n            \"entityType\": \"INSIGHT_CELL_FILTER\"\n          },\n          {\n            \"id\": \"b7749c13-f55b-403d-f031-c496ac72064f\",\n            \"entityType\": \"COMMENT\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  },\n  {\n    \"conceptId\": {\n      \"id\": \"f6ff1fea-00e4-344e-5f43-24289459e4df\",\n      \"entityType\": \"INSIGHT_CELL_FILTER\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"cfa6e094-8111-9d9a-8f24-99a141575c7f\",\n            \"entityType\": \"PROCESSOR\"\n          },\n          {\n            \"id\": \"c2bbfdbd-b2fb-9ec7-91ab-b8d4edaafa46\",\n            \"entityType\": \"MILESTONE\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_1\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"75a9ecef-87b6-d9ba-4e37-e58ec4d8a59c\",\n            \"entityType\": \"PROJECT_GROUP\"\n          },\n          {\n            \"id\": \"6b56cd9d-fb7a-7301-c377-db55916c5440\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_2\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"0484408d-b071-8254-0818-9b0300ae9f23\",\n            \"entityType\": \"FILE\"\n          },\n          {\n            \"id\": \"7330b59e-5526-4ba5-fd51-310c6ba44555\",\n            \"entityType\": \"SUB_COLLECTION_JOB\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_3\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"d1362f55-c9cd-eff6-e65d-cb69fef5386c\",\n            \"entityType\": \"RIS_IMPORT_JOB\"\n          },\n          {\n            \"id\": \"69913397-5164-16c4-d3f9-912057b8a534\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c034235b-f664-4291-8621-6300dcd621e9",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "files",
+                    ":id",
+                    "ontologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"conceptId\": {\n      \"id\": \"ae12b38c-9a15-050a-3ef2-6c5f6aa715a9\",\n      \"entityType\": \"INSIGHT\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"1c7eda57-fc33-80e2-e478-ddfea351ebd5\",\n            \"entityType\": \"INSIGHT_CELL_FILTER\"\n          },\n          {\n            \"id\": \"b7749c13-f55b-403d-f031-c496ac72064f\",\n            \"entityType\": \"COMMENT\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  },\n  {\n    \"conceptId\": {\n      \"id\": \"f6ff1fea-00e4-344e-5f43-24289459e4df\",\n      \"entityType\": \"INSIGHT_CELL_FILTER\"\n    },\n    \"name\": \"string\",\n    \"metas\": {\n      \"key_0\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"cfa6e094-8111-9d9a-8f24-99a141575c7f\",\n            \"entityType\": \"PROCESSOR\"\n          },\n          {\n            \"id\": \"c2bbfdbd-b2fb-9ec7-91ab-b8d4edaafa46\",\n            \"entityType\": \"MILESTONE\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_1\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"75a9ecef-87b6-d9ba-4e37-e58ec4d8a59c\",\n            \"entityType\": \"PROJECT_GROUP\"\n          },\n          {\n            \"id\": \"6b56cd9d-fb7a-7301-c377-db55916c5440\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_2\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"0484408d-b071-8254-0818-9b0300ae9f23\",\n            \"entityType\": \"FILE\"\n          },\n          {\n            \"id\": \"7330b59e-5526-4ba5-fd51-310c6ba44555\",\n            \"entityType\": \"SUB_COLLECTION_JOB\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      },\n      \"key_3\": {\n        \"explanation\": \"string\",\n        \"annotationIds\": [\n          {\n            \"id\": \"d1362f55-c9cd-eff6-e65d-cb69fef5386c\",\n            \"entityType\": \"RIS_IMPORT_JOB\"\n          },\n          {\n            \"id\": \"69913397-5164-16c4-d3f9-912057b8a534\",\n            \"entityType\": \"BIBLIO_SEARCH\"\n          }\n        ],\n        \"metaName\": \"string\",\n        \"metaValue\": {}\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2deaa58e-35f4-496d-9ee3-daddf84f1ef0",
+    "name": "Biolevate Agent Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

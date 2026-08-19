@@ -1,0 +1,2363 @@
+{
+  "item": [
+    {
+      "id": "7efe1a3f-1d94-4fa5-b1d9-61e2b1b97739",
+      "name": "Collections",
+      "description": {
+        "content": "Collection resource management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "777f205d-33cf-4a6b-90b0-c47bcbf4ee0a",
+          "name": "List collections",
+          "request": {
+            "name": "List collections",
+            "description": {
+              "content": "Returns a paginated list of collections the caller has access to",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "asc",
+                  "description": "Sort direction (asc/desc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text search filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2a1397e-14c0-4cb2-86aa-a3662d1a3bce",
+              "name": "Successfully retrieved collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"12131c95-ba22-896d-4ae8-9887049b3c76\",\n        \"entityType\": \"PROVIDER\"\n      },\n      \"createdTime\": 9697,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"9eaaab05-4acc-1d76-103e-6b6792ddc894\",\n        \"entityType\": \"PRESET\"\n      },\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"filesCount\": 4021,\n      \"derivedFromCollectionId\": {\n        \"id\": \"d9db5dd6-641a-d089-2eea-3939c4eeda98\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"derivedFromCollectionName\": \"string\",\n      \"derivedFromViewId\": {\n        \"id\": \"4edb7625-7aee-2dfe-10ea-b08b819e3858\",\n        \"entityType\": \"INSIGHT\"\n      },\n      \"derivedFromViewName\": \"string\",\n      \"chained\": true,\n      \"derivedToCollectionId\": {\n        \"id\": \"d0c498d6-addb-6d03-7faf-44d809b869c9\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"derivedToCollectionName\": \"string\"\n    },\n    {\n      \"id\": {\n        \"id\": \"f4411384-2d19-6b8d-1279-1be376544215\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 3545,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"76d0d4b9-8a74-1823-a72f-1e635559292f\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"filesCount\": 4629,\n      \"derivedFromCollectionId\": {\n        \"id\": \"3cd88233-349a-8fa7-25c9-e6529208814c\",\n        \"entityType\": \"INSIGHT_CELL_FORMAT\"\n      },\n      \"derivedFromCollectionName\": \"string\",\n      \"derivedFromViewId\": {\n        \"id\": \"881aa024-8833-b304-51b9-363181c2a8e7\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"derivedFromViewName\": \"string\",\n      \"chained\": true,\n      \"derivedToCollectionId\": {\n        \"id\": \"524102d6-5377-4fd0-f442-0eb7f0a5c9a8\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"derivedToCollectionName\": \"string\"\n    }\n  ],\n  \"totalPages\": 9853,\n  \"totalElements\": 8273,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac8ad93c-75f9-4d15-afae-14f9d917ac73",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"12131c95-ba22-896d-4ae8-9887049b3c76\",\n        \"entityType\": \"PROVIDER\"\n      },\n      \"createdTime\": 9697,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"9eaaab05-4acc-1d76-103e-6b6792ddc894\",\n        \"entityType\": \"PRESET\"\n      },\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"filesCount\": 4021,\n      \"derivedFromCollectionId\": {\n        \"id\": \"d9db5dd6-641a-d089-2eea-3939c4eeda98\",\n        \"entityType\": \"PROJECT_GROUP\"\n      },\n      \"derivedFromCollectionName\": \"string\",\n      \"derivedFromViewId\": {\n        \"id\": \"4edb7625-7aee-2dfe-10ea-b08b819e3858\",\n        \"entityType\": \"INSIGHT\"\n      },\n      \"derivedFromViewName\": \"string\",\n      \"chained\": true,\n      \"derivedToCollectionId\": {\n        \"id\": \"d0c498d6-addb-6d03-7faf-44d809b869c9\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"derivedToCollectionName\": \"string\"\n    },\n    {\n      \"id\": {\n        \"id\": \"f4411384-2d19-6b8d-1279-1be376544215\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 3545,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"76d0d4b9-8a74-1823-a72f-1e635559292f\",\n        \"entityType\": \"BIBLIO_SEARCH\"\n      },\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"filesCount\": 4629,\n      \"derivedFromCollectionId\": {\n        \"id\": \"3cd88233-349a-8fa7-25c9-e6529208814c\",\n        \"entityType\": \"INSIGHT_CELL_FORMAT\"\n      },\n      \"derivedFromCollectionName\": \"string\",\n      \"derivedFromViewId\": {\n        \"id\": \"881aa024-8833-b304-51b9-363181c2a8e7\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"derivedFromViewName\": \"string\",\n      \"chained\": true,\n      \"derivedToCollectionId\": {\n        \"id\": \"524102d6-5377-4fd0-f442-0eb7f0a5c9a8\",\n        \"entityType\": \"CONCEPT_NOTE\"\n      },\n      \"derivedToCollectionName\": \"string\"\n    }\n  ],\n  \"totalPages\": 9853,\n  \"totalElements\": 8273,\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97ac96e2-5d6a-4bfb-96ae-4c4c21558b81",
+          "name": "Create a collection",
+          "request": {
+            "name": "Create a collection",
+            "description": {
+              "content": "Creates a new collection owned by the current user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "923141ef-2657-4211-9636-8c48921d3883",
+              "name": "Collection created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2af0573-59ea-4f2c-9a0e-e8efd427d631",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "629d1274-2363-4ae9-b514-895fa50d912c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21719aaa-7f04-4bc6-acf4-6c633e17c4c7",
+          "name": "List files in collection",
+          "request": {
+            "name": "List files in collection",
+            "description": {
+              "content": "Returns a paginated list of files belonging to the collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort field"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "asc",
+                  "description": "Sort direction (asc/desc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text search filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50850a87-0463-4b22-b828-46bc26bc221d",
+              "name": "Successfully retrieved files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"a45641ca-ccda-f788-b96a-da46afb75bfe\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 8683,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"0e2a9d95-3047-6637-476b-1b752f33573d\",\n        \"entityType\": \"REVIEW\"\n      },\n      \"providerId\": {\n        \"id\": \"3f04841c-0873-8096-1a95-9dd2f35a69e4\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4341,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    },\n    {\n      \"id\": {\n        \"id\": \"c0ddc015-2f65-6ed6-663b-38c9be912882\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 8784,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5e331e77-f8ca-f00c-a6f0-658e95b9d916\",\n        \"entityType\": \"COLLECTION\"\n      },\n      \"providerId\": {\n        \"id\": \"6566ac3f-3603-291b-aa04-51b51c97cd0c\",\n        \"entityType\": \"JOB\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4015,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": true,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"SUCCESS\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    }\n  ],\n  \"totalPages\": 8798,\n  \"totalElements\": 9550,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "763fabca-2087-40ff-a974-25314c0a3cab",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"a45641ca-ccda-f788-b96a-da46afb75bfe\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 8683,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"0e2a9d95-3047-6637-476b-1b752f33573d\",\n        \"entityType\": \"REVIEW\"\n      },\n      \"providerId\": {\n        \"id\": \"3f04841c-0873-8096-1a95-9dd2f35a69e4\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4341,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    },\n    {\n      \"id\": {\n        \"id\": \"c0ddc015-2f65-6ed6-663b-38c9be912882\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 8784,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5e331e77-f8ca-f00c-a6f0-658e95b9d916\",\n        \"entityType\": \"COLLECTION\"\n      },\n      \"providerId\": {\n        \"id\": \"6566ac3f-3603-291b-aa04-51b51c97cd0c\",\n        \"entityType\": \"JOB\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4015,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": true,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"SUCCESS\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    }\n  ],\n  \"totalPages\": 8798,\n  \"totalElements\": 9550,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8c655fd-207e-4b32-8544-2ee81f68fb15",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"a45641ca-ccda-f788-b96a-da46afb75bfe\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 8683,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"0e2a9d95-3047-6637-476b-1b752f33573d\",\n        \"entityType\": \"REVIEW\"\n      },\n      \"providerId\": {\n        \"id\": \"3f04841c-0873-8096-1a95-9dd2f35a69e4\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4341,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    },\n    {\n      \"id\": {\n        \"id\": \"c0ddc015-2f65-6ed6-663b-38c9be912882\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 8784,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5e331e77-f8ca-f00c-a6f0-658e95b9d916\",\n        \"entityType\": \"COLLECTION\"\n      },\n      \"providerId\": {\n        \"id\": \"6566ac3f-3603-291b-aa04-51b51c97cd0c\",\n        \"entityType\": \"JOB\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4015,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": true,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"SUCCESS\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    }\n  ],\n  \"totalPages\": 8798,\n  \"totalElements\": 9550,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5349c80d-3023-460d-bea3-f52caa9822a2",
+              "name": "Collection not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": {\n        \"id\": \"a45641ca-ccda-f788-b96a-da46afb75bfe\",\n        \"entityType\": \"PROJECT_LABEL\"\n      },\n      \"createdTime\": 8683,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"0e2a9d95-3047-6637-476b-1b752f33573d\",\n        \"entityType\": \"REVIEW\"\n      },\n      \"providerId\": {\n        \"id\": \"3f04841c-0873-8096-1a95-9dd2f35a69e4\",\n        \"entityType\": \"EDITABLE_DOCUMENT\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4341,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": false,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"ABORTED\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    },\n    {\n      \"id\": {\n        \"id\": \"c0ddc015-2f65-6ed6-663b-38c9be912882\",\n        \"entityType\": \"FILE\"\n      },\n      \"createdTime\": 8784,\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"policy\": {\n        \"id\": \"5e331e77-f8ca-f00c-a6f0-658e95b9d916\",\n        \"entityType\": \"COLLECTION\"\n      },\n      \"providerId\": {\n        \"id\": \"6566ac3f-3603-291b-aa04-51b51c97cd0c\",\n        \"entityType\": \"JOB\"\n      },\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 4015,\n      \"checksum\": \"string\",\n      \"mediaType\": \"string\",\n      \"extension\": \"string\",\n      \"indexed\": true,\n      \"matchComputed\": true,\n      \"displayName\": \"string\",\n      \"dbName\": \"string\",\n      \"lastIndexationInfos\": {\n        \"status\": \"SUCCESS\",\n        \"errorMessage\": \"string\",\n        \"errorTraceback\": \"string\"\n      },\n      \"ownerFirstName\": \"string\",\n      \"ownerLastName\": \"string\",\n      \"ownerEmail\": \"string\",\n      \"ownerAvatarUrl\": \"string\",\n      \"providerName\": \"string\",\n      \"additionalInfo\": {},\n      \"description\": \"string\",\n      \"authors\": \"string\",\n      \"title\": \"string\",\n      \"lastMergeJob\": {\n        \"id\": \"string\",\n        \"status\": \"string\"\n      },\n      \"type\": \"ELISE_FILE\"\n    }\n  ],\n  \"totalPages\": 8798,\n  \"totalElements\": 9550,\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01dc34d6-e620-41a7-8705-93123ce36fb6",
+          "name": "Add file to collection",
+          "request": {
+            "name": "Add file to collection",
+            "description": {
+              "content": "Associates an existing file with the collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fileId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36edc48a-47cf-45a9-a712-1a2e632dbae6",
+              "name": "File added to collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"22870158-2b4c-26c5-0c99-cf3596d5a0e3\",\n    \"entityType\": \"POLICY\"\n  },\n  \"createdTime\": 6458,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"39982e60-9964-7284-0469-1b8a58fbbf2b\",\n    \"entityType\": \"INSIGHTS_TABLE_TEMPLATE\"\n  },\n  \"providerId\": {\n    \"id\": \"12c39e95-0cab-8417-f7c8-9324f30f8045\",\n    \"entityType\": \"COMMENT_THREAD\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 2723,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": false,\n  \"matchComputed\": false,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"ABORTED\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FOLDER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f871925-d944-4203-b807-753ae62646f3",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"22870158-2b4c-26c5-0c99-cf3596d5a0e3\",\n    \"entityType\": \"POLICY\"\n  },\n  \"createdTime\": 6458,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"39982e60-9964-7284-0469-1b8a58fbbf2b\",\n    \"entityType\": \"INSIGHTS_TABLE_TEMPLATE\"\n  },\n  \"providerId\": {\n    \"id\": \"12c39e95-0cab-8417-f7c8-9324f30f8045\",\n    \"entityType\": \"COMMENT_THREAD\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 2723,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": false,\n  \"matchComputed\": false,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"ABORTED\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FOLDER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c140b05-008d-44fe-b9cb-1ff7b98a2fc9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"22870158-2b4c-26c5-0c99-cf3596d5a0e3\",\n    \"entityType\": \"POLICY\"\n  },\n  \"createdTime\": 6458,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"39982e60-9964-7284-0469-1b8a58fbbf2b\",\n    \"entityType\": \"INSIGHTS_TABLE_TEMPLATE\"\n  },\n  \"providerId\": {\n    \"id\": \"12c39e95-0cab-8417-f7c8-9324f30f8045\",\n    \"entityType\": \"COMMENT_THREAD\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 2723,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": false,\n  \"matchComputed\": false,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"ABORTED\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FOLDER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a97df7d-ad96-4fae-a81f-5654ee53422f",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"22870158-2b4c-26c5-0c99-cf3596d5a0e3\",\n    \"entityType\": \"POLICY\"\n  },\n  \"createdTime\": 6458,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"39982e60-9964-7284-0469-1b8a58fbbf2b\",\n    \"entityType\": \"INSIGHTS_TABLE_TEMPLATE\"\n  },\n  \"providerId\": {\n    \"id\": \"12c39e95-0cab-8417-f7c8-9324f30f8045\",\n    \"entityType\": \"COMMENT_THREAD\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 2723,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": false,\n  \"matchComputed\": false,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"ABORTED\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FOLDER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3675196-7882-4273-9e57-45f9eab30c30",
+              "name": "Collection or file not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fileId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"22870158-2b4c-26c5-0c99-cf3596d5a0e3\",\n    \"entityType\": \"POLICY\"\n  },\n  \"createdTime\": 6458,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"39982e60-9964-7284-0469-1b8a58fbbf2b\",\n    \"entityType\": \"INSIGHTS_TABLE_TEMPLATE\"\n  },\n  \"providerId\": {\n    \"id\": \"12c39e95-0cab-8417-f7c8-9324f30f8045\",\n    \"entityType\": \"COMMENT_THREAD\"\n  },\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"size\": 2723,\n  \"checksum\": \"string\",\n  \"mediaType\": \"string\",\n  \"extension\": \"string\",\n  \"indexed\": false,\n  \"matchComputed\": false,\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"lastIndexationInfos\": {\n    \"status\": \"ABORTED\",\n    \"errorMessage\": \"string\",\n    \"errorTraceback\": \"string\"\n  },\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"providerName\": \"string\",\n  \"additionalInfo\": {},\n  \"description\": \"string\",\n  \"authors\": \"string\",\n  \"title\": \"string\",\n  \"lastMergeJob\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  },\n  \"type\": \"FOLDER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31eb95f7-20f9-4fc5-8006-8a38219c34c9",
+          "name": "Get a collection",
+          "request": {
+            "name": "Get a collection",
+            "description": {
+              "content": "Returns a single collection by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2187ddf1-92e7-4918-863f-efab1c3b8b0d",
+              "name": "Successfully retrieved collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9221d5dc-5087-4c81-919e-1eb2b4fe2e5e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a65d57f-93ba-48ec-98a1-81d56e19fa47",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "335967d2-2722-47c4-afee-1be2ed08b37a",
+              "name": "Collection not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1a8de87-f0d0-4cfe-8956-f2c517de942e",
+          "name": "Delete a collection",
+          "request": {
+            "name": "Delete a collection",
+            "description": {
+              "content": "Deletes a collection. Only the owner can delete a collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cec9fe24-4ccd-48d6-9109-dc633d4549e2",
+              "name": "Collection deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82bc055f-0f78-42fc-90fa-e17adddb9a0e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c16e3311-cfe3-418b-847a-1c65f8d5ac6d",
+              "name": "Access denied - only owner can delete",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b3a2822-b59b-48a2-ab81-018069ec1ae4",
+              "name": "Collection not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ee5c1f5-067b-4554-bea6-e3eba2f235e2",
+          "name": "Update a collection",
+          "request": {
+            "name": "Update a collection",
+            "description": {
+              "content": "Partially updates a collection. Only provided fields will be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d56fae8e-81a6-4979-a98d-7b24e980db71",
+              "name": "Collection updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ed58ca6-140f-46ad-8ebf-c14905a741d8",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "770a2fe4-6f1a-4460-9c27-73723c31c12e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92db57c0-5098-411f-a57b-4a09d727fdee",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c53faac9-3acd-4a83-9778-c45afb45cdec",
+              "name": "Collection not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": {\n    \"id\": \"340f8a82-cc96-0703-848c-147383c49a8c\",\n    \"entityType\": \"PROCESSOR\"\n  },\n  \"createdTime\": 4312,\n  \"owner\": {\n    \"id\": \"string\"\n  },\n  \"policy\": {\n    \"id\": \"90da9b3c-0e67-ca54-ca21-99baef5ec283\",\n    \"entityType\": \"POLICY\"\n  },\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"ownerFirstName\": \"string\",\n  \"ownerLastName\": \"string\",\n  \"ownerEmail\": \"string\",\n  \"ownerAvatarUrl\": \"string\",\n  \"filesCount\": 4336,\n  \"derivedFromCollectionId\": {\n    \"id\": \"5c7e4059-26e7-7774-2ce4-01e1dcc9555d\",\n    \"entityType\": \"SEARCH_REMOVAL\"\n  },\n  \"derivedFromCollectionName\": \"string\",\n  \"derivedFromViewId\": {\n    \"id\": \"8fae5ea2-665a-bdb6-1222-370d6cf2b74c\",\n    \"entityType\": \"REVIEW\"\n  },\n  \"derivedFromViewName\": \"string\",\n  \"chained\": false,\n  \"derivedToCollectionId\": {\n    \"id\": \"a60d4442-d1c5-2d3b-6973-eb075a9df9ca\",\n    \"entityType\": \"PRESET\"\n  },\n  \"derivedToCollectionName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa91c1c2-4840-4906-a378-291658ae569f",
+          "name": "Remove file from collection",
+          "request": {
+            "name": "Remove file from collection",
+            "description": {
+              "content": "Removes the association between a file and the collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "core",
+                "collections",
+                ":id",
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Collection ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) File ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5903deaf-11e8-4ed1-ac59-b2c1962529be",
+              "name": "File removed from collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7dac605-6af1-451c-adfd-d65deef57327",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b126b45d-d608-4e25-b092-17cb1f5193dc",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c2426ce-bd37-4681-ace0-fdb7b2f3fcad",
+              "name": "Collection or file not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "core",
+                    "collections",
+                    ":id",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) File ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ca17b67-f82b-4a38-898d-5a33160e1952",
+    "name": "Biolevate Agent Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conversational agent jobs",
+      "type": "text/plain"
+    }
+  }
+}

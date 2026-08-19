@@ -1,0 +1,250 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent Provider Items API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provider Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/providers/:providerId/items",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Directory key (must end with '/' or be empty for root)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Name filter"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max items to return"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of files and folders in the specified directory"
+        },
+        {
+          "info": {
+            "name": "Create folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/providers/:providerId/items",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Target directory key (must end with '/' or be empty for root)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new folder in the provider. Key must end with '/'."
+        },
+        {
+          "info": {
+            "name": "Rename item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/api/core/providers/:providerId/items",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              },
+              {
+                "name": "newName",
+                "value": "",
+                "type": "query",
+                "description": "New name for the item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames a file or folder"
+        },
+        {
+          "info": {
+            "name": "Delete item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/core/providers/:providerId/items",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a file or folder"
+        },
+        {
+          "info": {
+            "name": "Get presigned upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/providers/:providerId/items/upload-url",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a presigned URL for direct upload to storage (for large files)"
+        },
+        {
+          "info": {
+            "name": "Confirm presigned upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/providers/:providerId/items/confirm",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirms that a file was uploaded via presigned URL"
+        },
+        {
+          "info": {
+            "name": "Get download URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/providers/:providerId/items/download-url",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "File key (must not end with '/')"
+              },
+              {
+                "name": "expirationMinutes",
+                "value": "",
+                "type": "query",
+                "description": "URL expiration in minutes"
+              }
+            ]
+          },
+          "docs": "Returns a URL to download the file"
+        },
+        {
+          "info": {
+            "name": "Get file content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/providers/:providerId/items/content",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "File key (must not end with '/')"
+              }
+            ]
+          },
+          "docs": "Returns the raw file content (proxy for providers without presigned URLs)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent Files API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List files in a provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/files",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "query",
+                "description": "Provider ID"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "sortProperty",
+                "value": "",
+                "type": "query",
+                "description": "Sort property"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns paginated file infos for a provider"
+        },
+        {
+          "info": {
+            "name": "Create a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/files",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an EliseFile from an existing provider item and triggers indexation"
+        },
+        {
+          "info": {
+            "name": "Reindex a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/files/:id/reindex",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              },
+              {
+                "name": "reparse",
+                "value": "",
+                "type": "query",
+                "description": "Reparse document content"
+              }
+            ]
+          },
+          "docs": "Forces reindexation of a file. Optionally reparses the document."
+        },
+        {
+          "info": {
+            "name": "Recompute file ontologies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/core/files/:id/recompute-ontologies",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ]
+          },
+          "docs": "Forces recomputation of ontologies and metadata for a file"
+        },
+        {
+          "info": {
+            "name": "Get a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ]
+          },
+          "docs": "Returns a file by its ID"
+        },
+        {
+          "info": {
+            "name": "Delete a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/core/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ]
+          },
+          "docs": "Deletes a file"
+        },
+        {
+          "info": {
+            "name": "Get file ontologies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/files/:id/ontologies",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "File ID"
+              }
+            ]
+          },
+          "docs": "Returns computed ontologies for a file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

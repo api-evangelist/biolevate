@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biolevate Agent Providers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/providers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (0-based)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (asc/desc)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text search filter"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of storage providers the caller has access to. Secret fields are redacted."
+        },
+        {
+          "info": {
+            "name": "Get a provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/core/providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Provider ID"
+              }
+            ]
+          },
+          "docs": "Returns a single storage provider by its ID. Secret fields are redacted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
