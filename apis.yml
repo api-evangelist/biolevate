@@ -38,6 +38,15 @@ tags:
 - Life Sciences
 - Regulatory Affairs
 - Document Intelligence
+- Knowledge-Management
+- Pharmaceuticals
+- Machine-Learning
+tags_raw:
+- Company
+- Artificial Intelligence
+- Life Sciences
+- Regulatory Affairs
+- Document Intelligence
 - Knowledge Management
 - Pharmaceuticals
 - Machine Learning
@@ -48,6 +57,8 @@ apis:
   humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
   baseURL: https://api-docs.biolevatecloud.com
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
@@ -58,6 +69,8 @@ apis:
   humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
   baseURL: https://api-docs.biolevatecloud.com
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -78,6 +91,8 @@ apis:
   humanURL: https://api-docs.biolevatecloud.com/biolevateapi/intro
   baseURL: https://api-docs.biolevatecloud.com
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
