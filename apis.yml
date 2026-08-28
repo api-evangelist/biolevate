@@ -10,6 +10,18 @@ description: >-
   updates and regulatory intelligence. Biolevate ships a public REST API (OpenAPI 3.1), a Python SDK
   (`biolevate`) and a CLI (`ozk`). Backed by EQT Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/biolevate/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
