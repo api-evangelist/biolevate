@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Biolevate Agent Files API
+  title: Biolevate Files API
   version: 1.0.0
-  description: Conversational agent jobs
+  description: EliseFile resource management
 servers:
 - url: /
   description: Biolevate Server
@@ -277,20 +277,6 @@ paths:
                   $ref: '#/components/schemas/EliseOntology'
 components:
   schemas:
-    EliseOntology:
-      type: object
-      properties:
-        conceptId:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        metas:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/EliseOntologyMeta'
-      required:
-      - conceptId
-      - name
     EntityId:
       type: object
       properties:
@@ -334,6 +320,244 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
+    PageDataEliseFileInfo:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseFileInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
+    EliseFileInfo:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/FileId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        policy:
+          $ref: '#/components/schemas/PolicyId'
+        providerId:
+          $ref: '#/components/schemas/ProviderId'
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int64
+        checksum:
+          type: string
+        mediaType:
+          type: string
+        extension:
+          type: string
+        indexed:
+          type: boolean
+        matchComputed:
+          type: boolean
+        displayName:
+          type: string
+        dbName:
+          type: string
+        lastIndexationInfos:
+          $ref: '#/components/schemas/LibItemIndexationInfos'
+        ownerFirstName:
+          type: string
+        ownerLastName:
+          type: string
+        ownerEmail:
+          type: string
+        ownerAvatarUrl:
+          type: string
+        providerName:
+          type: string
+        additionalInfo:
+          $ref: '#/components/schemas/JsonNode'
+        description:
+          type: string
+        authors:
+          type: string
+        title:
+          type: string
+        lastMergeJob:
+          $ref: '#/components/schemas/LastMergeJobInfo'
+        additionalInfos:
+          $ref: '#/components/schemas/JsonNode'
+          writeOnly: true
+        type:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+          - ELISE_FILE
+    JsonNode:
+      type: object
+    EliseOntologyMeta:
+      type: object
+      properties:
+        explanation:
+          type: string
+        annotationIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        metaName:
+          type: string
+        metaValue:
+          type: object
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    LastMergeJobInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+    LibItemIndexationInfos:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        errorMessage:
+          type: string
+        errorTraceback:
+          type: string
+    FileId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    CreateFileRequest:
+      type: object
+      description: Request to create EliseFile from provider item
+      properties:
+        providerId:
+          type: string
+          description: Source provider ID
+          example: 01a91a21-3136-4094-96da-ded4dce3824f
+        key:
+          type: string
+          description: Full file key (must not end with '/')
+          example: documents/report.pdf
+      required:
+      - key
+      - providerId
     ProviderId:
       type: object
       properties:
@@ -420,230 +644,6 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    UserId:
-      type: object
-      properties:
-        id:
-          type: string
-    JsonNode:
-      type: object
-    CreateFileRequest:
-      type: object
-      description: Request to create EliseFile from provider item
-      properties:
-        providerId:
-          type: string
-          description: Source provider ID
-          example: 01a91a21-3136-4094-96da-ded4dce3824f
-        key:
-          type: string
-          description: Full file key (must not end with '/')
-          example: documents/report.pdf
-      required:
-      - key
-      - providerId
-    LastMergeJobInfo:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-    EliseFileInfo:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/FileId'
-        createdTime:
-          type: integer
-          format: int64
-        owner:
-          $ref: '#/components/schemas/UserId'
-        policy:
-          $ref: '#/components/schemas/PolicyId'
-        providerId:
-          $ref: '#/components/schemas/ProviderId'
-        name:
-          type: string
-        path:
-          type: string
-        size:
-          type: integer
-          format: int64
-        checksum:
-          type: string
-        mediaType:
-          type: string
-        extension:
-          type: string
-        indexed:
-          type: boolean
-        matchComputed:
-          type: boolean
-        displayName:
-          type: string
-        dbName:
-          type: string
-        lastIndexationInfos:
-          $ref: '#/components/schemas/LibItemIndexationInfos'
-        ownerFirstName:
-          type: string
-        ownerLastName:
-          type: string
-        ownerEmail:
-          type: string
-        ownerAvatarUrl:
-          type: string
-        providerName:
-          type: string
-        additionalInfo:
-          $ref: '#/components/schemas/JsonNode'
-        description:
-          type: string
-        authors:
-          type: string
-        title:
-          type: string
-        lastMergeJob:
-          $ref: '#/components/schemas/LastMergeJobInfo'
-        additionalInfos:
-          $ref: '#/components/schemas/JsonNode'
-          writeOnly: true
-        type:
-          type: string
-          enum:
-          - FILE
-          - FOLDER
-          - ELISE_FILE
-    FileId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    EliseOntologyMeta:
-      type: object
-      properties:
-        explanation:
-          type: string
-        annotationIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-        metaName:
-          type: string
-        metaValue:
-          type: object
-    AnnotationId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    PageDataEliseFileInfo:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseFileInfo'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    LibItemIndexationInfos:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        errorMessage:
-          type: string
-        errorTraceback:
-          type: string
   securitySchemes:
     TOKEN:
       type: http

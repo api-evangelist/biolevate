@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Biolevate Agent Collections API
+  title: Biolevate Collections API
   version: 1.0.0
-  description: Conversational agent jobs
+  description: Collection resource management
 servers:
 - url: /
   description: Biolevate Server
@@ -365,49 +365,21 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ProviderId:
+    PageDataEliseFileInfo:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseFileInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
     UpdateCollectionRequest:
       type: object
       properties:
@@ -417,105 +389,48 @@ components:
           type: string
         icon:
           type: string
-    PolicyId:
+    EliseCollectionInfo:
       type: object
       properties:
         id:
+          $ref: '#/components/schemas/CollectionId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        policy:
+          $ref: '#/components/schemas/PolicyId'
+        name:
           type: string
-          format: uuid
-        entityType:
+        description:
           type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    UserId:
-      type: object
-      properties:
-        id:
+        icon:
           type: string
-    CollectionId:
-      type: object
-      properties:
-        id:
+        ownerFirstName:
           type: string
-          format: uuid
-        entityType:
+        ownerLastName:
           type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    JsonNode:
-      type: object
-    LastMergeJobInfo:
-      type: object
-      properties:
-        id:
+        ownerEmail:
           type: string
-        status:
+        ownerAvatarUrl:
+          type: string
+        filesCount:
+          type: integer
+          format: int64
+        derivedFromCollectionId:
+          $ref: '#/components/schemas/CollectionId'
+        derivedFromCollectionName:
+          type: string
+        derivedFromViewId:
+          $ref: '#/components/schemas/CollectionViewId'
+        derivedFromViewName:
+          type: string
+        chained:
+          type: boolean
+        derivedToCollectionId:
+          $ref: '#/components/schemas/CollectionId'
+        derivedToCollectionName:
           type: string
     EliseFileInfo:
       type: object
@@ -583,6 +498,51 @@ components:
           - FILE
           - FOLDER
           - ELISE_FILE
+    JsonNode:
+      type: object
+    ProviderId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
     FileId:
       type: object
       properties:
@@ -626,6 +586,58 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
+    AddFileToCollectionRequest:
+      type: object
+      description: Request to add a file to a collection
+      properties:
+        fileId:
+          type: string
+          description: EliseFile ID to add to the collection
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      required:
+      - fileId
+    LastMergeJobInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+    LibItemIndexationInfos:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        errorMessage:
+          type: string
+        errorTraceback:
+          type: string
+    PageDataEliseCollectionInfo:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseCollectionInfo'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
     CollectionViewId:
       type: object
       properties:
@@ -669,79 +681,6 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    EliseCollectionInfo:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/CollectionId'
-        createdTime:
-          type: integer
-          format: int64
-        owner:
-          $ref: '#/components/schemas/UserId'
-        policy:
-          $ref: '#/components/schemas/PolicyId'
-        name:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        ownerFirstName:
-          type: string
-        ownerLastName:
-          type: string
-        ownerEmail:
-          type: string
-        ownerAvatarUrl:
-          type: string
-        filesCount:
-          type: integer
-          format: int64
-        derivedFromCollectionId:
-          $ref: '#/components/schemas/CollectionId'
-        derivedFromCollectionName:
-          type: string
-        derivedFromViewId:
-          $ref: '#/components/schemas/CollectionViewId'
-        derivedFromViewName:
-          type: string
-        chained:
-          type: boolean
-        derivedToCollectionId:
-          $ref: '#/components/schemas/CollectionId'
-        derivedToCollectionName:
-          type: string
-    PageDataEliseFileInfo:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseFileInfo'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    PageDataEliseCollectionInfo:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseCollectionInfo'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
     CreateCollectionRequest:
       type: object
       properties:
@@ -753,31 +692,92 @@ components:
           type: string
       required:
       - name
-    AddFileToCollectionRequest:
+    PolicyId:
       type: object
-      description: Request to add a file to a collection
       properties:
-        fileId:
+        id:
           type: string
-          description: EliseFile ID to add to the collection
-          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-      required:
-      - fileId
-    LibItemIndexationInfos:
-      type: object
-      properties:
-        status:
+          format: uuid
+        entityType:
           type: string
           enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        errorMessage:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    CollectionId:
+      type: object
+      properties:
+        id:
           type: string
-        errorTraceback:
+          format: uuid
+        entityType:
           type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
   securitySchemes:
     TOKEN:
       type: http

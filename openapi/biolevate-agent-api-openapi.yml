@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Biolevate Agent API
   version: 1.0.0
@@ -306,55 +306,28 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    AgentJobOutputs:
+    AgentInput:
       type: object
+      description: A single input item submitted to the agent (role + text content)
       properties:
-        answer:
-          $ref: '#/components/schemas/JsonNode'
-        explanation:
+        role:
           type: string
-        referenceIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-    Job:
-      type: object
-      properties:
-        jobId:
-          type: string
-        status:
-          type: string
+          description: Author of the item
           enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
+          - system
+          - user
+          - assistant
+          - SYSTEM
+          - USER
+          - ASSISTANT
+          example: USER
+        content:
           type: string
-        createdTime:
-          type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
-          type: string
-        name:
-          type: string
-        archived:
-          type: boolean
-    JobLaunchConfig:
-      type: object
-      description: Optional job launch behaviour for input files
-      properties:
-        skip_unindexed_files:
-          type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
+          description: Plain text content of the item
+          example: Summarize the attached report.
+      required:
+      - content
+      - role
     EliseAnnotation:
       type: object
       properties:
@@ -399,11 +372,70 @@ components:
           type: array
           items:
             type: string
-    UserId:
+    Job:
       type: object
       properties:
-        id:
+        jobId:
           type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
+          type: boolean
+    AgentCompletionConfig:
+      type: object
+      description: Per-completion LLM knobs for an agent run
+      properties:
+        model:
+          type: string
+          description: Semantic model preset (defaults to BALANCED when omitted)
+          enum:
+          - FAST
+          - BALANCED
+          example: BALANCED
+        temperature:
+          type: number
+          format: double
+          description: Sampling temperature
+          example: 0.7
+          maximum: 2.0
+          minimum: 0.0
+        max_completion_tokens:
+          type: integer
+          format: int32
+          description: Hard cap on response tokens
+          example: 2048
+          maximum: 32768
+          minimum: 1
+    AgentJobOutputs:
+      type: object
+      properties:
+        answer:
+          $ref: '#/components/schemas/JsonNode'
+        explanation:
+          type: string
+        referenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
     JsonNode:
       type: object
     EliseAnnotationConfig:
@@ -427,49 +459,21 @@ components:
           - EXTERNAL_DOCUMENT_STATEMENT
           - KNOWLEDGE_STATEMENT
           - REVIEW_STATEMENT
-    AgentInput:
-      type: object
-      description: A single input item submitted to the agent (role + text content)
-      properties:
-        role:
-          type: string
-          description: Author of the item
-          enum:
-          - system
-          - user
-          - assistant
-          - SYSTEM
-          - USER
-          - ASSISTANT
-          example: USER
-        content:
-          type: string
-          description: Plain text content of the item
-          example: Summarize the attached report.
-      required:
-      - content
-      - role
-    AgentJobInputs:
+    PageDataJob:
       type: object
       properties:
-        message:
-          type: string
-        messages:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/AgentInput'
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        outputModelSchema:
-          $ref: '#/components/schemas/JsonNode'
-        completionConfig:
-          $ref: '#/components/schemas/AgentCompletionConfig'
-        maxIterations:
+            $ref: '#/components/schemas/Job'
+        totalPages:
           type: integer
           format: int32
-        conversationId:
-          type: string
-          format: uuid
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
     AnnotationId:
       type: object
       properties:
@@ -560,46 +564,42 @@ components:
           format: uuid
           description: 'Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.'
           example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-    AgentCompletionConfig:
+    UserId:
       type: object
-      description: Per-completion LLM knobs for an agent run
       properties:
-        model:
+        id:
           type: string
-          description: Semantic model preset (defaults to BALANCED when omitted)
-          enum:
-          - FAST
-          - BALANCED
-          example: BALANCED
-        temperature:
-          type: number
-          format: double
-          description: Sampling temperature
-          example: 0.7
-          maximum: 2.0
-          minimum: 0.0
-        max_completion_tokens:
-          type: integer
-          format: int32
-          description: Hard cap on response tokens
-          example: 2048
-          maximum: 32768
-          minimum: 1
-    PageDataJob:
+    AgentJobInputs:
       type: object
       properties:
-        data:
+        message:
+          type: string
+        messages:
           type: array
           items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
+            $ref: '#/components/schemas/AgentInput'
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        outputModelSchema:
+          $ref: '#/components/schemas/JsonNode'
+        completionConfig:
+          $ref: '#/components/schemas/AgentCompletionConfig'
+        maxIterations:
           type: integer
           format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
+        conversationId:
+          type: string
+          format: uuid
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
           type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
   securitySchemes:
     TOKEN:
       type: http
