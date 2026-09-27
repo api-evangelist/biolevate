@@ -262,6 +262,84 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
+    EliseMetaResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        explanation:
+          type: string
+        answerType:
+          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
+        answer:
+          $ref: '#/components/schemas/DataValue'
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        meta:
+          type: string
+        rawValue:
+          type: object
+    EliseAnnotationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
+          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
+          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
+          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
+          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
+          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
+      properties:
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
+          type: array
+          items:
+            type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
+    ExtractJobOutputs:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseMetaResult'
+    ExtractJobInputs:
+      type: object
+      properties:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        metas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseMetaInput'
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
     EntityId:
       type: object
       properties:
@@ -305,40 +383,7 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    EliseAnnotation:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/AnnotationId'
-        createdTime:
-          type: integer
-          format: int64
-        owner:
-          $ref: '#/components/schemas/UserId'
-        space:
-          $ref: '#/components/schemas/EntityId'
-        data:
-          $ref: '#/components/schemas/EliseAnnotationConfig'
-        type:
-          type: string
-          enum:
-          - DOCUMENT_STATEMENT
-          - WEB_STATEMENT
-          - ENTIRE_DOCUMENT_STATEMENT
-          - EXTERNAL_DOCUMENT_STATEMENT
-          - KNOWLEDGE_STATEMENT
-          - REVIEW_STATEMENT
-        modifiedTime:
-          type: integer
-          format: int64
-        lastModifier:
-          $ref: '#/components/schemas/UserId'
-        status:
-          type: string
-          enum:
-          - VALID
-          - NOTVALID
-    ExtractJobInputs:
+    CreateExtractRequest:
       type: object
       properties:
         files:
@@ -347,148 +392,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EliseMetaInput'
-    FilesInput:
-      type: object
-      properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
-    Job:
-      type: object
-      properties:
-        jobId:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
-          type: string
-        name:
-          type: string
-        archived:
-          type: boolean
-    EliseMetaResult:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        explanation:
-          type: string
-        answerType:
-          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
-        answer:
-          $ref: '#/components/schemas/DataValue'
-        referenceIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-        meta:
-          type: string
-        rawValue:
-          type: object
-    EliseAnnotationConfig:
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
-          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
-          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
-          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
-          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
-          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
-      properties:
-        type:
-          type: string
-          enum:
-          - DOCUMENT_STATEMENT
-          - WEB_STATEMENT
-          - ENTIRE_DOCUMENT_STATEMENT
-          - EXTERNAL_DOCUMENT_STATEMENT
-          - KNOWLEDGE_STATEMENT
-          - REVIEW_STATEMENT
-    PageDataJob:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    AnnotationId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    UserId:
-      type: object
-      properties:
-        id:
-          type: string
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
     DataValue:
       type: object
       properties:
@@ -528,26 +433,6 @@ components:
           items:
             type: string
             format: date-time
-    EliseMetaInput:
-      type: object
-      properties:
-        meta:
-          type: string
-        answerType:
-          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
-        description:
-          type: string
-    CreateExtractRequest:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        metas:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseMetaInput'
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
     ExpectedAnswerTypeDto:
       type: object
       properties:
@@ -593,23 +478,138 @@ components:
           - THREE_DECIMALS
           - FOUR_DECIMALS
           - FIVE_DECIMALS
-    ExtractJobOutputs:
+    PageDataJob:
       type: object
       properties:
-        results:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/EliseMetaResult'
-    JobLaunchConfig:
-      type: object
-      description: Optional job launch behaviour for input files
-      properties:
-        skip_unindexed_files:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
           type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    EliseMetaInput:
+      type: object
+      properties:
+        meta:
+          type: string
+        answerType:
+          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
+        description:
+          type: string
+    EliseAnnotation:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/AnnotationId'
+        createdTime:
+          type: integer
+          format: int64
+        owner:
+          $ref: '#/components/schemas/UserId'
+        space:
+          $ref: '#/components/schemas/EntityId'
+        data:
+          $ref: '#/components/schemas/EliseAnnotationConfig'
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
+        modifiedTime:
+          type: integer
+          format: int64
+        lastModifier:
+          $ref: '#/components/schemas/UserId'
+        status:
+          type: string
+          enum:
+          - VALID
+          - NOTVALID
+    Job:
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
+          type: boolean
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
   securitySchemes:
     TOKEN:
       type: http

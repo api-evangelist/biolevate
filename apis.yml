@@ -54,9 +54,9 @@ tags:
 - Life Sciences
 - Regulatory Affairs
 - Document Intelligence
-- Knowledge-Management
+- Knowledge Management
 - Pharmaceuticals
-- Machine-Learning
+- Machine Learning
 tags_raw:
 - Company
 - Artificial Intelligence
@@ -66,6 +66,8 @@ tags_raw:
 - Knowledge Management
 - Pharmaceuticals
 - Machine Learning
+- Knowledge-Management
+- Machine-Learning
 apis:
 - aid: biolevate:biolevate-agent-api
   name: Biolevate Agent API

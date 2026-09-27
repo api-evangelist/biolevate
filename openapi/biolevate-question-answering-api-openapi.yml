@@ -262,6 +262,57 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
+    QAJobInputs:
+      type: object
+      properties:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseQuestionInput'
+    EliseAnnotationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
+          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
+          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
+          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
+          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
+          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
+      properties:
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
+          type: array
+          items:
+            type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
     EntityId:
       type: object
       properties:
@@ -305,6 +356,106 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
+    QAJobOutputs:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseQAResult'
+    CreateQARequest:
+      type: object
+      properties:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseQuestionInput'
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
+    PageDataJob:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    ExpectedAnswerTypeDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+          - STRING
+          - INT
+          - FLOAT
+          - BOOL
+          - DATE
+          - ENUM
+        multiValued:
+          type: boolean
+        enumValues:
+          type: array
+          description: List of possible values for enum types
+          items:
+            type: string
+        enumColors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of enum values to their associated colors
+        enumSuggestionsEnabled:
+          type: boolean
+        rejectedEnumValues:
+          type: array
+          items:
+            type: string
+        dateFormat:
+          type: string
+          enum:
+          - ISO
+          - EUR
+          - US
+        decimalPrecision:
+          type: string
+          enum:
+          - ZERO_DECIMALS
+          - ONE_DECIMAL
+          - TWO_DECIMALS
+          - THREE_DECIMALS
+          - FOUR_DECIMALS
+          - FIVE_DECIMALS
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    EliseQuestionInput:
+      type: object
+      properties:
+        id:
+          type: string
+        question:
+          type: string
+        answerType:
+          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
+        guidelines:
+          type: string
+        expectedAnswer:
+          type: string
+        inputQuestionIds:
+          type: array
+          items:
+            type: string
     EliseAnnotation:
       type: object
       properties:
@@ -364,17 +515,6 @@ components:
           format: float
         rawValue:
           type: string
-    FilesInput:
-      type: object
-      properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
     Job:
       type: object
       properties:
@@ -401,59 +541,6 @@ components:
         name:
           type: string
         archived:
-          type: boolean
-    EliseQuestionInput:
-      type: object
-      properties:
-        id:
-          type: string
-        question:
-          type: string
-        answerType:
-          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
-        guidelines:
-          type: string
-        expectedAnswer:
-          type: string
-        inputQuestionIds:
-          type: array
-          items:
-            type: string
-    EliseAnnotationConfig:
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
-          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
-          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
-          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
-          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
-          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
-      properties:
-        type:
-          type: string
-          enum:
-          - DOCUMENT_STATEMENT
-          - WEB_STATEMENT
-          - ENTIRE_DOCUMENT_STATEMENT
-          - EXTERNAL_DOCUMENT_STATEMENT
-          - KNOWLEDGE_STATEMENT
-          - REVIEW_STATEMENT
-    PageDataJob:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
           type: boolean
     AnnotationId:
       type: object
@@ -498,93 +585,6 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    QAJobInputs:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseQuestionInput'
-    UserId:
-      type: object
-      properties:
-        id:
-          type: string
-    ExpectedAnswerTypeDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-          - STRING
-          - INT
-          - FLOAT
-          - BOOL
-          - DATE
-          - ENUM
-        multiValued:
-          type: boolean
-        enumValues:
-          type: array
-          description: List of possible values for enum types
-          items:
-            type: string
-        enumColors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of enum values to their associated colors
-        enumSuggestionsEnabled:
-          type: boolean
-        rejectedEnumValues:
-          type: array
-          items:
-            type: string
-        dateFormat:
-          type: string
-          enum:
-          - ISO
-          - EUR
-          - US
-        decimalPrecision:
-          type: string
-          enum:
-          - ZERO_DECIMALS
-          - ONE_DECIMAL
-          - TWO_DECIMALS
-          - THREE_DECIMALS
-          - FOUR_DECIMALS
-          - FIVE_DECIMALS
-    QAJobOutputs:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseQAResult'
-    JobLaunchConfig:
-      type: object
-      description: Optional job launch behaviour for input files
-      properties:
-        skip_unindexed_files:
-          type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
-    CreateQARequest:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseQuestionInput'
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
   securitySchemes:
     TOKEN:
       type: http
