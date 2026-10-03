@@ -262,15 +262,75 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
-    QAJobInputs:
+    EliseQAResult:
       type: object
       properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        questions:
+        explanation:
+          type: string
+        sourcedContent:
+          type: string
+        referenceIds:
           type: array
           items:
-            $ref: '#/components/schemas/EliseQuestionInput'
+            $ref: '#/components/schemas/AnnotationId'
+        question:
+          type: string
+        expectedAnswer:
+          type: string
+        validityExplaination:
+          type: string
+        inputQuestionIds:
+          type: array
+          items:
+            type: string
+        answerValidity:
+          type: number
+          format: float
+        rawValue:
+          type: string
+    AnnotationId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
     EliseAnnotationConfig:
       type: object
       discriminator:
@@ -292,17 +352,121 @@ components:
           - EXTERNAL_DOCUMENT_STATEMENT
           - KNOWLEDGE_STATEMENT
           - REVIEW_STATEMENT
-    FilesInput:
+    EliseQuestionInput:
       type: object
       properties:
-        fileIds:
+        id:
+          type: string
+        question:
+          type: string
+        answerType:
+          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
+        guidelines:
+          type: string
+        expectedAnswer:
+          type: string
+        inputQuestionIds:
           type: array
           items:
             type: string
-        collectionIds:
+    Job:
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
+          type: boolean
+    CreateQARequest:
+      type: object
+      properties:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseQuestionInput'
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
+    ExpectedAnswerTypeDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+          - STRING
+          - INT
+          - FLOAT
+          - BOOL
+          - DATE
+          - ENUM
+        multiValued:
+          type: boolean
+        enumValues:
+          type: array
+          description: List of possible values for enum types
+          items:
+            type: string
+        enumColors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of enum values to their associated colors
+        enumSuggestionsEnabled:
+          type: boolean
+        rejectedEnumValues:
           type: array
           items:
             type: string
+        dateFormat:
+          type: string
+          enum:
+          - ISO
+          - EUR
+          - US
+        decimalPrecision:
+          type: string
+          enum:
+          - ZERO_DECIMALS
+          - ONE_DECIMAL
+          - TWO_DECIMALS
+          - THREE_DECIMALS
+          - FOUR_DECIMALS
+          - FIVE_DECIMALS
+    PageDataJob:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
     JobLaunchConfig:
       type: object
       description: Optional job launch behaviour for input files
@@ -313,6 +477,11 @@ components:
 
             '
           example: false
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
     EntityId:
       type: object
       properties:
@@ -363,99 +532,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EliseQAResult'
-    CreateQARequest:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseQuestionInput'
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
-    PageDataJob:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    ExpectedAnswerTypeDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-          - STRING
-          - INT
-          - FLOAT
-          - BOOL
-          - DATE
-          - ENUM
-        multiValued:
-          type: boolean
-        enumValues:
-          type: array
-          description: List of possible values for enum types
-          items:
-            type: string
-        enumColors:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of enum values to their associated colors
-        enumSuggestionsEnabled:
-          type: boolean
-        rejectedEnumValues:
-          type: array
-          items:
-            type: string
-        dateFormat:
-          type: string
-          enum:
-          - ISO
-          - EUR
-          - US
-        decimalPrecision:
-          type: string
-          enum:
-          - ZERO_DECIMALS
-          - ONE_DECIMAL
-          - TWO_DECIMALS
-          - THREE_DECIMALS
-          - FOUR_DECIMALS
-          - FIVE_DECIMALS
-    UserId:
-      type: object
-      properties:
-        id:
-          type: string
-    EliseQuestionInput:
-      type: object
-      properties:
-        id:
-          type: string
-        question:
-          type: string
-        answerType:
-          $ref: '#/components/schemas/ExpectedAnswerTypeDto'
-        guidelines:
-          type: string
-        expectedAnswer:
-          type: string
-        inputQuestionIds:
-          type: array
-          items:
-            type: string
     EliseAnnotation:
       type: object
       properties:
@@ -489,102 +565,26 @@ components:
           enum:
           - VALID
           - NOTVALID
-    EliseQAResult:
+    QAJobInputs:
       type: object
       properties:
-        explanation:
-          type: string
-        sourcedContent:
-          type: string
-        referenceIds:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        questions:
           type: array
           items:
-            $ref: '#/components/schemas/AnnotationId'
-        question:
-          type: string
-        expectedAnswer:
-          type: string
-        validityExplaination:
-          type: string
-        inputQuestionIds:
+            $ref: '#/components/schemas/EliseQuestionInput'
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
           type: array
           items:
             type: string
-        answerValidity:
-          type: number
-          format: float
-        rawValue:
-          type: string
-    Job:
-      type: object
-      properties:
-        jobId:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
-          type: string
-        name:
-          type: string
-        archived:
-          type: boolean
-    AnnotationId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
+        collectionIds:
+          type: array
+          items:
+            type: string
   securitySchemes:
     TOKEN:
       type: http

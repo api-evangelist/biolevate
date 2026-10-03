@@ -109,29 +109,6 @@ paths:
                 $ref: '#/components/schemas/FSProvider_External'
 components:
   schemas:
-    FSProviderConfiguration_External:
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          LOCAL: '#/components/schemas/FSProviderLocalConfig_External'
-          S3: '#/components/schemas/FSProviderS3Config_External'
-          AZURE: '#/components/schemas/FSProviderAzureConfig_External'
-          GCS: '#/components/schemas/FSProviderGCSConfig_External'
-          SHAREPOINT_ONLINE: '#/components/schemas/FSProviderSharepointOnlineConfig_External'
-          LEANEAR: '#/components/schemas/FSProviderLeanearConfig_External'
-          SFTP: '#/components/schemas/FSProviderSFTPConfig_External'
-      properties:
-        type:
-          type: string
-          enum:
-          - LOCAL
-          - SHAREPOINT_ONLINE
-          - S3
-          - LEANEAR
-          - AZURE
-          - GCS
-          - SFTP
     PageDataFSProvider_External:
       type: object
       properties:
@@ -147,11 +124,49 @@ components:
           format: int64
         hasNext:
           type: boolean
-    UserId_External:
+    PolicyId_External:
       type: object
       properties:
         id:
           type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
     FSProvider_External:
       type: object
       properties:
@@ -225,49 +240,34 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    PolicyId_External:
+    UserId_External:
       type: object
       properties:
         id:
           type: string
-          format: uuid
-        entityType:
+    FSProviderConfiguration_External:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          LOCAL: '#/components/schemas/FSProviderLocalConfig_External'
+          S3: '#/components/schemas/FSProviderS3Config_External'
+          AZURE: '#/components/schemas/FSProviderAzureConfig_External'
+          GCS: '#/components/schemas/FSProviderGCSConfig_External'
+          SHAREPOINT_ONLINE: '#/components/schemas/FSProviderSharepointOnlineConfig_External'
+          LEANEAR: '#/components/schemas/FSProviderLeanearConfig_External'
+          SFTP: '#/components/schemas/FSProviderSFTPConfig_External'
+      properties:
+        type:
           type: string
           enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
+          - LOCAL
+          - SHAREPOINT_ONLINE
+          - S3
+          - LEANEAR
+          - AZURE
+          - GCS
+          - SFTP
   securitySchemes:
     TOKEN:
       type: http

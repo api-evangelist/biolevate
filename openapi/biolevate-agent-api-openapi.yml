@@ -263,53 +263,74 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
-    CreateAgentRequest:
+    AgentCompletionConfig:
       type: object
-      description: Request to schedule a new agent run
+      description: Per-completion LLM knobs for an agent run
       properties:
-        message:
+        model:
           type: string
-          description: 'Stateful mode: the new user message for this turn. Prior turns are loaded server-side from `conversationId`. Mutually exclusive with `messages`.
-
-            '
-          example: Summarize the attached report and list the main risks.
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentInput'
-        files:
-          $ref: '#/components/schemas/FilesInput'
-          description: Files the agent can read from
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
-          description: Optional job launch behaviour for input files
-        historyInputValid:
-          type: boolean
-        conversationIdValid:
-          type: boolean
-        output_model_schema:
-          $ref: '#/components/schemas/JsonNode'
-          description: 'Optional JSON Schema constraining the agent''s final answer to a structured object. Free-form: any valid JSON Schema is accepted'
-          example:
-            type: object
-            properties:
-              verdict:
-                type: string
-            required:
-            - verdict
-        completion_config:
-          $ref: '#/components/schemas/AgentCompletionConfig'
-          description: Per-completion LLM knobs (model preset, temperature, max tokens)
-        max_iterations:
+          description: Semantic model preset (defaults to BALANCED when omitted)
+          enum:
+          - FAST
+          - BALANCED
+          example: BALANCED
+        temperature:
+          type: number
+          format: double
+          description: Sampling temperature
+          example: 0.7
+          maximum: 2.0
+          minimum: 0.0
+        max_completion_tokens:
           type: integer
           format: int32
-          description: Hard cap on the number of agent-loop iterations
-          example: 10
-        conversation_id:
+          description: Hard cap on response tokens
+          example: 2048
+          maximum: 32768
+          minimum: 1
+    AnnotationId:
+      type: object
+      properties:
+        id:
           type: string
           format: uuid
-          description: 'Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.'
-          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
     EliseAnnotationConfig:
       type: object
       discriminator:
@@ -331,38 +352,48 @@ components:
           - EXTERNAL_DOCUMENT_STATEMENT
           - KNOWLEDGE_STATEMENT
           - REVIEW_STATEMENT
-    FilesInput:
+    Job:
       type: object
       properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
-    AgentJobInputs:
-      type: object
-      properties:
-        message:
+        jobId:
           type: string
-        messages:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
+          type: boolean
+    PageDataJob:
+      type: object
+      properties:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/AgentInput'
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        outputModelSchema:
-          $ref: '#/components/schemas/JsonNode'
-        completionConfig:
-          $ref: '#/components/schemas/AgentCompletionConfig'
-        maxIterations:
+            $ref: '#/components/schemas/Job'
+        totalPages:
           type: integer
           format: int32
-        conversationId:
-          type: string
-          format: uuid
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
     JobLaunchConfig:
       type: object
       description: Optional job launch behaviour for input files
@@ -373,6 +404,11 @@ components:
 
             '
           example: false
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
     EntityId:
       type: object
       properties:
@@ -440,63 +476,6 @@ components:
       required:
       - content
       - role
-    PageDataJob:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    UserId:
-      type: object
-      properties:
-        id:
-          type: string
-    AgentJobOutputs:
-      type: object
-      properties:
-        answer:
-          $ref: '#/components/schemas/JsonNode'
-        explanation:
-          type: string
-        referenceIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-    AgentCompletionConfig:
-      type: object
-      description: Per-completion LLM knobs for an agent run
-      properties:
-        model:
-          type: string
-          description: Semantic model preset (defaults to BALANCED when omitted)
-          enum:
-          - FAST
-          - BALANCED
-          example: BALANCED
-        temperature:
-          type: number
-          format: double
-          description: Sampling temperature
-          example: 0.7
-          maximum: 2.0
-          minimum: 0.0
-        max_completion_tokens:
-          type: integer
-          format: int32
-          description: Hard cap on response tokens
-          example: 2048
-          maximum: 32768
-          minimum: 1
     EliseAnnotation:
       type: object
       properties:
@@ -530,76 +509,97 @@ components:
           enum:
           - VALID
           - NOTVALID
-    Job:
+    AgentJobOutputs:
       type: object
       properties:
-        jobId:
+        answer:
+          $ref: '#/components/schemas/JsonNode'
+        explanation:
           type: string
-        status:
+        referenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    AgentJobInputs:
+      type: object
+      properties:
+        message:
           type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
-          type: string
-        createdTime:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        outputModelSchema:
+          $ref: '#/components/schemas/JsonNode'
+        completionConfig:
+          $ref: '#/components/schemas/AgentCompletionConfig'
+        maxIterations:
           type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
-          type: string
-        name:
-          type: string
-        archived:
-          type: boolean
-    AnnotationId:
-      type: object
-      properties:
-        id:
+          format: int32
+        conversationId:
           type: string
           format: uuid
-        entityType:
+    CreateAgentRequest:
+      type: object
+      description: Request to schedule a new agent run
+      properties:
+        message:
           type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
+          description: 'Stateful mode: the new user message for this turn. Prior turns are loaded server-side from `conversationId`. Mutually exclusive with `messages`.
+
+            '
+          example: Summarize the attached report and list the main risks.
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentInput'
+        files:
+          $ref: '#/components/schemas/FilesInput'
+          description: Files the agent can read from
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
+          description: Optional job launch behaviour for input files
+        historyInputValid:
+          type: boolean
+        conversationIdValid:
+          type: boolean
+        output_model_schema:
+          $ref: '#/components/schemas/JsonNode'
+          description: 'Optional JSON Schema constraining the agent''s final answer to a structured object. Free-form: any valid JSON Schema is accepted'
+          example:
+            type: object
+            properties:
+              verdict:
+                type: string
+            required:
+            - verdict
+        completion_config:
+          $ref: '#/components/schemas/AgentCompletionConfig'
+          description: Per-completion LLM knobs (model preset, temperature, max tokens)
+        max_iterations:
+          type: integer
+          format: int32
+          description: Hard cap on the number of agent-loop iterations
+          example: 10
+        conversation_id:
+          type: string
+          format: uuid
+          description: 'Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.'
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
+          type: array
+          items:
+            type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
   securitySchemes:
     TOKEN:
       type: http

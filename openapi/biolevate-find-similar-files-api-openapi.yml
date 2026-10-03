@@ -131,30 +131,37 @@ paths:
                 $ref: '#/components/schemas/FindSimilarApiJobDto'
 components:
   schemas:
-    PageDataFindSimilarApiJobDto:
+    FindSimilarApiJobDto:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FindSimilarApiJobDto'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - COMPLETED
+          - FAILED
+        createdTime:
           type: integer
           format: int64
-        hasNext:
-          type: boolean
-    SourceIdentifiers:
-      type: object
-      properties:
-        doi:
+        modifiedTime:
+          type: integer
+          format: int64
+        executionTimeMs:
+          type: integer
+          format: int64
+        errorMessage:
           type: string
-        id:
-          type: string
-        openAccessId:
-          type: string
+        sources:
+          $ref: '#/components/schemas/SearchSources'
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceMatches'
+        statistics:
+          $ref: '#/components/schemas/JobStatistics'
     JobStatistics:
       type: object
       properties:
@@ -190,137 +197,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    EliseOntology:
-      type: object
-      properties:
-        conceptId:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        metas:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/EliseOntologyMeta'
-      required:
-      - conceptId
-      - name
-    FileMatch:
-      type: object
-      properties:
-        fileId:
-          type: string
-        providerId:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        checksum:
-          type: string
-        ontologies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseOntology'
-    EntityId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    FindSimilarApiJobDto:
-      type: object
-      properties:
-        jobId:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - RUNNING
-          - COMPLETED
-          - FAILED
-        createdTime:
-          type: integer
-          format: int64
-        modifiedTime:
-          type: integer
-          format: int64
-        executionTimeMs:
-          type: integer
-          format: int64
-        errorMessage:
-          type: string
-        sources:
-          $ref: '#/components/schemas/SearchSources'
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourceMatches'
-        statistics:
-          $ref: '#/components/schemas/JobStatistics'
-    SourceMatches:
-      type: object
-      properties:
-        source:
-          $ref: '#/components/schemas/SourceIdentifiers'
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileMatch'
-        metadataOnly:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetadataOnlyMatch'
-    EliseOntologyMeta:
-      type: object
-      properties:
-        explanation:
-          type: string
-        annotationIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-        metaName:
-          type: string
-        metaValue:
-          type: object
     SearchSources:
       type: object
       properties:
@@ -328,15 +204,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SourceIdentifiers'
-    MetadataOnlyMatch:
-      type: object
-      properties:
-        searchResultId:
-          type: string
-        ontologies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseOntology'
     AnnotationId:
       type: object
       properties:
@@ -380,6 +247,139 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
+    PageDataFindSimilarApiJobDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FindSimilarApiJobDto'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
+    MetadataOnlyMatch:
+      type: object
+      properties:
+        searchResultId:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
+    SourceMatches:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceIdentifiers'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileMatch'
+        metadataOnly:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetadataOnlyMatch'
+    EliseOntologyMeta:
+      type: object
+      properties:
+        explanation:
+          type: string
+        annotationIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        metaName:
+          type: string
+        metaValue:
+          type: object
+    FileMatch:
+      type: object
+      properties:
+        fileId:
+          type: string
+        providerId:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        checksum:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
+    SourceIdentifiers:
+      type: object
+      properties:
+        doi:
+          type: string
+        id:
+          type: string
+        openAccessId:
+          type: string
   securitySchemes:
     TOKEN:
       type: http
