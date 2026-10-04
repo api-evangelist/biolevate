@@ -262,32 +262,27 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
-    EliseQAResult:
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
+    FilesInput:
       type: object
       properties:
-        explanation:
-          type: string
-        sourcedContent:
-          type: string
-        referenceIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-        question:
-          type: string
-        expectedAnswer:
-          type: string
-        validityExplaination:
-          type: string
-        inputQuestionIds:
+        fileIds:
           type: array
           items:
             type: string
-        answerValidity:
-          type: number
-          format: float
-        rawValue:
-          type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
     AnnotationId:
       type: object
       properties:
@@ -369,44 +364,71 @@ components:
           type: array
           items:
             type: string
-    Job:
+    QAJobOutputs:
       type: object
       properties:
-        jobId:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
-          type: string
-        name:
-          type: string
-        archived:
-          type: boolean
-    CreateQARequest:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        questions:
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/EliseQuestionInput'
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
+            $ref: '#/components/schemas/EliseQAResult'
+    PageDataJob:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
     ExpectedAnswerTypeDto:
       type: object
       properties:
@@ -452,86 +474,75 @@ components:
           - THREE_DECIMALS
           - FOUR_DECIMALS
           - FIVE_DECIMALS
-    PageDataJob:
+    Job:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
           type: integer
           format: int64
-        hasNext:
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
           type: boolean
-    JobLaunchConfig:
+    EliseQAResult:
       type: object
-      description: Optional job launch behaviour for input files
       properties:
-        skip_unindexed_files:
-          type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
+        explanation:
+          type: string
+        sourcedContent:
+          type: string
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+        question:
+          type: string
+        expectedAnswer:
+          type: string
+        validityExplaination:
+          type: string
+        inputQuestionIds:
+          type: array
+          items:
+            type: string
+        answerValidity:
+          type: number
+          format: float
+        rawValue:
+          type: string
     UserId:
       type: object
       properties:
         id:
           type: string
-    EntityId:
+    CreateQARequest:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    QAJobOutputs:
-      type: object
-      properties:
-        results:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        questions:
           type: array
           items:
-            $ref: '#/components/schemas/EliseQAResult'
+            $ref: '#/components/schemas/EliseQuestionInput'
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
     EliseAnnotation:
       type: object
       properties:
@@ -574,17 +585,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EliseQuestionInput'
-    FilesInput:
-      type: object
-      properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
   securitySchemes:
     TOKEN:
       type: http

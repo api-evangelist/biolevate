@@ -131,6 +131,20 @@ paths:
                 $ref: '#/components/schemas/FindSimilarApiJobDto'
 components:
   schemas:
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
     FindSimilarApiJobDto:
       type: object
       properties:
@@ -162,48 +176,19 @@ components:
             $ref: '#/components/schemas/SourceMatches'
         statistics:
           $ref: '#/components/schemas/JobStatistics'
-    JobStatistics:
+    EliseOntologyMeta:
       type: object
       properties:
-        sourcesQueried:
-          type: integer
-          format: int32
-        sourcesMatchedLocally:
-          type: integer
-          format: int32
-        sourcesMatchedRemotely:
-          type: integer
-          format: int32
-        sourcesUnmatched:
-          type: integer
-          format: int32
-        remoteSearchStatus:
+        explanation:
           type: string
-          enum:
-          - PENDING
-          - RUNNING
-          - PROGRESS
-          - ABORTED
-          - COMPLETED
-          - FAILED
-          - OUTDATED
-        totalFileMatches:
-          type: integer
-          format: int32
-        totalMetadataOnlyMatches:
-          type: integer
-          format: int32
-        errorsBySearchResultId:
-          type: object
-          additionalProperties:
-            type: string
-    SearchSources:
-      type: object
-      properties:
-        sourceIdentifiers:
+        annotationIds:
           type: array
           items:
-            $ref: '#/components/schemas/SourceIdentifiers'
+            $ref: '#/components/schemas/AnnotationId'
+        metaName:
+          type: string
+        metaValue:
+          type: object
     AnnotationId:
       type: object
       properties:
@@ -247,6 +232,41 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
+    JobStatistics:
+      type: object
+      properties:
+        sourcesQueried:
+          type: integer
+          format: int32
+        sourcesMatchedLocally:
+          type: integer
+          format: int32
+        sourcesMatchedRemotely:
+          type: integer
+          format: int32
+        sourcesUnmatched:
+          type: integer
+          format: int32
+        remoteSearchStatus:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - PROGRESS
+          - ABORTED
+          - COMPLETED
+          - FAILED
+          - OUTDATED
+        totalFileMatches:
+          type: integer
+          format: int32
+        totalMetadataOnlyMatches:
+          type: integer
+          format: int32
+        errorsBySearchResultId:
+          type: object
+          additionalProperties:
+            type: string
     PageDataFindSimilarApiJobDto:
       type: object
       properties:
@@ -305,20 +325,30 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    EliseOntology:
+    SearchSources:
       type: object
       properties:
-        conceptId:
-          $ref: '#/components/schemas/EntityId'
+        sourceIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceIdentifiers'
+    FileMatch:
+      type: object
+      properties:
+        fileId:
+          type: string
+        providerId:
+          type: string
+        path:
+          type: string
         name:
           type: string
-        metas:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/EliseOntologyMeta'
-      required:
-      - conceptId
-      - name
+        checksum:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
     MetadataOnlyMatch:
       type: object
       properties:
@@ -341,36 +371,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MetadataOnlyMatch'
-    EliseOntologyMeta:
-      type: object
-      properties:
-        explanation:
-          type: string
-        annotationIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-        metaName:
-          type: string
-        metaValue:
-          type: object
-    FileMatch:
-      type: object
-      properties:
-        fileId:
-          type: string
-        providerId:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        checksum:
-          type: string
-        ontologies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseOntology'
     SourceIdentifiers:
       type: object
       properties:

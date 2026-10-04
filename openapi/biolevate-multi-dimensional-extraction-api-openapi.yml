@@ -262,74 +262,27 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
-    EliseEntitySchemaInput:
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
+    FilesInput:
       type: object
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseEntityColumnInput'
-    EliseEntityCellResult:
-      type: object
-      properties:
-        columnKey:
-          type: string
-        value:
-          type: object
-        explanation:
-          type: string
-        referenceIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationId'
-    EliseEntityColumnInput:
-      type: object
-      properties:
-        key:
-          type: string
-        label:
-          type: string
-        type:
-          type: string
-          enum:
-          - ENTITY_COLUMN_TYPE_UNSPECIFIED
-          - ENTITY_COLUMN_TYPE_STRING
-          - ENTITY_COLUMN_TYPE_INT
-          - ENTITY_COLUMN_TYPE_FLOAT
-          - ENTITY_COLUMN_TYPE_BOOL
-        role:
-          type: string
-          enum:
-          - ENTITY_COLUMN_ROLE_UNSPECIFIED
-          - ENTITY_COLUMN_ROLE_IDENTIFIER
-          - ENTITY_COLUMN_ROLE_LABEL
-          - ENTITY_COLUMN_ROLE_GROUP
-          - ENTITY_COLUMN_ROLE_TIMEPOINT
-          - ENTITY_COLUMN_ROLE_VALUE
-          - ENTITY_COLUMN_ROLE_UNIT
-          - ENTITY_COLUMN_ROLE_DEFINITION
-          - ENTITY_COLUMN_ROLE_COMMENT
-        description:
-          type: string
-        allowedValues:
+        fileIds:
           type: array
           items:
             type: string
-        isRowKey:
-          type: boolean
-    CreateMDERequest:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        schema:
-          $ref: '#/components/schemas/EliseEntitySchemaInput'
-        config:
-          $ref: '#/components/schemas/JobLaunchConfig'
+        collectionIds:
+          type: array
+          items:
+            type: string
     AnnotationId:
       type: object
       properties:
@@ -394,13 +347,6 @@ components:
           - EXTERNAL_DOCUMENT_STATEMENT
           - KNOWLEDGE_STATEMENT
           - REVIEW_STATEMENT
-    MDEJobInputs:
-      type: object
-      properties:
-        files:
-          $ref: '#/components/schemas/FilesInput'
-        schema:
-          $ref: '#/components/schemas/EliseEntitySchemaInput'
     PageDataJob:
       type: object
       properties:
@@ -416,31 +362,46 @@ components:
           format: int64
         hasNext:
           type: boolean
-    EliseEntityExtractionResult:
+    EliseEntityCellResult:
       type: object
       properties:
-        metaId:
+        columnKey:
           type: string
-          format: uuid
-        meta:
-          type: string
-        schema:
-          $ref: '#/components/schemas/EliseEntitySchemaInput'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseEntityRowResult'
+        value:
+          type: object
         explanation:
           type: string
         referenceIds:
           type: array
           items:
             $ref: '#/components/schemas/AnnotationId'
-    UserId:
+    CreateMDERequest:
       type: object
       properties:
-        id:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        schema:
+          $ref: '#/components/schemas/EliseEntitySchemaInput'
+        config:
+          $ref: '#/components/schemas/JobLaunchConfig'
+    MDEJobInputs:
+      type: object
+      properties:
+        files:
+          $ref: '#/components/schemas/FilesInput'
+        schema:
+          $ref: '#/components/schemas/EliseEntitySchemaInput'
+    EliseEntitySchemaInput:
+      type: object
+      properties:
+        name:
           type: string
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseEntityColumnInput'
     EntityId:
       type: object
       properties:
@@ -484,16 +445,63 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    JobLaunchConfig:
+    MDEJobOutputs:
       type: object
-      description: Optional job launch behaviour for input files
       properties:
-        skip_unindexed_files:
+        entityExtraction:
+          $ref: '#/components/schemas/EliseEntityExtractionResult'
+    Job:
+      type: object
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - ABORTED
+          - RUNNING
+          - PENDING
+        taskType:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        executionTime:
+          type: number
+          format: double
+        errorMessage:
+          type: string
+        name:
+          type: string
+        archived:
           type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
+    EliseEntityExtractionResult:
+      type: object
+      properties:
+        metaId:
+          type: string
+          format: uuid
+        meta:
+          type: string
+        schema:
+          $ref: '#/components/schemas/EliseEntitySchemaInput'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseEntityRowResult'
+        explanation:
+          type: string
+        referenceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationId'
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
     EliseAnnotation:
       type: object
       properties:
@@ -527,37 +535,40 @@ components:
           enum:
           - VALID
           - NOTVALID
-    MDEJobOutputs:
+    EliseEntityColumnInput:
       type: object
       properties:
-        entityExtraction:
-          $ref: '#/components/schemas/EliseEntityExtractionResult'
-    Job:
-      type: object
-      properties:
-        jobId:
+        key:
           type: string
-        status:
+        label:
+          type: string
+        type:
           type: string
           enum:
-          - SUCCESS
-          - FAILED
-          - ABORTED
-          - RUNNING
-          - PENDING
-        taskType:
+          - ENTITY_COLUMN_TYPE_UNSPECIFIED
+          - ENTITY_COLUMN_TYPE_STRING
+          - ENTITY_COLUMN_TYPE_INT
+          - ENTITY_COLUMN_TYPE_FLOAT
+          - ENTITY_COLUMN_TYPE_BOOL
+        role:
           type: string
-        createdTime:
-          type: integer
-          format: int64
-        executionTime:
-          type: number
-          format: double
-        errorMessage:
+          enum:
+          - ENTITY_COLUMN_ROLE_UNSPECIFIED
+          - ENTITY_COLUMN_ROLE_IDENTIFIER
+          - ENTITY_COLUMN_ROLE_LABEL
+          - ENTITY_COLUMN_ROLE_GROUP
+          - ENTITY_COLUMN_ROLE_TIMEPOINT
+          - ENTITY_COLUMN_ROLE_VALUE
+          - ENTITY_COLUMN_ROLE_UNIT
+          - ENTITY_COLUMN_ROLE_DEFINITION
+          - ENTITY_COLUMN_ROLE_COMMENT
+        description:
           type: string
-        name:
-          type: string
-        archived:
+        allowedValues:
+          type: array
+          items:
+            type: string
+        isRowKey:
           type: boolean
     EliseEntityRowResult:
       type: object
@@ -572,17 +583,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AnnotationId'
-    FilesInput:
-      type: object
-      properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
   securitySchemes:
     TOKEN:
       type: http
