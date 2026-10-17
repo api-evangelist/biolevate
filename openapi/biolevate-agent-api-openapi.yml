@@ -263,198 +263,6 @@ paths:
                   $ref: '#/components/schemas/EliseAnnotation'
 components:
   schemas:
-    JobLaunchConfig:
-      type: object
-      description: Optional job launch behaviour for input files
-      properties:
-        skip_unindexed_files:
-          type: boolean
-          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
-
-            '
-          example: false
-    JsonNode:
-      type: object
-    AnnotationId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
-    FilesInput:
-      type: object
-      properties:
-        fileIds:
-          type: array
-          items:
-            type: string
-        collectionIds:
-          type: array
-          items:
-            type: string
-    EliseAnnotationConfig:
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
-          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
-          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
-          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
-          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
-          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
-      properties:
-        type:
-          type: string
-          enum:
-          - DOCUMENT_STATEMENT
-          - WEB_STATEMENT
-          - ENTIRE_DOCUMENT_STATEMENT
-          - EXTERNAL_DOCUMENT_STATEMENT
-          - KNOWLEDGE_STATEMENT
-          - REVIEW_STATEMENT
-    PageDataJob:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        hasNext:
-          type: boolean
-    AgentCompletionConfig:
-      type: object
-      description: Per-completion LLM knobs for an agent run
-      properties:
-        model:
-          type: string
-          description: Semantic model preset (defaults to BALANCED when omitted)
-          enum:
-          - FAST
-          - BALANCED
-          example: BALANCED
-        temperature:
-          type: number
-          format: double
-          description: Sampling temperature
-          example: 0.7
-          maximum: 2.0
-          minimum: 0.0
-        max_completion_tokens:
-          type: integer
-          format: int32
-          description: Hard cap on response tokens
-          example: 2048
-          maximum: 32768
-          minimum: 1
-    AgentInput:
-      type: object
-      description: A single input item submitted to the agent (role + text content)
-      properties:
-        role:
-          type: string
-          description: Author of the item
-          enum:
-          - system
-          - user
-          - assistant
-          - SYSTEM
-          - USER
-          - ASSISTANT
-          example: USER
-        content:
-          type: string
-          description: Plain text content of the item
-          example: Summarize the attached report.
-      required:
-      - content
-      - role
-    EntityId:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        entityType:
-          type: string
-          enum:
-          - POLICY
-          - PROJECT
-          - COLLECTION
-          - PROVIDER
-          - FILE
-          - PROCESSOR
-          - JOB
-          - PRESET
-          - EDITABLE_DOCUMENT
-          - REVIEW
-          - COLLECTION_DERIVATION
-          - REVIEW_REQUEST
-          - MILESTONE
-          - INSIGHT
-          - CONCEPT_NOTE
-          - ANNOTATION
-          - BIBLIO_SEARCH
-          - SEARCH_DOWNLOAD
-          - INSIGHT_CELL_FILTER
-          - INSIGHT_CELL_SORTING
-          - INSIGHT_CELL_FORMAT
-          - INSIGHT_GROUP
-          - INSIGHTS_TABLE_CONFIG
-          - INSIGHTS_TABLE_TEMPLATE
-          - SEARCH_REMOVAL
-          - COMMENT_THREAD
-          - COMMENT
-          - SMART_REVIEW
-          - RIS_IMPORT_JOB
-          - FORGE_WORKFLOW
-          - COLLECTION_VIEW
-          - SUB_COLLECTION_JOB
-          - PROJECT_LABEL
-          - PROJECT_GROUP
     CreateAgentRequest:
       type: object
       description: Request to schedule a new agent run
@@ -502,6 +310,55 @@ components:
           format: uuid
           description: 'Stateful only: continue an existing server session. Omit to start a new conversation. Must not be set for stateless runs.'
           example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+    FilesInput:
+      type: object
+      properties:
+        fileIds:
+          type: array
+          items:
+            type: string
+        collectionIds:
+          type: array
+          items:
+            type: string
+    JobLaunchConfig:
+      type: object
+      description: Optional job launch behaviour for input files
+      properties:
+        skip_unindexed_files:
+          type: boolean
+          description: 'When false or omitted, the request is rejected if any input file is not indexed. When true, unindexed files are excluded and the job runs on indexed files only.
+
+            '
+          example: false
+    UserId:
+      type: object
+      properties:
+        id:
+          type: string
+    JsonNode:
+      type: object
+    EliseAnnotationConfig:
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          DOCUMENT_STATEMENT: '#/components/schemas/EliseDocumentStatement'
+          EXTERNAL_DOCUMENT_STATEMENT: '#/components/schemas/EliseExternalDocumentStatement'
+          WEB_STATEMENT: '#/components/schemas/EliseWebStatement'
+          KNOWLEDGE_STATEMENT: '#/components/schemas/EliseKnowledgeStatement'
+          ENTIRE_DOCUMENT_STATEMENT: '#/components/schemas/EliseFullDocumentStatement'
+          REVIEW_STATEMENT: '#/components/schemas/EliseReviewComment'
+      properties:
+        type:
+          type: string
+          enum:
+          - DOCUMENT_STATEMENT
+          - WEB_STATEMENT
+          - ENTIRE_DOCUMENT_STATEMENT
+          - EXTERNAL_DOCUMENT_STATEMENT
+          - KNOWLEDGE_STATEMENT
+          - REVIEW_STATEMENT
     AgentJobInputs:
       type: object
       properties:
@@ -523,6 +380,43 @@ components:
         conversationId:
           type: string
           format: uuid
+    AgentCompletionConfig:
+      type: object
+      description: Per-completion LLM knobs for an agent run
+      properties:
+        model:
+          type: string
+          description: Semantic model preset (defaults to BALANCED when omitted)
+          enum:
+          - FAST
+          - BALANCED
+          example: BALANCED
+        temperature:
+          type: number
+          format: double
+          description: Sampling temperature
+          example: 0.7
+          maximum: 2.0
+          minimum: 0.0
+        max_completion_tokens:
+          type: integer
+          format: int32
+          description: Hard cap on response tokens
+          example: 2048
+          maximum: 32768
+          minimum: 1
+    AgentJobOutputs:
+      type: object
+      properties:
+        answer:
+          $ref: '#/components/schemas/JsonNode'
+        explanation:
+          type: string
+        referenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
     Job:
       type: object
       properties:
@@ -550,23 +444,71 @@ components:
           type: string
         archived:
           type: boolean
-    AgentJobOutputs:
-      type: object
-      properties:
-        answer:
-          $ref: '#/components/schemas/JsonNode'
-        explanation:
-          type: string
-        referenceIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-    UserId:
+    AnnotationId:
       type: object
       properties:
         id:
           type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    AgentInput:
+      type: object
+      description: A single input item submitted to the agent (role + text content)
+      properties:
+        role:
+          type: string
+          description: Author of the item
+          enum:
+          - system
+          - user
+          - assistant
+          - SYSTEM
+          - USER
+          - ASSISTANT
+          example: USER
+        content:
+          type: string
+          description: Plain text content of the item
+          example: Summarize the attached report.
+      required:
+      - content
+      - role
     EliseAnnotation:
       type: object
       properties:
@@ -600,6 +542,64 @@ components:
           enum:
           - VALID
           - NOTVALID
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+          enum:
+          - POLICY
+          - PROJECT
+          - COLLECTION
+          - PROVIDER
+          - FILE
+          - PROCESSOR
+          - JOB
+          - PRESET
+          - EDITABLE_DOCUMENT
+          - REVIEW
+          - COLLECTION_DERIVATION
+          - REVIEW_REQUEST
+          - MILESTONE
+          - INSIGHT
+          - CONCEPT_NOTE
+          - ANNOTATION
+          - BIBLIO_SEARCH
+          - SEARCH_DOWNLOAD
+          - INSIGHT_CELL_FILTER
+          - INSIGHT_CELL_SORTING
+          - INSIGHT_CELL_FORMAT
+          - INSIGHT_GROUP
+          - INSIGHTS_TABLE_CONFIG
+          - INSIGHTS_TABLE_TEMPLATE
+          - SEARCH_REMOVAL
+          - COMMENT_THREAD
+          - COMMENT
+          - SMART_REVIEW
+          - RIS_IMPORT_JOB
+          - FORGE_WORKFLOW
+          - COLLECTION_VIEW
+          - SUB_COLLECTION_JOB
+          - PROJECT_LABEL
+          - PROJECT_GROUP
+    PageDataJob:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        hasNext:
+          type: boolean
   securitySchemes:
     TOKEN:
       type: http

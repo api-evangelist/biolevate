@@ -399,6 +399,31 @@ paths:
                 format: byte
 components:
   schemas:
+    DownloadUrlResponse:
+      type: object
+      description: Download URL response
+      properties:
+        url:
+          type: string
+          description: URL to download the file
+        expiresInSeconds:
+          type: integer
+          format: int32
+          description: Time in seconds until the URL expires
+    UploadUrlResponse:
+      type: object
+      description: Presigned upload URL response
+      properties:
+        url:
+          type: string
+          description: Presigned URL for direct upload (null if not supported)
+        expiresInSeconds:
+          type: integer
+          format: int32
+          description: Time in seconds until the URL expires
+        supported:
+          type: boolean
+          description: Whether presigned upload is supported by this provider
     ProviderItem:
       type: object
       description: Provider item (file or folder)
@@ -446,16 +471,6 @@ components:
           example: reports/document.pdf
       required:
       - key
-    ItemReference:
-      type: object
-      description: Reference to an item. Use trailing slash for folders (e.g., 'folder/' or 'path/to/folder/')
-      properties:
-        key:
-          type: string
-          description: 'Full item key. Files: ''path/to/file.pdf'', Folders: ''path/to/folder/'''
-          example: reports/document.pdf
-      required:
-      - key
     UploadUrlRequest:
       type: object
       description: Request for presigned upload URL
@@ -475,6 +490,16 @@ components:
           example: application/pdf
       required:
       - key
+    CreateItemRequest:
+      type: object
+      description: Create folder request. Key must end with '/' to indicate a folder.
+      properties:
+        key:
+          type: string
+          description: Full folder key ending with '/'
+          example: reports/archive/
+      required:
+      - key
     ListItemsResponse:
       type: object
       description: Paginated list of provider items
@@ -487,41 +512,16 @@ components:
         nextCursor:
           type: string
           description: Cursor for next page, null if no more pages
-    DownloadUrlResponse:
+    ItemReference:
       type: object
-      description: Download URL response
-      properties:
-        url:
-          type: string
-          description: URL to download the file
-        expiresInSeconds:
-          type: integer
-          format: int32
-          description: Time in seconds until the URL expires
-    CreateItemRequest:
-      type: object
-      description: Create folder request. Key must end with '/' to indicate a folder.
+      description: Reference to an item. Use trailing slash for folders (e.g., 'folder/' or 'path/to/folder/')
       properties:
         key:
           type: string
-          description: Full folder key ending with '/'
-          example: reports/archive/
+          description: 'Full item key. Files: ''path/to/file.pdf'', Folders: ''path/to/folder/'''
+          example: reports/document.pdf
       required:
       - key
-    UploadUrlResponse:
-      type: object
-      description: Presigned upload URL response
-      properties:
-        url:
-          type: string
-          description: Presigned URL for direct upload (null if not supported)
-        expiresInSeconds:
-          type: integer
-          format: int32
-          description: Time in seconds until the URL expires
-        supported:
-          type: boolean
-          description: Whether presigned upload is supported by this provider
   securitySchemes:
     TOKEN:
       type: http

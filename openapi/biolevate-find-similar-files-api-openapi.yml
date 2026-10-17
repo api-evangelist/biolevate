@@ -131,20 +131,6 @@ paths:
                 $ref: '#/components/schemas/FindSimilarApiJobDto'
 components:
   schemas:
-    EliseOntology:
-      type: object
-      properties:
-        conceptId:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        metas:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/EliseOntologyMeta'
-      required:
-      - conceptId
-      - name
     FindSimilarApiJobDto:
       type: object
       properties:
@@ -176,6 +162,23 @@ components:
             $ref: '#/components/schemas/SourceMatches'
         statistics:
           $ref: '#/components/schemas/JobStatistics'
+    FileMatch:
+      type: object
+      properties:
+        fileId:
+          type: string
+        providerId:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        checksum:
+          type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
     EliseOntologyMeta:
       type: object
       properties:
@@ -189,6 +192,55 @@ components:
           type: string
         metaValue:
           type: object
+    JobStatistics:
+      type: object
+      properties:
+        sourcesQueried:
+          type: integer
+          format: int32
+        sourcesMatchedLocally:
+          type: integer
+          format: int32
+        sourcesMatchedRemotely:
+          type: integer
+          format: int32
+        sourcesUnmatched:
+          type: integer
+          format: int32
+        remoteSearchStatus:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - PROGRESS
+          - ABORTED
+          - COMPLETED
+          - FAILED
+          - OUTDATED
+        totalFileMatches:
+          type: integer
+          format: int32
+        totalMetadataOnlyMatches:
+          type: integer
+          format: int32
+        errorsBySearchResultId:
+          type: object
+          additionalProperties:
+            type: string
+    EliseOntology:
+      type: object
+      properties:
+        conceptId:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        metas:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EliseOntologyMeta'
+      required:
+      - conceptId
+      - name
     AnnotationId:
       type: object
       properties:
@@ -232,41 +284,37 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    JobStatistics:
+    MetadataOnlyMatch:
       type: object
       properties:
-        sourcesQueried:
-          type: integer
-          format: int32
-        sourcesMatchedLocally:
-          type: integer
-          format: int32
-        sourcesMatchedRemotely:
-          type: integer
-          format: int32
-        sourcesUnmatched:
-          type: integer
-          format: int32
-        remoteSearchStatus:
+        searchResultId:
           type: string
-          enum:
-          - PENDING
-          - RUNNING
-          - PROGRESS
-          - ABORTED
-          - COMPLETED
-          - FAILED
-          - OUTDATED
-        totalFileMatches:
-          type: integer
-          format: int32
-        totalMetadataOnlyMatches:
-          type: integer
-          format: int32
-        errorsBySearchResultId:
-          type: object
-          additionalProperties:
-            type: string
+        ontologies:
+          type: array
+          items:
+            $ref: '#/components/schemas/EliseOntology'
+    SourceMatches:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/SourceIdentifiers'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileMatch'
+        metadataOnly:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetadataOnlyMatch'
+    SourceIdentifiers:
+      type: object
+      properties:
+        doi:
+          type: string
+        id:
+          type: string
+        openAccessId:
+          type: string
     PageDataFindSimilarApiJobDto:
       type: object
       properties:
@@ -282,6 +330,13 @@ components:
           format: int64
         hasNext:
           type: boolean
+    SearchSources:
+      type: object
+      properties:
+        sourceIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceIdentifiers'
     EntityId:
       type: object
       properties:
@@ -325,61 +380,6 @@ components:
           - SUB_COLLECTION_JOB
           - PROJECT_LABEL
           - PROJECT_GROUP
-    SearchSources:
-      type: object
-      properties:
-        sourceIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/SourceIdentifiers'
-    FileMatch:
-      type: object
-      properties:
-        fileId:
-          type: string
-        providerId:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        checksum:
-          type: string
-        ontologies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseOntology'
-    MetadataOnlyMatch:
-      type: object
-      properties:
-        searchResultId:
-          type: string
-        ontologies:
-          type: array
-          items:
-            $ref: '#/components/schemas/EliseOntology'
-    SourceMatches:
-      type: object
-      properties:
-        source:
-          $ref: '#/components/schemas/SourceIdentifiers'
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileMatch'
-        metadataOnly:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetadataOnlyMatch'
-    SourceIdentifiers:
-      type: object
-      properties:
-        doi:
-          type: string
-        id:
-          type: string
-        openAccessId:
-          type: string
   securitySchemes:
     TOKEN:
       type: http
