@@ -64,6 +64,134 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Biolevate is a company surfaced as a portfolio company of eqt-ventures and added to the API Evangelist network as a stub for enrichment. Sector: artificial-intelligence. This profile is a lead awaiting the enrichment pipeline.
+Biolevate is an AI Knowledge Platform accelerating life sciences. Its Elise platform connects to an organization's document storage backends (S3, Azure, GCS, SharePoint, SFTP, local), indexes documents with AI, and runs asynchronous Question Answering, Extraction, Multi-Dimensional (entity/tabular) Extraction, Find-Similar and Agent jobs over them. Target workflows span regulatory affairs, R&D, industry and post-market: systematic literature review, Clinical Study Report (CSR) and CTD assisted generation, batch-record quality control, results extraction, HTA support, pharmacovigilance PSUR updates and regulatory intelligence. Biolevate ships a public REST API (OpenAPI 3.1), a Python SDK (`biolevate`) and a CLI (`ozk`). Backed by EQT Ventures.
 
-Backed by: eqt-ventures — https://www.biolevate.com/
+**Areas:** Company · Artificial Intelligence · Life Sciences · Regulatory Affairs · Document Intelligence · Knowledge Management · Pharmaceuticals · Machine Learning
+
+## Biolevate on APIs.io
+
+Everything profiled for Biolevate is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/biolevate/](https://apis.io/providers/biolevate/)** — or go straight to one of the APIs or properties below.
+
+### APIs (9)
+
+- [Biolevate Agent API](https://apis.io/apis/biolevate/biolevate-agent-api/) — Conversational agent jobs
+- [Biolevate Collections API](https://apis.io/apis/biolevate/biolevate-collections-api/) — Collection resource management
+- [Biolevate Extraction API](https://apis.io/apis/biolevate/biolevate-extraction-api/) — Extraction resource management
+- [Biolevate Files API](https://apis.io/apis/biolevate/biolevate-files-api/) — EliseFile resource management
+- [Biolevate Find similar files API](https://apis.io/apis/biolevate/biolevate-find-similar-files-api/) — Find similar files locally and via remote bibliographic search
+- [Biolevate Multi-Dimensional Extraction API](https://apis.io/apis/biolevate/biolevate-multi-dimensional-extraction-api/) — Multi-dimensional (entity / schema-based) extraction resource management
+- [Biolevate Provider Items API](https://apis.io/apis/biolevate/biolevate-provider-items-api/) — File and folder operations on storage providers
+- [Biolevate Providers API](https://apis.io/apis/biolevate/biolevate-providers-api/) — Storage provider management (read-only)
+- [Biolevate Question Answering API](https://apis.io/apis/biolevate/biolevate-question-answering-api/) — Question Answering resource management
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [biolevate](https://apis.io/servers/biolevate/biolevate/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Biolevate Agentic Access](https://apis.io/agentic-access/biolevate/biolevate-agentic-access/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Biolevate Agent API](https://apis.io/collections/biolevate/open-biolevate-agent-api/)
+- [Biolevate Agent Collections API](https://apis.io/collections/biolevate/open-biolevate-collections-api/)
+- [Biolevate Agent Extraction API](https://apis.io/collections/biolevate/open-biolevate-extraction-api/)
+- [Biolevate Agent Files API](https://apis.io/collections/biolevate/open-biolevate-files-api/)
+- [Biolevate Agent Find similar files API](https://apis.io/collections/biolevate/open-biolevate-find-similar-files-api/)
+- [Biolevate Agent Multi-Dimensional Extraction API](https://apis.io/collections/biolevate/open-biolevate-multi-dimensional-extraction-api/)
+- [Biolevate Agent Provider Items API](https://apis.io/collections/biolevate/open-biolevate-provider-items-api/)
+- [Biolevate Agent Providers API](https://apis.io/collections/biolevate/open-biolevate-providers-api/)
+- [Biolevate Agent Question Answering API](https://apis.io/collections/biolevate/open-biolevate-question-answering-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Biolevate Api Overlay](https://apis.io/overlays/biolevate/biolevate-api-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Biolevate Authentication](https://apis.io/security/biolevate/biolevate-authentication/)
+- [Biolevate Domain Security](https://apis.io/security/biolevate/biolevate-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.biolevate.com/)
+- [Documentation](https://api-docs.biolevatecloud.com/biolevateapi/intro)
+- [Getting started](https://api-docs.biolevatecloud.com/biolevateapi/intro)
+- [API reference](https://api-docs.biolevatecloud.com/biolevateapi/intro)
+- [Support](https://www.biolevate.com/pages/contactus)
+- [Blog](https://medium.com/@biolevate)
+- [Terms of service](https://www.biolevate.com/pages/legal)
+- [Privacy policy](https://biolevate.notion.site/Website-Privacy-Policy-2c535244d8944dc99267cfd23a3d452d)
+- [GitHub](https://github.com/Biolevate)
+
+## API Evangelist rating
+
+**Kin Score 39.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 21.1 |
+
+**Agent readiness 32.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 18.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/biolevate/](https://apis.io/providers/biolevate/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Biolevate: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/biolevate/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
